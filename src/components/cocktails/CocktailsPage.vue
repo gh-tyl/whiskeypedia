@@ -1,11 +1,11 @@
 <template>
-    <div class="cocktails-page">
-        <h1>Cocktails</h1>
-    </div>
+  <div class="cocktails-page">
+    <h1>Cocktails</h1>
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'CocktailsPage',
+  name: "CocktailsPage",
 };
 </script>
