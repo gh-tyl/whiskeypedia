@@ -7,41 +7,41 @@ import ProfilePage from "../components/profile/ProfilePage.vue";
 import CartPage from "../components/cart/CartPage.vue";
 
 const routes = [
-    {
-        path: "/",
-        name: "Home",
-        component: HomePage,
-    },
-    {
-        path: "/products",
-        name: "Products",
-        component: ProductsPage,
-    },
-    {
-        path: "/cocktails",
-        name: "Cocktails",
-        component: CocktailsPage,
-    },
-    {
-        path: "/contact",
-        name: "Contact",
-        component: ContactPage,
-    },
-    {
-        path: "/profile",
-        name: "Profile",
-        component: ProfilePage,
-    },
-    {
-        path: "/cart",
-        name: "Cart",
-        component: CartPage,
-    },
+  {
+    path: "/",
+    name: "Home",
+    component: HomePage,
+  },
+  {
+    path: "/products",
+    name: "Products",
+    component: ProductsPage,
+  },
+  {
+    path: "/cocktails",
+    name: "Cocktails",
+    component: CocktailsPage,
+  },
+  {
+    path: "/contact",
+    name: "Contact",
+    component: ContactPage,
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: ProfilePage,
+  },
+  {
+    path: "/cart",
+    name: "Cart",
+    component: CartPage,
+  },
 ];
 
 const router = createRouter({
-    history: createWebHistory(),
-    routes,
+  history: createWebHistory(),
+  routes,
 });
 
 export default router;
