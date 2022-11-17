@@ -1,31 +1,11 @@
 <script setup>
 // add imports here
+import MainMenu from "./components/common/MainMenu.vue";
 </script>
 
 <template>
   <header>
-    <nav>
-      <ul>
-        <li>
-          <router-link to="/">Home</router-link>
-        </li>
-        <li>
-          <router-link to="/products">Products</router-link>
-        </li>
-        <li>
-          <router-link to="/cocktails">Cocktails</router-link>
-        </li>
-        <li>
-          <router-link to="/contact">Contact</router-link>
-        </li>
-        <li>
-          <router-link to="/profile">Profile</router-link>
-        </li>
-        <li>
-          <router-link to="/cart">Cart</router-link>
-        </li>
-      </ul>
-    </nav>
+    <MainMenu />
   </header>
 
   <main>
@@ -39,6 +19,8 @@ import ProductService from "./services/ProductService.js";
 import PurchasedService from "./services/PurchasedService.js";
 export default {
   name: "App",
+  components: {
+    MainMenu,
   data() {
     return {};
   },
