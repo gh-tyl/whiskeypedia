@@ -34,37 +34,35 @@
 </template>
 
 <script>
-import UserService from './services/UserService.js';
-import ProductService from './services/ProductService.js';
-import PurchasedService from './services/PurchasedService.js';
+import UserService from "./services/UserService.js";
+import ProductService from "./services/ProductService.js";
+import PurchasedService from "./services/PurchasedService.js";
 export default {
   name: "App",
-  data(){
-    return{
-
-    }
+  data() {
+    return {};
   },
-  methods:{
-    loadUserJson(){
+  methods: {
+    loadUserJson() {
       UserService.getJson()
-        .then(res=>console.log(res.data))
-        .catch(err=>console.log(err));
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err));
     },
-    loadProductJson(){
+    loadProductJson() {
       ProductService.getJson()
-        .then(res=>console.log(res.data))
-        .catch(err=>console.log(err));
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err));
     },
-    loadPurchasedJson(){
+    loadPurchasedJson() {
       PurchasedService.getJson()
-        .then(res=>console.log(res.data))
-        .catch(err=>console.log(err));
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err));
     },
   },
-  mounted(){
+  mounted() {
     this.loadUserJson();
     this.loadProductJson();
     this.loadPurchasedJson();
-  }
+  },
 };
 </script>
