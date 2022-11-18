@@ -21,6 +21,7 @@ export default {
   name: "App",
   components: {
     MainMenu,
+  },
   data() {
     return {};
   },
