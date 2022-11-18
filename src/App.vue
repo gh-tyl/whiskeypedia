@@ -1,8 +1,3 @@
-<script setup>
-// add imports here
-import MainMenu from "./components/common/MainMenu.vue";
-</script>
-
 <template>
   <header>
     <MainMenu />
@@ -14,6 +9,7 @@ import MainMenu from "./components/common/MainMenu.vue";
 </template>
 
 <script>
+import MainMenu from "./components/common/MainMenu.vue";
 import UserService from "./services/UserService.js";
 import ProductService from "./services/ProductService.js";
 import PurchasedService from "./services/PurchasedService.js";
