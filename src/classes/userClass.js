@@ -3,7 +3,6 @@ class userClass {
   fName;
   lName;
   email;
-  password;
   address;
   gender;
   age;
@@ -14,7 +13,6 @@ class userClass {
     fName,
     lName,
     email,
-    password,
     address,
     gender,
     age,
@@ -24,7 +22,6 @@ class userClass {
     this.fName = fName;
     this.lName = lName;
     this.email = email;
-    this.password = password;
     this.address = address;
     this.gender = gender;
     this.age = age;
