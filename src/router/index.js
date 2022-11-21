@@ -9,32 +9,32 @@ import CartPage from "../components/cart/CartPage.vue";
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "home-page",
     component: HomePage,
   },
   {
     path: "/products",
-    name: "Products",
+    name: "products-page",
     component: ProductsPage,
   },
   {
     path: "/cocktails",
-    name: "Cocktails",
+    name: "cocktails-page",
     component: CocktailsPage,
   },
   {
     path: "/contact",
-    name: "Contact",
+    name: "contact-page",
     component: ContactPage,
   },
   {
     path: "/profile",
-    name: "Profile",
+    name: "profile-page",
     component: ProfilePage,
   },
   {
     path: "/cart",
-    name: "Cart",
+    name: "cart-page",
     component: CartPage,
   },
 ];

@@ -1,11 +1,19 @@
 <template>
   <div class="profile-page">
-    <h1>Profile</h1>
+    <h1>Your Profile</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "ProfilePage",
+  name: "ProfileCompo",
+  props:[],
+  data(){
+    return {
+
+    }
+  },
+  methods:{
+  }
 };
 </script>
