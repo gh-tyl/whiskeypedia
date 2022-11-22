@@ -34,6 +34,12 @@
 export default {
   name: "MainMenu",
   props:["logFlag", "productCount"],
+  watch:{
+    logFlag: function(){
+      this.logFlag = val;
+    }
+    
+  }
 };
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="login-page">
     <input type="text" v-model="uName" placeholder="Write your email"> 
-    <input :type="[passflag == 'Show' ? 'password' : 'text']" v-model="pass" placeholder="enter your password">
+    <input :type="[passflag == 'Show' ? 'password' : 'text']" @keyup.enter="logIn(uName,pass)" v-model="pass" placeholder="enter your password">
     <button @click="chgPassFlag" >{{ passflag }}</button>
     <button @click="logIn(uName,pass)">Log In</button>
     <h1>{{logText}}</h1>
