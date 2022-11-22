@@ -35,8 +35,8 @@ class userClass {
       lname: this.lName,
       email: this.email,
       address: this.address,
-      gender: this.gender,
-      age: this.gender,
+      age: this.age,
+      gender:this.gender,
       country : this.country
     }
   }

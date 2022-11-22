@@ -75,3 +75,17 @@ export default {
   name: "CocktailsPage",
 };
 </script>
+<style scoped>
+* {
+  color: whitesmoke;
+}
+
+figure {
+  display: flex;
+  column-gap: 5vh;
+}
+
+figure:nth-child(2){
+  flex-direction: row-reverse;
+}
+</style>

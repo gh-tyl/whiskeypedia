@@ -30,7 +30,9 @@ methods:{
       if(user.email == this.uName && user.password == this.pass){
         this.loggedUser = new userClass(user.id, user.first_name,user.last_name,user.email, user.address,user.gender, user.age, user.country);
         this.$emit("closeModal");
-        this.$emit('loggedUser',this.loggedUser);
+        this.$emit('userInfo',this.loggedUser.toObj());
+        sessionStorage.setItem('user', JSON.stringify(this.loggedUser.toObj()))
+        this.$router.push({name:"profile-page"})
       }else{
         this.logText = "Wrong ID or Password";
       }
