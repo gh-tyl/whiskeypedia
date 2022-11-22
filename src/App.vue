@@ -67,18 +67,25 @@ export default {
     },
     setLoggedUser(val){
       this.loggedUser = val;
-      console.log(this.loggedUser)
       this.logFlag = true;
       this.shoppingList = new shoppingCartClass(Math.floor((1 + Math.random()) * 0x10000)
       .toString(16)
       .substring(1), val.fName+" "+val.lName);
       console.log(this.shoppingList);
     },
+    chkSession(){
+      if(sessionStorage.get('user')){
+        this.logFlag = true;
+      }else{
+        this.logFlag = false;
+      }
+    }
   },
   mounted() {
     // this.loadUserJson();
     // this.loadProductJson();
     // this.loadPurchasedJson();
+
   },
   watch:{
     shoppingList:{

@@ -12,41 +12,51 @@
         <!-- Modal content -->
         <div class="modal-content">
           <span class="close" @click="showInfo">&times;</span>
-          <h4>Name: {{loggedUser.fname}}{{loggedUser.lname}}</h4>
-          <h4>Email: {{loggedUser.email}}</h4>
-          <h4>Country: {{loggedUser.country}}</h4>
+          <h4>Name: {{userinfo.fname}}{{userinfo.lname}}</h4>
+          <h4>Email: {{userinfo.email}}</h4>
+          <h4>Country: {{userinfo.country}}</h4>
         </div>
         </div>
         <!-- edit modal -->
         <div v-if="edit" class="editProfile sect">
           <div class="modal-content">
             <span class="close" @click="showEdit">&times;</span>
-            <input type="text" :value="loggedUser.fname"  placeholder="first name">
-            <input type="text" :value="loggedUser.lname"  placeholder="last name">
-            <input type="text" :value="loggedUser.email"  placeholder="email">
-            <input type="text" :value="loggedUser.country"  placeholder="country">
+            <input type="text" :value="userinfo.fname"  placeholder="first name">
+            <input type="text" :value="userinfo.lname"  placeholder="last name">
+            <input type="text" :value="userinfo.email"  placeholder="email">
+            <input type="text" :value="userinfo.country"  placeholder="country">
             <button @click="update">Edit</button>
           </div>
         </div>
         <!-- recommand products for this user -->
         <div class="section heighlight">
           <h3>Recommand Products</h3>
-          <div class="prods" v-for="(prod, idx) in heighlight" :key="idx">
-            <h1>{{prod[1].name}}</h1>
-            <h1>{{prod[1].ocuntry}}</h1>
-            <!-- <img :src="prod[1].image_path_0" alt="img"> -->
-            <h1>{{prod[1].price}}</h1>
+          <div>
+            <input type="checkbox" @change="chgHeigh" v-model="female"> Female
+            <input type="checkbox" @change="chgHeigh" v-model="male"> male
+            <input type="checkbox" @change="chgHeigh" v-model="young"> under 40
+            <input type="checkbox" @change="chgHeigh" v-model="old"> older than 40
+          </div>
+          <div  class="prods">
+            <div class="prod" v-for="(prod, idx) in heighlight" :key="idx">
+              <h1>{{prod[1].name}}</h1>
+              <h1>{{prod[1].ocuntry}}</h1>
+              <!-- <img :src="prod[1].image_path_0" alt="img"> -->
+              <h1>{{prod[1].price}}</h1>
+            </div>
           </div>
         </div>
         <!-- purchaed history -->
         <div class="section track">
           <h3>Purchased History</h3>
-          <div v-for="(track,idx) in tracking" :key="idx">
-            <h2>{{track[1].class}}</h2>
-            <h2>{{track[1].country}}</h2>
-            <h2>{{track[1].name}}</h2>
-            <h2>{{track[1].status}}</h2>
-          </div>
+          <div class="prods">
+            <div class="tracking" v-for="(track,idx) in tracking" :key="idx">
+              <h2>{{track[1].class}}</h2>
+              <h2>{{track[1].country}}</h2>
+              <h2>{{track[1].name}}</h2>
+              <h2>{{track[1].status}}</h2>
+            </div>
+        </div>
         </div>
       </div>
     </div>
@@ -77,7 +87,16 @@ export default {
       showProfile:false,
       edit:false,
       nowdate:new Date(),
-      userinfo: JSON.parse(sessionStorage.getItem('user'))
+      userinfo: JSON.parse(sessionStorage.getItem('user')),
+      flag:false,
+      maleProds : new Map(),
+      femaleProds : new Map(),
+      oldProds : new Map(),
+      youngProds : new Map(),
+      female:false,
+      male:false,
+      young:false,
+      old:false
     }
   },
   methods:{
@@ -119,8 +138,7 @@ export default {
     update(){
       // this.$router.push({name:'product-page'})
     },
-    setHighlight(){
-      // let gender = female;
+    makeHighlight(){
       let femalegenders = new Map();
       let malegenders = new Map();
       let youngs = new Map();
@@ -137,22 +155,23 @@ export default {
           olders.set(user.id,user);
         }
       })
+
       let maleProd = new Map();
       let femaleProd = new Map();
       this.purchased.forEach(function(prod){
         if(femalegenders.has(prod.user_id)){
-          if(femaleProd.has(prod.user_id)){
-            femaleProd.get(prod.user_id).amount += 1;
+          if(femaleProd.has(prod.product_id)){
+            femaleProd.get(prod.product_id).amount += 1;
           }else{
             let obj = {id:prod.id,pId:prod.product_id,uid:prod.user_id,amount:1}
-            femaleProd.set(prod.user_id,obj);
+            femaleProd.set(prod.product_id,obj);
           }
-        }else{
-          if(maleProd.has(prod.user_id)){
-            maleProd.get(prod.user_id).amount += 1;
+        }else if(malegenders.has(prod.user_id)){
+          if(maleProd.has(prod.product_id)){
+            maleProd.get(prod.product_id).amount += 1;
           }else{
             let obj = {id:prod.id,pId:prod.product_id,uid:prod.user_id,amount:1}
-            maleProd.set(prod.user_id,obj);
+            maleProd.set(prod.product_id,obj);
           }
         }
       })
@@ -160,62 +179,47 @@ export default {
       let oldProd = new Map();
       this.purchased.forEach(function(prod){
         if(youngs.has(prod.user_id)){
-          if(youngProd.has(prod.user_id)){
-            youngProd.get(prod.user_id).amount += 1;
+          if(youngProd.has(prod.product_id)){
+            youngProd.get(prod.product_id).amount += 1;
           }else{
             let obj = {id:prod.id,pId:prod.product_id,uid:prod.user_id,amount:1};
-            youngProd.set(prod.user_id,obj);
+            youngProd.set(prod.product_id,obj);
           }
-        }else{
-          if(oldProd.has(prod.user_id)){
-            oldProd.get(prod.user_id).amount += 1;
+        }else if(olders.has(prod.user_id)){
+          if(oldProd.has(prod.product_id)){
+            oldProd.get(prod.product_id).amount += 1;
           }else{
             let obj = {id:prod.id,pId:prod.product_id,uid:prod.user_id,amount:1}
-            oldProd.set(prod.user_id,obj);
+            oldProd.set(prod.product_id,obj);
           }
         }
       })
-      console.log(youngProd);
-      console.log(oldProd);
-      console.log(maleProd);
-      console.log(femaleProd);
+      this.chg(maleProd,this.maleProds)
+      this.chg(femaleProd,this.femaleProds)
+      this.chg(oldProd,this.oldProds)
+      this.chg(youngProd,this.youngProds)
 
-      let maleProds = new Map();
-      let femaleProds = new Map();
-      let oldProds = new Map();
-      let youngProds = new Map();
-      this.chg(maleProd,maleProds)
-      this.chg(femaleProd,femaleProds)
-      this.chg(oldProd,oldProds)
-      this.chg(youngProd,youngProds)
-
-      console.log(youngProds);
-      console.log(oldProds);
-      console.log(maleProds);
-      console.log(femaleProds);
-  
     },
-    makeHighlight(){
-      if(this.loggedUser.gender == 'Femail'){
-        this.heighlight = femaleProds;
+    setHighlight(){
+      if(this.userinfo.gender == 'Femail'){
+        this.heighlight = this.femaleProds;
       }else{
-        this.heighlight = maleProds;
+        this.heighlight = this.maleProds;
       }
 
-      if(this.loggedUser.age < 40){
-        this.heighlightAge = youngProds;
+      if(this.userinfo.age < 40){
+        this.heighlightAge = this.youngProds;
       }else{
-        this.heighlightAge = oldProds;
+        this.heighlightAge = this.oldProds;
       }
-      console.log(this.heighlight)
-      console.log(this.heighlightAge)
+    // how to display 
     },
     chg(prodlist,map){
       let prods = this.products;
       prodlist.forEach(function(male){
         prods.forEach(function(prod){
           if(male.pId == prod.id){
-            prod['rates'] = male.amount;
+            prod.rates = male.amount;
             map.set(male.pId, prod);
           }
         })
@@ -224,12 +228,10 @@ export default {
     },
     setTracking(){
       let selectedProds =[];
-      console.log(this.loggedUser)
-      let id = this.loggedUser.uid;
+      let id = this.userinfo.uid;
       let obj = this;
       this.purchased.forEach(function(purchase){
         if(purchase.user_id == id){
-          // console.log(obj.nowdate)
           selectedProds.push({id:purchase.product_id,date:purchase.datetime});
         }
       })
@@ -247,9 +249,37 @@ export default {
           }
         }
       })
-
       this.tracking = track;
-      console.log(this.tracking)
+    },
+    chgHeigh(){
+      // let arr = [female, male, old, young];
+      // for(let i=0; i < 4; i++){
+      //   if(this.arr[i] === true){
+      //     this.heighlight = `this.${arr}Prods`;
+      //     this.
+      //   }
+      // }
+      if(this.male === true){
+        this.young = false;
+        this.old = false;
+        this.female = false;
+        this.heighlight = this.maleProds;
+      }else if(this.female === true){
+        this.young = false;
+        this.old = false;
+        this.male = false;
+        this.heighlight = this.femaleProds;        
+      }else if(this.old === true){
+        this.young = false;
+        this.female = false;
+        this.male = false;
+        this.heighlight = this.oldProds;        
+      }else if(this.young === true){
+        this.female = false;
+        this.old = false;
+        this.male = false;
+        this.heighlight = this.youngProds;        
+      }
     }
   },
   mounted(){
@@ -260,13 +290,12 @@ export default {
   },
   watch:{
     users:function(){
-      this.setHighlight();
-    },
-    loggedUser:function(){
-      this.setHighlight();
-      console.log('hi')
-      this.setTracking();
       this.makeHighlight();
+      this.flag = !this.flag;
+    },
+    flag:function(){
+      this.setTracking();
+      this.setHighlight();
     }
   }
 
@@ -276,10 +305,14 @@ export default {
 <style scoped>
 .section{
   display: flex;
+  flex-direction: column;
   border: .5px solid lightgray;
 }
 
 .prods{
+  display: flex;
+}
+.prod{
   display: flex;
   flex-direction: column;
 }
