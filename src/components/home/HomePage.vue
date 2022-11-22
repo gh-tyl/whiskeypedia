@@ -29,7 +29,7 @@
     <!-- Modal content -->
     <div class="modal-content">
       <span @click="closeModal">&times;</span>
-      <home-login-compo @loggedUser="loggedUser" @closeModal="closeModal"></home-login-compo>
+      <home-login-compo @userInfo="userinfo" @closeModal="closeModal"></home-login-compo>
     </div>
   </div>
   <alarm-compo :alarmText="alarmText" :rand="rand"></alarm-compo>
@@ -62,7 +62,8 @@ export default {
       slideProducts : new Array(),
       bestSellerProducts : new Array(),
       alarmText:'',
-      rand:0
+      rand:0,
+      userInfo: ''
     }
   },
   methods:{
@@ -112,11 +113,15 @@ export default {
           }
         })
       }
+    },
+    userinfo(val){
+      this.userInfo = val;
+      console.log(this.userInfo);
+      this.$emit('userInfo',this.userInfo)
     }
   },
   mounted(){
     this.loadProductJson();
-
     // Get the modal
       var modal = document.getElementById("myModal");
     // When the user clicks anywhere outside of the modal, close it
@@ -127,7 +132,9 @@ export default {
     }
   },
   watch:{
-
+    // userInfo:function(val){
+    //   this.userInfo(val);
+    // }
   }
 };
 </script>

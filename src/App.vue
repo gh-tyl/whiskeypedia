@@ -16,7 +16,7 @@ import MainMenu from "./components/common/MainMenu.vue";
     </header>
 
     <main>
-      <router-view @loggedUser='setLoggedUser' :loggedUser="loggedUser" :logFlag="logFlag" :shoppingList="shoppingList"/>
+      <router-view @userInfo='setLoggedUser' :loggedUser="loggedUser" :logFlag="logFlag" :shoppingList="shoppingList"/>
     </main>
     <div class="footer-logo">
       <img class="logo2" src="./home-img/main-logo.png" alt="logo">
@@ -67,6 +67,7 @@ export default {
     },
     setLoggedUser(val){
       this.loggedUser = val;
+      console.log(this.loggedUser)
       this.logFlag = true;
       this.shoppingList = new shoppingCartClass(Math.floor((1 + Math.random()) * 0x10000)
       .toString(16)
