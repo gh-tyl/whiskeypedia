@@ -55,6 +55,7 @@
               <h2>{{track[1].country}}</h2>
               <h2>{{track[1].name}}</h2>
               <h2>{{track[1].status}}</h2>
+              <star-rating :star-size="20"></star-rating>
             </div>
         </div>
         </div>
@@ -65,12 +66,13 @@
 
 <script>
 import JsonService from '../../services/JsonService';
+import StarRating from "vue-star-rating";
 
 export default {
   name: "ProfilePage",
   props:['loggedUser'],
   components:{
-    
+    StarRating
   },
   data(){
     return {
