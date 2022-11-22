@@ -66,6 +66,7 @@
 
 <script>
 import JsonService from '../../services/JsonService';
+// npm install vue-star-rating@next
 import StarRating from "vue-star-rating";
 
 export default {
