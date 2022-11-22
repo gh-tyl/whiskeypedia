@@ -1893,7 +1893,14 @@
   dependencies:
     "@vue/devtools-api" "^6.4.5"
 
-"vue@^3.2.0", "vue@^3.2.25", "vue@^3.2.41", "vue@3.2.44":
+"vue-star-rating@^2.1.0":
+  "integrity" "sha512-LnhuQPi4hkRg7egKls+iqtL1U0RTN2gQkdLsJN7acyynMsSc9epHLzk8McJS+bR0OzfG98zNFq7mxAyuSb/okQ=="
+  "resolved" "https://registry.npmjs.org/vue-star-rating/-/vue-star-rating-2.1.0.tgz"
+  "version" "2.1.0"
+  dependencies:
+    "vue" "^3.0.0"
+
+"vue@^3.0.0", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.2.41", "vue@3.2.44":
   "integrity" "sha512-nyNtFDh+0TpRgYCUVfPD1mJ9PpIsCPXaOF4DeGNIT5vQ4X23ykflGq3Sy2P+tEt1/pQZxZnAysuRKwyhNj+Cjw=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.44.tgz"
   "version" "3.2.44"
