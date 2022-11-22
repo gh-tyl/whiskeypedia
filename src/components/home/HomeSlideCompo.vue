@@ -1,8 +1,14 @@
 <template>
   <section>
-    <swiper :slidesPerView="3" :spaceBetween="200" :loop="true" :navigation="true" :modules="modules" class="mySwiper">
-      <swiper-slide v-for="(item, idx) in slideItems" :key="idx">
-        <img v-bind:src="item.image_path_0" v-bind:alt="item.name">
+    <swiper :slidesPerView="3" :spaceBetween="100" :loop="true" :navigation="true" :modules="modules" class="mySwiper">
+      <swiper-slide>
+        <img class="slideImg" src="../../img/home-main.jpg">
+      </swiper-slide>
+      <swiper-slide>
+        <img class="slideImg" src="../../img/cocktails-main.jpg">
+      </swiper-slide>
+      <swiper-slide>
+        <img class="slideImg" src="../../img/whiskey-3.png">
       </swiper-slide>
     </swiper>
   </section>
@@ -23,16 +29,14 @@ export default {
     Swiper,
     SwiperSlide,
   },
-  props:["slideItems"],
+  props:[],
   setup(){
     return {
       modules: [Navigation],
     };
   },
   methods:{
-    test(){
-      console.log(this.slideItems);
-    }
+
   },
   watch:{
 
@@ -41,6 +45,9 @@ export default {
 </script>
 
 <style>
+  .slideImg{
+    width: 100%;
+  }
   .swiper{
     overflow: hidden;
   }

@@ -10,26 +10,32 @@
     <input type="text" placeholder="First Name*" v-model="fName" required>
     <input type="text" placeholder="Last Name*" v-model="lName" required>
     <input type="email" placeholder="Email*" v-model="email" required>
-    <input type="text" placeholder="Phone (for delivery)*" required>
+    <input type="text" placeholder="Phone (for delivery)*" v-model="tel" required>
     <input type="text" placeholder="Address*" v-model="address" required>
-    <input type="text" placeholder="City*" required>
-    <input type="text" placeholder="Postal Code*" required>
-    <input type="text" placeholder="Country*" required>
+    <input type="text" placeholder="City*" v-model="city" required>
+    <input type="text" placeholder="Postal Code*" v-model="postal" required>
+    <input type="text" placeholder="Country*" v-model="country" required>
     <textarea placeholder="Notes for delivery"></textarea>
     <button>CHECKOUT</button>
   </form>
 </template>
 
 <script>
+import shoppingCartClass from '../../classes/shoppingCartClass.js'
 export default {
   name:"CartDetailCompo",
-  props:["loggedUser"],
+  props:["loggedUser", "shoppingList"],
   data(){
     return{
       fName:undefined,
       lName:undefined,
       email:undefined,
-      address:undefined
+      address:undefined,
+
+      tel:undefined,
+      city:undefined,
+      postal:undefined,
+      country:undefined
     }
   },
   methods:{
@@ -41,7 +47,23 @@ export default {
     },
     checkOut(e){
       e.preventDefault();
-      console.log("checkout");
+      let checkoutObj = {
+        fName: this.fName,
+        lName: this.lName,
+        email: this.email,
+        address: this.address,
+        tel: this.tel,
+        city: this.city,
+        postal: this.postal,
+        country: this.country,
+
+        shoppingList: this.shoppingList
+      }
+      // this.shoppingList = new shoppingCartClass(Math.floor((1 + Math.random()) * 0x10000)
+      // .toString(16)
+      // .substring(1), this.loggedUser.fName+" "+this.loggedUser.lName);
+      console.log(checkoutObj);
+      this.$router.push({name:'profile-page'});
     }
   }
 }

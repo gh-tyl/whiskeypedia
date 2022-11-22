@@ -32,6 +32,7 @@
       <home-login-compo @loggedUser="loggedUser" @closeModal="closeModal"></home-login-compo>
     </div>
   </div>
+  <alarm-compo :alarmText="alarmText" :rand="rand"></alarm-compo>
 </template>
 
 <script>
@@ -42,10 +43,12 @@ import HomeBestSellerCompo from './HomeBestSellerCompo.vue';
 import HomeJoinCompo from './HomeJoinCompo.vue';
 import HomeRecommandationCompo from './HomeRecommandationCompo.vue';
 import HomeLoginCompo from './HomeLoginCompo.vue';
+import AlarmCompo from '../common/AlarmCompo.vue';
 
 export default {
   name: "HomePage",
   components:{
+    AlarmCompo,
     HomeSlideCompo,
     HomeBestSellerCompo,
     HomeJoinCompo,
@@ -58,6 +61,8 @@ export default {
       allProducts : new Array(),
       slideProducts : new Array(),
       bestSellerProducts : new Array(),
+      alarmText:'',
+      rand:0
     }
   },
   methods:{
@@ -102,6 +107,8 @@ export default {
           if(val.id == id){
             let item = new productClass(val.id, val.name, val.price, val.country, val.type, val.class);
             this.shoppingList.addItem(item);
+            this.rand = Math.random();
+            this.alarmText = `You added ${val.name} in your shopping cart.`;
           }
         })
       }
