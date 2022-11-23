@@ -23,7 +23,7 @@
           <router-link class="router-link" to="/profile">P</router-link>
         </li>
         <li v-show="logFlag">
-          <router-link class="router-link" to="/cart">C<span>{{productCount}}</span></router-link>
+          <router-link @click="setShopSession" class="router-link" to="/cart">C<span>{{productCount}}</span></router-link>
         </li>
       </div>
     </ul>
@@ -34,6 +34,11 @@
 export default {
   name: "MainMenu",
   props:["logFlag", "productCount"],
+  methods :{
+    setShopSession(){
+      this.$emit('shoppingFlag', true)
+    }
+  },
   watch:{
     // logFlag: function(){
     //   this.logFlag = val;

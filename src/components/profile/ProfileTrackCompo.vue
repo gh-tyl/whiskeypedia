@@ -127,7 +127,7 @@ h3 {
   border: 1px solid whitesmoke;
   padding: 3%;
   width: fit-content;
-  height: fit-content;
+  height: 65vh;
   display: flex;
   flex-direction: column;
   row-gap: 1vh;
