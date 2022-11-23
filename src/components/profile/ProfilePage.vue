@@ -117,7 +117,6 @@ export default {
     },
     editInfo(){
       let newUserInfo = new userClass(this.userinfo.uid,this.fname,this.lname,this.email,this.userinfo.address, this.gender, this.age,this.country);
-      // console.log(newUserInfo.toObj());
       sessionStorage.clear()
       sessionStorage.setItem('user',JSON.stringify(newUserInfo.toObj()));
       this.loadSession();
@@ -128,11 +127,13 @@ export default {
     },
     loadSession(){
       this.userinfo = JSON.parse(sessionStorage.getItem('user'));
-      this.fname  = this.userinfo.fname;
-      this.lname = this.userinfo.lname;
-      this.country = this.userinfo.country;
-      this.age = this.userinfo.age;
-      this.email = this.userinfo.email;
+      if(this.userinfo){
+        this.fname  = this.userinfo.fname;
+        this.lname = this.userinfo.lname;
+        this.country = this.userinfo.country;
+        this.age = this.userinfo.age;
+        this.email = this.userinfo.email;
+      }
     },
     loadProducts(){
       this.loadSession();
@@ -219,10 +220,12 @@ export default {
 
     },
     setHighlight(){
-      if(this.userinfo.gender == 'Female'){
-        this.heighlight = this.femaleProds;
-      }else{
-        this.heighlight = this.maleProds;
+      if(sessionStorage.getItem('user')){
+        if(this.userinfo.gender == 'Female'){
+          this.heighlight = this.femaleProds;
+        }else{
+          this.heighlight = this.maleProds;
+        }
       }
     },
     chg(prodlist,map){

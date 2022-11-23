@@ -16,7 +16,7 @@ import MainMenu from "./components/common/MainMenu.vue";
     </header>
 
     <main>
-      <router-view @userInfo='setLoggedUser' :loggedUser="loggedUser" :logFlag="logFlag" :shoppingList="shoppingList"/>
+      <router-view @shopcount = "setCount"  @userInfo='setLoggedUser' :loggedUser="loggedUser" :logFlag="logFlag" :shoppingList="shoppingList"/>
     </main>
     <div class="footer-logo">
       <img class="logo2" src="./home-img/main-logo.png" alt="logo">
@@ -65,13 +65,18 @@ export default {
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
     },
+    setCount(val){
+      this.productCount = val;
+    },
     setLoggedUser(val){
       if(!sessionStorage.getItem('user')){
         this.loggedUser = val;
-        this.logFlag = true;
         this.shoppingList = new shoppingCartClass(Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1), val.fName+" "+val.lName);
+        this.logFlag = true;
+      }else{
+        this.chkSession();
       }
-      console.log(this.shoppingList);
+      console.log(this.shoppingList)
     },
     chkSession(){
       if(sessionStorage.getItem('user')){
@@ -82,6 +87,7 @@ export default {
       }else{
         this.logFlag = false;
       }
+      console.log(this.shoppingList)
     }
   },
   mounted(){
@@ -97,6 +103,9 @@ export default {
         this.productCount = this.shoppingList.returnSize();
       },
       deep: true
+    },
+    loggedUser: function(){
+      this.chkSession()
     }
   }
 };
