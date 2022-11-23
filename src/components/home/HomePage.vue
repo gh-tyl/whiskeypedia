@@ -1,5 +1,5 @@
 <template>
-  <div class="home-page">
+  <div class="home-page">    
     <!-- Slide Images -->
     <home-slide-compo :slideItems="slideProducts"></home-slide-compo>
     <!-- WELCOME -->
