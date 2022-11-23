@@ -4,7 +4,6 @@
     margin: 0;
     padding: 0;
 }
-
 h1 {
     font-size: 40px;
     text-align: center;
@@ -12,15 +11,14 @@ h1 {
     color: #FDEEC0;
     font-family: 'DM Mono', monospace;
     font-weight: 400;
-    text-decoration: underline;
+    padding-left: 2vh;
+    padding-right: 2vh;
 }
-
 p {
     color: #FDEEC0;
     font-family: 'DM Mono', monospace;
     font-weight: 300; 
 }
-
 span {
     color: #FDEEC0;
     font-family: 'DM Mono', monospace;

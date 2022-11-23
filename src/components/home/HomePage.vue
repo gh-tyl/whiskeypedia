@@ -4,12 +4,8 @@
     <home-slide-compo :slideItems="slideProducts"></home-slide-compo>
     <!-- WELCOME -->
     <section>
-      <figure>
-        <img src="https://picsum.photos/300/300" class="img-fluid rounded-top" alt="">
-        <figcaption>
-          <h1>WELCOME TO WHISKEYPEDIA</h1>
-          <h2>We've curated the finest selection of whiskey around the world. Here are some of our favorites.</h2>
-        </figcaption>
+      <figure class="welcome">
+        <img src="../../img/welcome-01.png"  alt="welcome">  
       </figure>
     </section>
     <!-- Best Seller -->
@@ -20,8 +16,8 @@
     <home-recommandation-compo @addToItem="addToItem" :logFlag="logFlag"></home-recommandation-compo>
     <!-- TESTIMONIAL -->
     <section>
-      <blockquote>"What whiskey will not cure, there is no cure for."</blockquote>
-      <h3>-IRISH PROVERB</h3>
+      <blockquote>" What whiskey will not cure,<br/> there is no cure for. "</blockquote>
+      <h3 class="quote">-IRISH PROVERB</h3>
     </section>
   </div>
   <!-- The Modal -->
@@ -154,16 +150,15 @@ export default {
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
-
   /* Modal Content/Box */
   .modal-content {
-    background-color: #fefefe;
+    background-color: black !important;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px solid #FDEEC0 !important;
     width: 80%; /* Could be more or less, depending on screen size */
+    height: 40vh;
   }
-
   /* The Close Button */
   .close {
     color: #aaa;
@@ -171,11 +166,30 @@ export default {
     font-size: 28px;
     font-weight: bold;
   }
-
   .close:hover,
   .close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
+  }
+  .welcome{
+    display: flex;
+    justify-content: center;
+    height: 70vh;
+    margin-top: 10vh;
+  }
+  .quote,
+  blockquote{
+    font-family: 'DM Mono', monospace;
+    color: #FDEEC0;
+    text-align: center;  
+  }
+  blockquote{
+    font-size: 36px;
+    margin: 2vh;
+  }
+  .quote{
+    font-weight: lighter;
+    margin-bottom: 15vh;
   }
 </style>
