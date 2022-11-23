@@ -12,7 +12,7 @@ import MainMenu from "./components/common/MainMenu.vue";
     </div>
     <div class="page-style">
     <header>
-      <MainMenu @shoppingFlag = "setShoppingSession" :logFlag="logFlag" :productCount="productCount"/>
+      <MainMenu @logFlag = 'logFlag' @shoppingFlag = "setShoppingSession" :logFlag="logFlag" :productCount="productCount"/>
     </header>
 
     <main>
@@ -50,6 +50,11 @@ export default {
     };
   },
   methods: {
+    logFlag(val){
+      this.logFlag = val;
+      this.shoppingList = undefined;
+      this.loggedUser = '';
+    },
     loadUserJson() {
       UserService.getJson()
         .then((res) => console.log(res.data))

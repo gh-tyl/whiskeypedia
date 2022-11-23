@@ -2,7 +2,7 @@
   <div class="login-page">
     <h4>Please log-in to continue</h4>
     <input type="text" v-model="uName" placeholder="Email"> 
-    <input :type="[passflag == 'Show' ? 'password' : 'text']" v-model="pass" placeholder="Password">
+    <input :type="[passflag == 'Show' ? 'password' : 'text']" v-model="pass" placeholder="Password" @keyup.enter="logIn(uName,pass)">
     <div class="buttons">
       <button @click="chgPassFlag" >{{ passflag }}</button>
       <button @click="logIn(uName,pass)">Log In</button>
@@ -41,9 +41,6 @@ methods:{
         this.logText = "Incorrect ID or Password";
       }
     })
-  },
-  logOut(){
-    sessionStorage.clear();
   },
   chgPassFlag(){
     if(this.passflag == 'Show'){
