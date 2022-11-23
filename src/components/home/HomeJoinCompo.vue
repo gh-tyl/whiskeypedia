@@ -24,7 +24,7 @@ export default {
   methods:{
     checkLogin(logFlag){
       if(logFlag){
-        this.logText = "Go to Profile";
+        this.logText = "Profile";
       }else{
         this.logText = "Login";
       }

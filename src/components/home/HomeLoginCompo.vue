@@ -3,7 +3,7 @@
     <h4>Please log-in to continue</h4>
     <input type="text" v-model="uName" placeholder="Email"> 
     <input :type="[passflag == 'Show' ? 'password' : 'text']" v-model="pass" placeholder="Password">
-    <div class="buttons">
+    <div class="log-buttons">
       <button @click="chgPassFlag" >{{ passflag }}</button>
       <button @click="logIn(uName,pass)">Log In</button>
     </div>
@@ -96,7 +96,7 @@ textarea:focus, input:focus {
     padding-left: 2vh;
     font-size: 16px;
 }
-.buttons{
+.log-buttons{
   display: flex;
   flex-direction: row;
   justify-content: space-between;

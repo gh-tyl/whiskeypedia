@@ -30,7 +30,13 @@
       </div>
     </article>
     <article v-else>
-      <button @click="openModal">Login</button>
+        <h4>Please sign in to view your profile</h4>
+      <div class="profile-before">
+        <div class="button">
+          <button class="buttons" @click="openModal">Login</button>
+        </div>
+      </div>
+      
     </article>
   </div>
   <!-- The Modal -->
@@ -217,4 +223,40 @@ export default {
     text-decoration: none;
     cursor: pointer;
   }
+
+  .profile-before{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../img/bottle-illustration.png');
+    height: 60vh;
+    background-size: contain;
+    background-position: center;
+    row-gap: 15vh;
+    width: 100%;
+  }
+  h4{
+    color: #FDEEC0;
+    font-family: 'DM Mono', monospace;
+    font-weight: lighter;
+    font-size: 18px;
+    text-align: center;
+  }
+  .buttons{
+    margin-top: 17vh;
+    height: 8vh;
+    width: 35vh;
+    background-color: black;
+    color: #FDEEC0;
+    font-family: 'DM Mono', monospace;
+    font-size: 20px;
+  }
+  .buttons:hover{
+    cursor: pointer;
+    color: black;
+    background-color: #FDEEC0;
+    transition: .5s;
+  }
+
 </style>

@@ -1,11 +1,6 @@
 <template>
   <nav>
     <ul>
-      <div class="search-icon">
-        <li>
-          <a href="#">s</a>
-        </li>
-      </div>
       <div class="nav-text">
         <li>
           <router-link class="router-link" to="/">Home</router-link>
