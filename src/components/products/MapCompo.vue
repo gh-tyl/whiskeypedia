@@ -16,6 +16,8 @@ export default {
       map_data: [
         ["Country", "Number of Products"],
       ],
+      chart: null,
+      data: null,
     };
   },
   methods: {
@@ -25,9 +27,7 @@ export default {
         let country = product.country;
         let num = 1;
         let found = false;
-        console.log(product);
         this.map_data.forEach((item) => {
-          console.log(item);
           if (item[0] == country) {
             item[1] += 1;
             found = true;
@@ -38,34 +38,31 @@ export default {
         }
       });
     },
-
     drawMap() {
       google.charts.load("current", {
         packages: ["geochart"],
         mapsApiKey: this.access_token,
       });
-      let map_data = this.map_data;
-      google.charts.setOnLoadCallback(drawRegionsMap);
-
-      function drawRegionsMap() {
-        let data = google.visualization.arrayToDataTable(
-          map_data
-        );
-        let options = {};
-        let chart = new google.visualization.GeoChart(
-          document.getElementById("regions_div")
-        );
-        google.visualization.events.addListener(chart, "select", selectHandler);
-        chart.draw(data, options);
-
-        function selectHandler() {
-          let selectedItem = chart.getSelection()[0];
-          console.log(selectedItem);
-          if (selectedItem) {
-            let country = data.getValue(selectedItem.row, 0);
-            alert("The user selected " + country);
-          }
-        }
+      google.charts.setOnLoadCallback(this.drawRegionsMap);
+    },
+    drawRegionsMap() {
+      this.data = google.visualization.arrayToDataTable(
+        this.map_data
+      );
+      let options = {};
+      this.chart = new google.visualization.GeoChart(
+        document.getElementById("regions_div")
+      );
+      google.visualization.events.addListener(this.chart, "select", this.selectHandler);
+      this.chart.draw(this.data, options);
+    },
+    selectHandler() {
+      let selectedItem = this.chart.getSelection()[0];
+      if (selectedItem) {
+        let country = this.data.getValue(selectedItem.row, 0);
+        // emit country to parent
+        console.log(country);
+        this.$emit("country", country);
       }
     },
   },
