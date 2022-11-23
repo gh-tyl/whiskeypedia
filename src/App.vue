@@ -1,8 +1,3 @@
-<script setup>
-// add imports here
-import MainMenu from "./components/common/MainMenu.vue";
-</script>
-
 <template>
   <body>
     <div class="cover">
@@ -16,7 +11,7 @@ import MainMenu from "./components/common/MainMenu.vue";
     </header>
 
     <main>
-      <router-view @loggedUser='setLoggedUser' :loggedUser="loggedUser" :logFlag="logFlag" :shoppingList="shoppingList"/>
+      <router-view @loggedUser='setLoggedUser' :loggedUser="loggedUser" :logFlag="logFlag" :shoppingList="shoppingList" :products="products"/>
     </main>
     <div class="footer-logo">
       <img class="logo2" src="./home-img/main-logo.png" alt="logo">
@@ -33,6 +28,7 @@ import MainMenu from "./components/common/MainMenu.vue";
 </template>
 
 <script>
+import MainMenu from "./components/common/MainMenu.vue";
 import UserService from "./services/UserService.js";
 import ProductService from "./services/ProductService.js";
 import PurchasedService from "./services/PurchasedService.js";
@@ -48,6 +44,7 @@ export default {
       logFlag:false,
       shoppingList:undefined,
       productCount:0
+      products: new Array(),
     };
   },
   methods: {
@@ -58,9 +55,22 @@ export default {
     },
     loadProductJson() {
       ProductService.getJson()
-        .then((res) => console.log(res.data))
+        .then((res) => {
+          this.products = res.data
+        })
         .catch((err) => console.log(err));
     },
+    // // fetch
+    // loadProductJson() {
+    //   console.log("loadProductJson");
+    //   fetch("data/json/productJson.json")
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       this.products = data;
+    //       console.log(this.products);
+    //     })
+    //     .catch((err) => console.log(err));
+    // },
     loadPurchasedJson() {
       PurchasedService.getJson()
         .then((res) => console.log(res.data))
@@ -77,7 +87,7 @@ export default {
   },
   mounted() {
     // this.loadUserJson();
-    // this.loadProductJson();
+    this.loadProductJson();
     // this.loadPurchasedJson();
   },
   watch:{
