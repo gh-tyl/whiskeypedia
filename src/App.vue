@@ -26,6 +26,7 @@ import MainMenu from "./components/common/MainMenu.vue";
     </div>
     </div>
     <div class="copy">
+      <a href="#">^</a>
       <p>&copy; Copyright 2022</p>
     </div>
   </body>
@@ -121,8 +122,8 @@ export default {
     width: 20vh;
   }
   .footer-logo {
-    padding-left: 35vh;
-    padding-right: 35vh;
+    padding-left: 40vh;
+    padding-right: 40vh;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -131,8 +132,21 @@ export default {
     height: 20vh;
   }
   .copy {
-    padding-bottom: 4vh;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 4vh;
+    width: 100%;
+  }
+  a {
+    color: #FDEEC0;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 30px;
+  }
+  .back{
+    font-size: 12px;
   }
 </style>
 
