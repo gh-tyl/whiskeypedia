@@ -12,7 +12,7 @@ import MainMenu from "./components/common/MainMenu.vue";
     </div>
     <div class="page-style">
     <header>
-      <MainMenu :logFlag="logFlag" :productCount="productCount"/>
+      <MainMenu @shoppingFlag = "setShoppingSession" :logFlag="logFlag" :productCount="productCount"/>
     </header>
 
     <main>
@@ -68,22 +68,31 @@ export default {
     setCount(val){
       this.productCount = val;
     },
+    setShoppingSession(){
+      sessionStorage.setItem('shoppingList',JSON.stringify(this.shoppingList.toObj()));
+    },
     setLoggedUser(val){
       if(!sessionStorage.getItem('user')){
         this.loggedUser = val;
-        this.shoppingList = new shoppingCartClass(Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1), val.fName+" "+val.lName);
-        this.logFlag = true;
+        this.setShoppingList(val.fName,val.lName);
       }else{
         this.chkSession();
       }
       console.log(this.shoppingList)
     },
+    setShoppingList(fname,lname){
+      this.shoppingList = new shoppingCartClass(Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1), fname +" "+ lname);
+      console.log(JSON.stringify(this.shoppingList.toObj()))
+      this.logFlag = true;
+    },
     chkSession(){
       if(sessionStorage.getItem('user')){
-        this.logFlag = true;
-        this.loggedUser = JSON.parse(sessionStorage.getItem('user'));
-        this.logFlag = true;
-        this.shoppingList = new shoppingCartClass(Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1), JSON.parse(sessionStorage.getItem('user')).fname+" "+JSON.parse(sessionStorage.getItem('user')).lname);
+        // if(sessionStorage.getItem('shoppingList')){
+        //   this.shoppingList = JSON.parse(sessionStorage.getItem('shoppingList'))
+        //   this.logFlag = true;
+        // }else{
+          this.setShoppingList(JSON.parse(sessionStorage.getItem('user')).fname,JSON.parse(sessionStorage.getItem('user')).lname);
+        // }
       }else{
         this.logFlag = false;
       }
@@ -98,12 +107,12 @@ export default {
 
   },
   watch:{
-    shoppingList:{
-      handler(){
-        this.productCount = this.shoppingList.returnSize();
-      },
-      deep: true
-    },
+    // shoppingList:{
+    //   handler(){
+    //     this.productCount = this.shoppingList.returnSize();
+    //   },
+    //   deep: true
+    // },
     loggedUser: function(){
       this.chkSession()
     }
