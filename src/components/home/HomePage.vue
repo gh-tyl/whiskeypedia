@@ -107,6 +107,7 @@ export default {
         this.allProducts.map(val=>{
           if(val.id == id){
             let item = new productClass(val.id, val.name, val.price, val.country, val.type, val.class);
+            console.log(this.shoppingList)
             this.shoppingList.addItem(item);
             this.rand = Math.random();
             this.alarmText = `You added ${val.name} in your shopping cart.`;
