@@ -117,7 +117,7 @@ export default {
     },
     editInfo(){
       let newUserInfo = new userClass(this.userinfo.uid,this.fname,this.lname,this.email,this.userinfo.address, this.gender, this.age,this.country);
-      console.log(newUserInfo.toObj());
+      // console.log(newUserInfo.toObj());
       sessionStorage.clear()
       sessionStorage.setItem('user',JSON.stringify(newUserInfo.toObj()));
       this.loadSession();
