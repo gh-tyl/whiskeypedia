@@ -4,28 +4,28 @@
     <div>
       <!-- img / icon -->
       <div class="hello">
-        <h2>Hello, {{ userinfo.fname }}{{ userinfo.lname }}</h2>
-        <span @click="showInfo">View information</span>
-        <span  @click="showEdit">Update information</span>
+        <h2 v-if="helloflag">Hello, {{ userinfo.fname }}{{ userinfo.lname }}</h2>
+        <span @click="showEdit">View information</span>
+        <span  @click="editInfo">Update information</span>
         <!-- from here, modal box -->
         <div v-if="showProfile" class="showProfile sect">
         <!-- Modal content -->
         <div class="modal-content">
-          <span class="close" @click="showInfo">&times;</span>
+          <span class="close" @click="showEdit">&times;</span>
           <h4>Name: {{userinfo.fname}}{{userinfo.lname}}</h4>
           <h4>Email: {{userinfo.email}}</h4>
           <h4>Country: {{userinfo.country}}</h4>
         </div>
         </div>
         <!-- edit modal -->
-        <div v-if="edit" class="editProfile sect">
+        <div v-if="editflag" class="editProfile sect">
           <div class="modal-content">
-            <span class="close" @click="showEdit">&times;</span>
-            <input type="text" :value="userinfo.fname"  placeholder="first name">
-            <input type="text" :value="userinfo.lname"  placeholder="last name">
-            <input type="text" :value="userinfo.email"  placeholder="email">
-            <input type="text" :value="userinfo.country"  placeholder="country">
-            <button @click="update">Edit</button>
+            <span class="close" @click="editInfo">&times;</span>
+            <input type="text" v-model="fname"  placeholder="first name">
+            <input type="text" v-model="lname"  placeholder="last name">
+            <input type="text" v-model="email"  placeholder="email">
+            <input type="text" v-model="country"  placeholder="country">
+            <button @click="editInfo">Edit</button>
           </div>
         </div>
         <!-- recommand products for this user -->
@@ -41,7 +41,7 @@
             <div class="prod" v-for="(prod, idx) in heighlight" :key="idx">
               <h1>{{prod[1].name}}</h1>
               <h1>{{prod[1].ocuntry}}</h1>
-              <!-- <img :src="prod[1].image_path_0" alt="img"> -->
+              <img :src="prod[1].image_path_0" alt="img">
               <h1>{{prod[1].price}}</h1>
             </div>
           </div>
@@ -68,6 +68,7 @@
 import JsonService from '../../services/JsonService';
 // npm install vue-star-rating@next
 import StarRating from "vue-star-rating";
+import userClass from '../../classes/userClass';
 
 export default {
   name: "ProfilePage",
@@ -77,20 +78,22 @@ export default {
   },
   data(){
     return {
+      helloflag:false,
       products:'',
       purchased:[],
-      fname:'',
-      lname:'',
-      country:'',
+      userinfo: '',
+      fname: '',
+      lname:"",
+      country:"",
       age:'',
+      email:'',
       heighlight:new Map(),
       heighlightAge:new Map(),
       tracking:new Map(),
       users:[],
       showProfile:false,
-      edit:false,
+      editflag:false,
       nowdate:new Date(),
-      userinfo: JSON.parse(sessionStorage.getItem('user')),
       flag:false,
       maleProds : new Map(),
       femaleProds : new Map(),
@@ -103,21 +106,36 @@ export default {
     }
   },
   methods:{
-    showEdit(){
-      if(this.edit == false){
-        this.edit = true; 
+    setUserinfo(){
+      if(!sessionStorage.getItem('user')){
+        this.userinfo = '';
+        this.helloflag = false;
       }else{
-        this.edit = false;
+        this.userinfo = JSON.parse(sessionStorage.getItem('user'));
+        this.helloflag = true;
       }
     },
-    showInfo(){
-      if(this.showProfile == false){
-        this.showProfile = true; 
-      }else{
-        this.showProfile = false;
-      }
+    editInfo(){
+      let newUserInfo = new userClass(this.userinfo.uid,this.fname,this.lname,this.email,this.userinfo.address, this.gender, this.age,this.country);
+      console.log(newUserInfo.toObj());
+      sessionStorage.clear()
+      sessionStorage.setItem('user',JSON.stringify(newUserInfo.toObj()));
+      this.loadSession();
+      this.editflag = !this.editflag;
+    },
+    showEdit(){
+      this.showProfile = !this.showProfile
+    },
+    loadSession(){
+      this.userinfo = JSON.parse(sessionStorage.getItem('user'));
+      this.fname  = this.userinfo.fname;
+      this.lname = this.userinfo.lname;
+      this.country = this.userinfo.country;
+      this.age = this.userinfo.age;
+      this.email = this.userinfo.email;
     },
     loadProducts(){
+      this.loadSession();
       JsonService.getJson('data/json/productJson.json')
       .then((res)=>{
           this.products = res.data;
@@ -137,9 +155,6 @@ export default {
           this.users = res.data;
       })
       .catch((e)=>console.log(e));
-    },
-    update(){
-      // this.$router.push({name:'product-page'})
     },
     makeHighlight(){
       let femalegenders = new Map();
@@ -204,18 +219,11 @@ export default {
 
     },
     setHighlight(){
-      if(this.userinfo.gender == 'Femail'){
+      if(this.userinfo.gender == 'Female'){
         this.heighlight = this.femaleProds;
       }else{
         this.heighlight = this.maleProds;
       }
-
-      if(this.userinfo.age < 40){
-        this.heighlightAge = this.youngProds;
-      }else{
-        this.heighlightAge = this.oldProds;
-      }
-    // how to display 
     },
     chg(prodlist,map){
       let prods = this.products;
@@ -255,13 +263,6 @@ export default {
       this.tracking = track;
     },
     chgHeigh(){
-      // let arr = [female, male, old, young];
-      // for(let i=0; i < 4; i++){
-      //   if(this.arr[i] === true){
-      //     this.heighlight = `this.${arr}Prods`;
-      //     this.
-      //   }
-      // }
       if(this.male === true){
         this.young = false;
         this.old = false;
@@ -289,7 +290,7 @@ export default {
     this.loadProducts();
     this.loadpurchased();
     this.loadUsers();
-    // this.setHighlight();
+    this.setUserinfo();
   },
   watch:{
     users:function(){
@@ -301,7 +302,7 @@ export default {
       this.setHighlight();
     }
   }
-
+  
 
 };
 </script>
