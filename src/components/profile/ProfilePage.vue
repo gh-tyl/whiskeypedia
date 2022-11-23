@@ -29,36 +29,9 @@
           </div>
         </div>
         <!-- recommand products for this user -->
-        <div class="section heighlight">
-          <h3>Recommand Products</h3>
-          <div>
-            <input type="checkbox" @change="chgHeigh" v-model="female"> Female
-            <input type="checkbox" @change="chgHeigh" v-model="male"> male
-            <input type="checkbox" @change="chgHeigh" v-model="young"> under 40
-            <input type="checkbox" @change="chgHeigh" v-model="old"> older than 40
-          </div>
-          <div  class="prods">
-            <div class="prod" v-for="(prod, idx) in heighlight" :key="idx">
-              <h1>{{prod[1].name}}</h1>
-              <h1>{{prod[1].ocuntry}}</h1>
-              <img :src="prod[1].image_path_0" alt="img">
-              <h1>{{prod[1].price}}</h1>
-            </div>
-          </div>
-        </div>
+        <profile-heighlight-page :loggedUser = "loggedUser"></profile-heighlight-page>
         <!-- purchaed history -->
-        <div class="section track">
-          <h3>Purchased History</h3>
-          <div class="prods">
-            <div class="tracking" v-for="(track,idx) in tracking" :key="idx">
-              <h2>{{track[1].class}}</h2>
-              <h2>{{track[1].country}}</h2>
-              <h2>{{track[1].name}}</h2>
-              <h2>{{track[1].status}}</h2>
-              <star-rating :star-size="20"></star-rating>
-            </div>
-        </div>
-        </div>
+        <profile-track-page :loggedUser = "loggedUser"></profile-track-page>
       </div>
     </div>
   </div>
@@ -66,15 +39,16 @@
 
 <script>
 import JsonService from '../../services/JsonService';
-// npm install vue-star-rating@next
-import StarRating from "vue-star-rating";
 import userClass from '../../classes/userClass';
+import ProfileHeighlightPage from './ProfileHeighightCompo.vue';
+import ProfileTrackPage from './ProfileTrackCompo.vue'
 
 export default {
   name: "ProfilePage",
   props:['loggedUser'],
   components:{
-    StarRating
+    ProfileHeighlightPage,
+    ProfileTrackPage
   },
   data(){
     return {
@@ -87,22 +61,10 @@ export default {
       country:"",
       age:'',
       email:'',
-      heighlight:new Map(),
-      heighlightAge:new Map(),
-      tracking:new Map(),
       users:[],
       showProfile:false,
       editflag:false,
-      nowdate:new Date(),
       flag:false,
-      maleProds : new Map(),
-      femaleProds : new Map(),
-      oldProds : new Map(),
-      youngProds : new Map(),
-      female:false,
-      male:false,
-      young:false,
-      old:false
     }
   },
   methods:{
@@ -157,137 +119,6 @@ export default {
       })
       .catch((e)=>console.log(e));
     },
-    makeHighlight(){
-      let femalegenders = new Map();
-      let malegenders = new Map();
-      let youngs = new Map();
-      let olders = new Map();
-      this.users.forEach(function(user){
-        if(user.gender == 'Female'){
-          femalegenders.set(user.id,user)
-        }else if(user.gender == 'Male'){
-          malegenders.set(user.id,user)
-        }
-        if(user.age > 18 && user.age < 40){
-          youngs.set(user.id, user)
-        }else if(user.age >= 40){
-          olders.set(user.id,user);
-        }
-      })
-
-      let maleProd = new Map();
-      let femaleProd = new Map();
-      this.purchased.forEach(function(prod){
-        if(femalegenders.has(prod.user_id)){
-          if(femaleProd.has(prod.product_id)){
-            femaleProd.get(prod.product_id).amount += 1;
-          }else{
-            let obj = {id:prod.id,pId:prod.product_id,uid:prod.user_id,amount:1}
-            femaleProd.set(prod.product_id,obj);
-          }
-        }else if(malegenders.has(prod.user_id)){
-          if(maleProd.has(prod.product_id)){
-            maleProd.get(prod.product_id).amount += 1;
-          }else{
-            let obj = {id:prod.id,pId:prod.product_id,uid:prod.user_id,amount:1}
-            maleProd.set(prod.product_id,obj);
-          }
-        }
-      })
-      let youngProd = new Map();
-      let oldProd = new Map();
-      this.purchased.forEach(function(prod){
-        if(youngs.has(prod.user_id)){
-          if(youngProd.has(prod.product_id)){
-            youngProd.get(prod.product_id).amount += 1;
-          }else{
-            let obj = {id:prod.id,pId:prod.product_id,uid:prod.user_id,amount:1};
-            youngProd.set(prod.product_id,obj);
-          }
-        }else if(olders.has(prod.user_id)){
-          if(oldProd.has(prod.product_id)){
-            oldProd.get(prod.product_id).amount += 1;
-          }else{
-            let obj = {id:prod.id,pId:prod.product_id,uid:prod.user_id,amount:1}
-            oldProd.set(prod.product_id,obj);
-          }
-        }
-      })
-      this.chg(maleProd,this.maleProds)
-      this.chg(femaleProd,this.femaleProds)
-      this.chg(oldProd,this.oldProds)
-      this.chg(youngProd,this.youngProds)
-
-    },
-    setHighlight(){
-      if(sessionStorage.getItem('user')){
-        if(this.userinfo.gender == 'Female'){
-          this.heighlight = this.femaleProds;
-        }else{
-          this.heighlight = this.maleProds;
-        }
-      }
-    },
-    chg(prodlist,map){
-      let prods = this.products;
-      prodlist.forEach(function(male){
-        prods.forEach(function(prod){
-          if(male.pId == prod.id){
-            prod.rates = male.amount;
-            map.set(male.pId, prod);
-          }
-        })
-      })
-      return map;
-    },
-    setTracking(){
-      let selectedProds =[];
-      let id = this.userinfo.uid;
-      let obj = this;
-      this.purchased.forEach(function(purchase){
-        if(purchase.user_id == id){
-          selectedProds.push({id:purchase.product_id,date:purchase.datetime});
-        }
-      })
-      let track = new Map();
-      let product = '';
-      this.products.forEach(function(prod){
-        for(let i = 0; i<selectedProds.length; i++){
-          if(selectedProds[i].id == prod.id){
-            if(obj.nowdate.toLocaleDateString("en-US").substring(6,8) - selectedProds[i].date.substring(8,10) > 7){
-              product = {...prod, status:'delivered'}
-            }else{
-              product = {...prod, status:'On Route'}
-            }
-            track.set(i,product);
-          }
-        }
-      })
-      this.tracking = track;
-    },
-    chgHeigh(){
-      if(this.male === true){
-        this.young = false;
-        this.old = false;
-        this.female = false;
-        this.heighlight = this.maleProds;
-      }else if(this.female === true){
-        this.young = false;
-        this.old = false;
-        this.male = false;
-        this.heighlight = this.femaleProds;        
-      }else if(this.old === true){
-        this.young = false;
-        this.female = false;
-        this.male = false;
-        this.heighlight = this.oldProds;        
-      }else if(this.young === true){
-        this.female = false;
-        this.old = false;
-        this.male = false;
-        this.heighlight = this.youngProds;        
-      }
-    }
   },
   mounted(){
     this.loadProducts();
@@ -297,12 +128,7 @@ export default {
   },
   watch:{
     users:function(){
-      this.makeHighlight();
       this.flag = !this.flag;
-    },
-    flag:function(){
-      this.setTracking();
-      this.setHighlight();
     }
   }
   
