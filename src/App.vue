@@ -67,6 +67,8 @@ export default {
     },
     setLoggedUser(val){
       this.loggedUser = val;
+      console.log(this.loggedUser)
+      console.log(JSON.parse(sessionStorage.getItem('user')))
       this.logFlag = true;
       this.shoppingList = new shoppingCartClass(Math.floor((1 + Math.random()) * 0x10000)
       .toString(16)
@@ -74,17 +76,18 @@ export default {
       console.log(this.shoppingList);
     },
     chkSession(){
-      if(sessionStorage.get('user')){
+      if(sessionStorage.getItem('user')){
         this.logFlag = true;
       }else{
         this.logFlag = false;
       }
     }
   },
-  mounted() {
+  mounted(){
     // this.loadUserJson();
     // this.loadProductJson();
     // this.loadPurchasedJson();
+    this.chkSession();
 
   },
   watch:{
