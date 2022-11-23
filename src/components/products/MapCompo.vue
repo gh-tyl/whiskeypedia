@@ -1,251 +1,78 @@
+<!-- access_token: import.meta.env.VITE_MAPBOX_APIKEY, -->
+
 <template>
-  <div class="main">
-    <div class="flex">
-      <!-- Map Display here -->
-      <div class="map-holder">
-        <div id="map"></div>
-      </div>
-
-      <!-- Coordinates Display here -->
-      <div class="dislpay-arena">
-        <div class="coordinates-header">
-          <h3>Current Coordinates</h3>
-          <p>Latitude: {{ center[0] }}</p>
-          <p>Longitude: {{ center[1] }}</p>
-        </div>
-
-        <div class="coordinates-header">
-          <h3>Current Location</h3>
-          <div class="form-group">
-            <input type="text" class="location-control" :value="location" readonly />
-            <button type="button" class="copy-btn" @click="copyLocation">
-              Copy
-            </button>
-          </div>
-
-          <button type="button" :disabled="loading" :class="{ disabled: loading }" class="location-btn"
-            @click="getLocation">
-            Get Location
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div id="regions_div" class="mx-auto" style="width: 900px; height: 500px;"></div>
 </template>
 
-
-<!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
-<!-- <script>
-import axios from 'axios';
-import mapboxgl from 'mapbox-gl';
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
-import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
-
-export default {
-    name: "ProductsMapCompo",
-    data() {
-        return {
-            access_token: import.meta.env.VITE_MAPBOX_APIKEY,
-            loading: false,
-            location: '',
-            center: [0, 0],
-            map: {}
-        };
-    },
-    mounted() {
-        this.createMap()
-    },
-    methods: {
-        async createMap() {
-            try {
-                mapboxgl.accessToken = this.access_token;
-                this.map = new mapboxgl.Map({
-                    container: "map",
-                    style: "mapbox://styles/mapbox/streets-v11",
-                    center: this.center,
-                    zoom: 1,
-                });
-            } catch (err) {
-                console.log("map error", err);
-            }
-        },
-    },
-}
-</script> -->
-
 <script>
-import axios from "axios";
-import mapboxgl from "mapbox-gl";
-import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
-import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
-
 export default {
+  name: "ProductsMapCompo",
+  props: {
+    products: Array,
+  },
   data() {
     return {
-      loading: false,
-      location: "",
-      access_token: import.meta.env.VITE_MAPBOX_APIKEY,
-      center: [0, 0],
-      map: {},
+      access_token: import.meta.env.VITE_GOOGLE_APIKEY,
+      map_data: [
+        ["Country", "Number of Products"],
+      ],
     };
   },
-  mounted() {
-    this.createMap();
-  },
   methods: {
-    async createMap() {
-      try {
-        mapboxgl.accessToken = this.access_token;
-        this.map = new mapboxgl.Map({
-          container: "map",
-          style: "mapbox://styles/mapbox/streets-v11",
-          center: this.center,
-          zoom: 1,
+    makeMapData() {
+      console.log("makeMapData");
+      this.products.forEach((product) => {
+        let country = product.country;
+        let num = 1;
+        let found = false;
+        console.log(product);
+        this.map_data.forEach((item) => {
+          console.log(item);
+          if (item[0] == country) {
+            item[1] += 1;
+            found = true;
+          }
         });
-        let geocoder = new MapboxGeocoder({
-          accessToken: this.access_token,
-          mapboxgl: mapboxgl,
-          marker: false,
-        });
-        this.map.addControl(geocoder);
-        geocoder.on("result", (e) => {
-          const marker = new mapboxgl.Marker({
-            draggable: true,
-            color: "#D80739",
-          })
-            .setLngLat(e.result.center)
-            .addTo(this.map);
-          this.center = e.result.center;
-          marker.on("dragend", (e) => {
-            this.center = Object.values(e.target.getLngLat());
-          });
-        });
-      } catch (err) {
-        console.log("map error", err);
-      }
+        if (!found) {
+          this.map_data.push([country, num]);
+        }
+      });
     },
-    async getLocation() {
-      try {
-        this.loading = true;
-        const response = await axios.get(
-          `https://api.mapbox.com/geocoding/v5/mapbox.places/${this.center[0]},${this.center[1]}.json?access_token=${this.access_token}`
+
+    drawMap() {
+      google.charts.load("current", {
+        packages: ["geochart"],
+        mapsApiKey: this.access_token,
+      });
+      let map_data = this.map_data;
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+        let data = google.visualization.arrayToDataTable(
+          map_data
         );
-        this.loading = false;
-        console.log(response.data);
-        this.location = response.data.features[0].place_name;
-      } catch (err) {
-        this.loading = false;
-        console.log(err);
+        let options = {};
+        let chart = new google.visualization.GeoChart(
+          document.getElementById("regions_div")
+        );
+        google.visualization.events.addListener(chart, "select", selectHandler);
+        chart.draw(data, options);
+
+        function selectHandler() {
+          let selectedItem = chart.getSelection()[0];
+          console.log(selectedItem);
+          if (selectedItem) {
+            let country = data.getValue(selectedItem.row, 0);
+            alert("The user selected " + country);
+          }
+        }
       }
     },
-    copyLocation() {
-      if (this.location) {
-        navigator.clipboard.writeText(this.location);
-        alert("Location Copied")
-      }
-      return;
-    },
+  },
+
+  mounted() {
+    this.makeMapData();
+    this.drawMap();
   },
 };
 </script>
-<style scoped>
-.main {
-  padding: 45px 50px;
-}
-
-.flex {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.map-holder {
-  width: 65%;
-}
-
-#map {
-  height: 70vh;
-}
-
-.dislpay-arena {
-  background: #ffffff;
-  box-shadow: 0px -3px 10px rgba(0, 58, 78, 0.1);
-  border-radius: 5px;
-  padding: 20px 30px;
-  width: 25%;
-}
-
-.coordinates-header {
-  margin-bottom: 50px;
-}
-
-.coordinates-header h3 {
-  color: #1f2a53;
-  font-weight: 600;
-}
-
-.coordinates-header p {
-  color: rgba(13, 16, 27, 0.75);
-  font-weight: 600;
-  font-size: 0.875rem;
-}
-
-.form-group {
-  position: relative;
-}
-
-.location-control {
-  height: 30px;
-  background: #ffffff;
-  border: 1px solid rgba(31, 42, 83, 0.25);
-  box-shadow: 0px 0px 10px rgba(73, 165, 198, 0.1);
-  border-radius: 4px;
-  padding: 0px 10px;
-  width: 90%;
-}
-
-.location-control:focus {
-  outline: none;
-}
-
-.location-btn {
-  margin-top: 15px;
-  padding: 10px 15px;
-  background: #d80739;
-  box-shadow: 0px 4px 10px rgba(73, 165, 198, 0.1);
-  border-radius: 5px;
-  border: 0;
-  cursor: pointer;
-  color: #ffffff;
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-
-.location-btn:focus {
-  outline: none;
-}
-
-.disabled {
-  background: #db7990;
-  cursor: not-allowed;
-}
-
-.copy-btn {
-  background: #f4f6f8 0% 0% no-repeat padding-box;
-  border: 1px solid #f4f6f8;
-  border-radius: 0px 3px 3px 0px;
-  position: absolute;
-  color: #5171ef;
-  font-size: 0.875rem;
-  font-weight: 500;
-  height: 30px;
-  padding: 0px 10px;
-  cursor: pointer;
-  right: 3.5%;
-  top: 5%;
-}
-
-.copy-btn:focus {
-  outline: none;
-}
-</style>

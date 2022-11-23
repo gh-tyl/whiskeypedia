@@ -2,7 +2,7 @@
   <div class="products-page">
     <h1>Products</h1>
     <div>
-      <ProductsMapCompo />
+      <ProductsMapCompo :products="products" />
     </div>
   </div>
 </template>
@@ -13,6 +13,17 @@ export default {
   name: "ProductsPage",
   components: {
     ProductsMapCompo,
+  },
+  props: {
+    products: Array,
+  },
+  data() {
+    return {
+    };
+  },
+  methods: {
+  },
+  mounted() {
   },
 };
 </script>
