@@ -2,13 +2,22 @@
   <section>
     <swiper :slidesPerView="3" :spaceBetween="100" :loop="true" :navigation="true" :modules="modules" class="mySwiper">
       <swiper-slide>
-        <img class="slideImg" src="../../img/home-main.jpg">
+        <img class="slideImg" src="../../img/main-01.png">
       </swiper-slide>
       <swiper-slide>
-        <img class="slideImg" src="../../img/cocktails-main.jpg">
+        <img class="slideImg" src="../../img/main-02.png">
       </swiper-slide>
       <swiper-slide>
-        <img class="slideImg" src="../../img/whiskey-3.png">
+        <img class="slideImg" src="../../img/main-03.png">
+      </swiper-slide>
+      <swiper-slide>
+        <img class="slideImg" src="../../img/main-04.png">
+      </swiper-slide>
+      <swiper-slide>
+        <img class="slideImg" src="../../img/main-05.png">
+      </swiper-slide>
+      <swiper-slide>
+        <img class="slideImg" src="../../img/main-06.png">
       </swiper-slide>
     </swiper>
   </section>
@@ -46,7 +55,12 @@ export default {
 
 <style>
   .slideImg{
-    width: 100%;
+    width: 60vh;
+    height: 70vh;
+  }
+  video{
+    width: 60vh;
+    height: 70vh;
   }
   .swiper{
     overflow: hidden;
@@ -55,5 +69,9 @@ export default {
     display: flex;
     justify-content: center;
     align-content: center;
+  }
+  .swiper-button-prev:after,
+  .swiper-button-next:after{
+    color: #FDEEC0;
   }
 </style>

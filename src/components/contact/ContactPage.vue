@@ -3,7 +3,13 @@
     <aside></aside>
   </div>
   <div class="contact-page">
-    <h1><aside>CONTACT US</aside></h1>
+    <div class="lines">
+      <aside class="lines01"></aside>
+      <h1>
+      CONTACT
+      </h1>
+      <aside class="lines01"></aside>
+    </div>
     <div class="text">
       <p>We would love to hear from you! Get in touch and a member of our team will get back to you as soon as possible.</p>
     </div>
@@ -12,8 +18,10 @@
         <img src="./contact-img/bottle-illustration.png"/>
       </aside>
         <div class="form-style">
+          <div class="form-top">
           <span>*indicates required field</span>
-          <button @click="fillDetails">Fill the information</button>
+          <button @click="fillDetails">Auto-fill information</button>
+          </div>
         <form>
           <input type="text" placeholder="First Name*" v-model="fName" required/>
           <input type="text" placeholder="Last Name*" v-model="lName" required/>
@@ -87,6 +95,12 @@ export default {
   }
   span {
     font-size: 16px;
+    margin-top: 4vh;
+  }
+  .form-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
   .bottle {
     width: 35%;
@@ -94,11 +108,12 @@ export default {
     justify-content: center;
   }
   img {
-    height: 88vh;
+    height: 90vh;
     width: 90vh;
     display: flex;
     align-items: flex-start;
     margin-right: 10vh;
+    margin-top: 2vh;
   }
   .form-style {
     width: 65%;
@@ -113,11 +128,13 @@ export default {
     
   }
   input {
-    width: 48%;
+    width: 47%;
     height: 7vh;
     border-top: 20px solid transparent;
     border: 1px solid #FDEEC0;
     background-color: #111111;
+    color: #FDEEC0;
+    padding-left: 2vh;
   }
   ::placeholder {
     font-family: 'DM Mono', monospace;
@@ -129,12 +146,20 @@ export default {
     height: 35vh;
     border: 1px solid #FDEEC0;
     background-color: #111111;
+    color: #FDEEC0;
+    padding-top: 1vh;
+    padding-left: 1vh;
   }
   textarea::placeholder {
     padding-top: 2vh;
   }
   .email {
     width: 100%;
+  }
+  textarea:focus, input:focus {
+    color: #FDEEC0;
+    padding-left: 2vh;
+    font-size: 16px;
   }
   .button {
     display: flex;
@@ -147,7 +172,8 @@ export default {
     border: 1px solid #FDEEC0;
     background-color: #111111;
     color: #FDEEC0;
-    font-size: 16px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
   }
   button:hover {
     color: #111111;
@@ -156,6 +182,16 @@ export default {
     cursor: pointer;
     transition: .5s;
   }
+  .lines01{
+    width: 50%;
+    height: .1rem;
+    background-color: #FDEEC0;
+  }
+  .lines{
+    display: flex;
+    align-items: center;
+  }
+  
 </style>
 
 

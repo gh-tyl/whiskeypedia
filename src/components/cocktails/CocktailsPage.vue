@@ -1,6 +1,15 @@
 <template>
   <div class="cocktails-page">
-    <h1>Cocktails</h1>
+    <section class="video">
+      <video src="../../video/cocktails-01.mp4" autoplay loop muted></video>
+    </section>
+    <div class="lines">
+      <aside class="lines01"></aside>
+      <h1>
+      RECIPES
+      </h1>
+      <aside class="lines01"></aside>
+    </div>
     <!-- logo -->
     <div class="recipes">
       <figure>
@@ -8,11 +17,11 @@
         <figcaption>
           <h2>Boozy dark delight</h2>
           <ul>
-            <li>ice cubes ...... optional</li>
-            <li>Orange Liqueur ...... 25ml</li>
-            <li>Whisky ...... 25ml</li>
-            <li>stout ...... 200ml</li>
-            <li>chocolate orange shavings, to garnish ...... optional</li>
+            <li>Ice cubes ........................................... optional</li>
+            <li>Orange Liqueur .......................................... 25ml</li>
+            <li>Whisky .................................................. 25ml</li>
+            <li>Stout .................................................. 200ml</li>
+            <li>hocolate orange shavings, to garnish ................ optional</li>
           </ul>
           <ol>
             <li>
@@ -29,11 +38,11 @@
         <figcaption>
           <h2>Brown derby</h2>
           <ul>
-            <li>Sugar ...... 2tsp</li>
-            <li>Honey ...... 10ml</li>
-            <li>Pink grapefruit juice ...... 35ml</li>
-            <li>Irish Whisky ...... 50ml</li>
-            <li>grapefruit wedge ...... to garnish</li>
+            <li>Sugar ................................................... 2tsp</li>
+            <li>Honey ................................................... 10ml</li>
+            <li>Pink grapefruit juice ................................... 35ml</li>
+            <li>Irish Whisky ............................................ 50ml</li>
+            <li>grapefruit wedge .................................. to garnish</li>
           </ul>
           <ol>
             <li>
@@ -48,15 +57,14 @@
       <figure>
         <img src="data\/images\/Bruichladdich_Octomore_8.3_2.jpg" alt="recipe3">
         <figcaption>
-          <h2>OLd FASHIONED</h2>
+          <h2>Old Fashioned</h2>
           <ul>
-            <li>Sugar ...... 2tsp</li>
-            <li>Angostura bitters ...... 1-2 dashes</li>
-            <li>Water ...... little</li>
-            <li>Scotch Whisky ...... 60ml</li>
-            <li>soda water ...... optional</li>
-            <li>maraschino cherry ...... optional</li>
-            <li>Orange Slice ...... some</li>
+            <li>Sugar ................................................... 2tsp</li>
+            <li>Angostura bitters ................................. 1-2 dashes</li>
+            <li>Water ................................................. little</li>
+            <li>Scotch Whisky ........................................... 60ml</li>
+            <li>soda water .......................................... optional</li>
+            <li>Orange Slice ............................................ some</li>
           </ul>
           <ol>
             <li>
@@ -75,17 +83,73 @@ export default {
   name: "CocktailsPage",
 };
 </script>
+
 <style scoped>
-* {
-  color: whitesmoke;
-}
-
-figure {
-  display: flex;
-  column-gap: 5vh;
-}
-
-figure:nth-child(2){
-  flex-direction: row-reverse;
-}
+.lines01{
+    width: 50%;
+    height: .1rem;
+    background-color: #FDEEC0;
+  }
+  .lines{
+    display: flex;
+    align-items: center;
+  }
+  .video{
+    height: 60vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  video{
+    height: 100%;
+    width: 100%;
+    margin-bottom: 10vh;
+  }
+  .recipes{
+    margin-top: 10vh;
+    margin-bottom: 15vh;
+    margin-left: 25vh;
+    margin-right: 25vh;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10vh;
+  }
+  figure{
+    display: flex;
+    flex-direction: row;
+    column-gap: 3vh;
+    justify-content: space-between;
+    background-color: black;
+  }
+  figure:nth-child(2){
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  img{
+    width: 30%;
+    height: 50vh;
+  }
+  figcaption{
+    color: #FDEEC0;
+    font-family: 'DM Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-left: 1vh;
+    margin-right: 1vh;
+  }
+  h2{
+    font-weight: lighter;
+    margin-bottom: 3vh;
+    margin-top: 2vh;
+  }
+  ul{
+    margin-bottom: 4vh;
+  }
+  li{
+    font-weight: lighter;
+    list-style: none;
+  }
 </style>

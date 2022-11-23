@@ -25,7 +25,11 @@ export default {
 
 <style>
   .alarm-box{
-    background-color: white;
+    background-color: black;
+    border: 1px solid #FDEEC0;
+    color: #FDEEC0;
+    font-size: 20px;
+    font-family: 'DM Mono', monospace;;
     position: fixed;
     top: -10%;
     left: 0%;
