@@ -1,6 +1,7 @@
 <template>
   <div class="products-page">
     <h1>Products</h1>
+    <search-compo></search-compo>
     <div>
       <ProductsMapCompo :products="products" @country="getCountry" />
       <ProductsListCompo :products="displayProds" />
@@ -9,6 +10,7 @@
 </template>
 
 <script>
+import SearchCompo from './SearchCompo.vue'
 import ProductsMapCompo from "./MapCompo.vue";
 import ProductsListCompo from "./ListCompo.vue";
 
@@ -17,6 +19,7 @@ export default {
   components: {
     ProductsMapCompo,
     ProductsListCompo,
+    SearchCompo
   },
   props: {
     products: Array,
