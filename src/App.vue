@@ -105,7 +105,8 @@ export default {
     justify-content: center;
   }
   .logo {
-    height: 15vh;
+    height: 13vh;
+    padding-top: 1vh;
   }
   .page-style {
     border: 2px solid #FDEEC0;
@@ -120,8 +121,8 @@ export default {
     width: 20vh;
   }
   .footer-logo {
-    padding-left: 15vh;
-    padding-right: 15vh;
+    padding-left: 35vh;
+    padding-right: 35vh;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -134,3 +135,4 @@ export default {
     text-align: center;
   }
 </style>
+
