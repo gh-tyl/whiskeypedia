@@ -4,20 +4,24 @@
     <div>
       <!-- img / icon -->
       <div class="hello">
-        <h2 v-if="helloflag">Hello, {{ userinfo.fname }}{{ userinfo.lname }}</h2>
-        <span @click="showEdit">View information</span>
-        <span  @click="editInfo">Update information</span>
+        <h2 v-if="helloflag">
+          Hello, {{ userinfo.fname }}  {{ userinfo.lname }}
+        </h2>
+        <div class="mBox">
+          <span  @click="showEdit">View information</span>
+          <span  @click="editInfo">Update information</span>
+        </div>
         <!-- from here, modal box -->
         <div v-if="showProfile" class="showProfile sect">
         <!-- Modal content -->
-        <div class="modal-content">
-          <span class="close" @click="showEdit">&times;</span>
-          <div class="fullname">
-            <h4>Name: {{userinfo.fname}}{{userinfo.lname}}</h4>
+          <div class="modal-content">
+            <span class="close" @click="showEdit">&times;</span>
+            <div class="fullname">
+              <h4>Name: {{userinfo.fname}}{{userinfo.lname}}</h4>
+            </div>
+            <h4>Email: {{userinfo.email}}</h4>
+            <h4>Country: {{userinfo.country}}</h4>
           </div>
-          <h4>Email: {{userinfo.email}}</h4>
-          <h4>Country: {{userinfo.country}}</h4>
-        </div>
         </div>
         <!-- edit modal -->
         <div v-if="editflag" class="editProfile sect">
@@ -155,8 +159,31 @@ button {
   width: 25%;
 }
 
+.mBox {
+  display: flex;
+  column-gap: 3vh;
+  width: 100%;
+}
+
+.mBox:hover {
+  cursor: pointer;
+}
+
+.mBox span {
+  width: 25vh;
+  height: 2.5vh;
+  padding: 1%;
+  border:1px double whitesmoke;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .hello {
   color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4vh;
 }
 /* Modal Content/Box */
 .modal-content {
