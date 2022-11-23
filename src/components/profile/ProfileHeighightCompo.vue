@@ -1,17 +1,33 @@
 <template>
   <div >
     <!-- recommand products for this user -->
-    <div class="section heighlight">
+    <div class="section">
       <h3>Recommand Products</h3>
-      <div>
-        <input type="checkbox" @change="chgHeigh" v-model="female"> Female
-        <input type="checkbox" @change="chgHeigh" v-model="male"> male
-        <input type="checkbox" @change="chgHeigh" v-model="young"> under 40
-        <input type="checkbox" @change="chgHeigh" v-model="old"> older than 40
+      <div class="cBox">
+        <div>
+          <input type="checkbox" @change="chgHeigh" v-model="female"> Female
+        </div>
+        <div>
+          <input type="checkbox" @change="chgHeigh" v-model="male"> male
+        </div>
+        <div>
+          <input type="checkbox" @change="chgHeigh" v-model="young"> under 40
+        </div>
+        <div>
+          <input type="checkbox" @change="chgHeigh" v-model="old"> older than 40
+        </div>
       </div>
-      <div  class="prods">
-        <div class="prod" v-for="(prod, idx) in heighlight" :key="idx">
+      <!-- <swiper :slidesPerView="3" :spaceBetween="10"  :navigation="true" :modules="modules" class="mySwiper">
+      <swiper-slide v-for="(prod, idx) in heighlight" :key="idx">
+        <img class="slideImg" :src="prod[1].image_path_0">
         <h1>{{prod[1].name}}</h1>
+        <h1>{{prod[1].ocuntry}}</h1>
+        <h1>{{prod[1].price}}</h1>
+      </swiper-slide>
+      </swiper> -->
+      <div class="prods">
+        <div class="prod" v-for="(prod, idx) in heighlight" :key="idx">
+        <h2>{{prod[1].name}}</h2>
         <h1>{{prod[1].ocuntry}}</h1>
         <img :src="prod[1].image_path_0" alt="img">
         <h1>{{prod[1].price}}</h1>
@@ -25,13 +41,15 @@
 import JsonService from '../../services/JsonService';
 // npm install vue-star-rating@next
 import StarRating from "vue-star-rating";
-import userClass from '../../classes/userClass';
+import { Swiper, SwiperSlide } from "swiper/vue";
 
 export default {
   name: "ProfileHeighlightPage",
   props:['loggedUser'],
   components:{
-    StarRating
+    StarRating,
+    Swiper,
+    SwiperSlide,
   },
   data(){
     return {
@@ -206,63 +224,74 @@ export default {
 
 };
 </script>
+
 <style scoped>
 .section{
   display: flex;
   flex-direction: column;
+  row-gap: 3vh;
   border: .5px solid lightgray;
 }
 
-.prods{
+h3 {
+  padding: 1.5% 3%;
+}
+.cBox {
+  width: 60%;
   display: flex;
+  column-gap: 3vh;
+  align-items:center;
+  justify-content: flex-start;
+  padding-left: 4vh;
+  font-size: 20px;
+}
+
+.cBox input{
+  border-radius: .2m;
+  box-shadow: inset 0px 0px 0px 2px #f7f2f2;
+}
+
+/* .cBox input::before{
+    transform: rotateZ(180deg);
+    background: #FF4040;
+} */
+
+/* .prods{
+  display: flex;
+  overflow: hidden;
+
 }
 .prod{
   display: flex;
   flex-direction: column;
+} */
+
+.slideImg{
+    width: 10%;
+  }
+  .swiper{
+    overflow: hidden;
+  }
+  .swiper-slide{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .prods{
+  display: flex;
+  padding: 1% 3%;
+  column-gap: 3vh;
+}
+.prod{
+  border: 1px solid whitesmoke;
+  padding: 3%;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1vh;
 }
 
-.sect {
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  color: black;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-.hello {
-  color: whitesmoke;
-}
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-.sect > .modal-content{
-  color: black;
-}
-
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
 
 </style>

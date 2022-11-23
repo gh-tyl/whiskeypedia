@@ -1,14 +1,15 @@
 <template>
   <!-- purchaed history -->
-    <div class="section track">
+    <div class="section">
       <h3>Purchased History</h3>
       <div class="prods">
         <div class="tracking" v-for="(track,idx) in tracking" :key="idx">
-          <h2>{{track[1].class}}</h2>
-          <h2>{{track[1].country}}</h2>
           <h2>{{track[1].name}}</h2>
-          <h2>{{track[1].status}}</h2>
-          <star-rating :star-size="20"></star-rating>
+          <h3>{{track[1].country}}</h3>
+          <h3>{{track[1].class}}</h3>
+          <a>{{track[1].status}}</a>
+          <img :src="track[1].image_path_0" alt="img" />
+          <star-rating :star-size="15"></star-rating>
         </div>
       </div>
     </div>
@@ -17,6 +18,7 @@
 <script>
 import JsonService from '../../services/JsonService';
 import StarRating from 'vue-star-rating';
+
 
 export default {
   name: "ProfileTrackPage",
@@ -70,6 +72,7 @@ export default {
           selectedProds.push({id:purchase.product_id,date:purchase.datetime});
         }
       })
+      console.log(selectedProds)
       let track = new Map();
       let product = '';
       this.products.forEach(function(prod){
@@ -108,26 +111,26 @@ export default {
   display: flex;
   flex-direction: column;
   border: .5px solid lightgray;
+  overflow: hidden;
+}
+
+h3 {
+  padding: 1.5% 3% .5% 3%;
 }
 
 .prods{
   display: flex;
+  padding: 1% 3%;
+  column-gap: 3vh;
 }
-.prod{
+.tracking{
+  border: 1px solid whitesmoke;
+  padding: 3%;
+  width: fit-content;
+  height: fit-content;
   display: flex;
   flex-direction: column;
+  row-gap: 1vh;
 }
 
-.sect {
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  color: black;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
 </style>

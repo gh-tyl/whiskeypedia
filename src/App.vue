@@ -114,6 +114,7 @@ export default {
 <style>
   body {
     background-color: #111111;
+    transition: .4s;
   }
   .cover {
     display: flex;
