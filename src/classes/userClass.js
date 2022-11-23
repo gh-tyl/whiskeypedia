@@ -31,8 +31,8 @@ class userClass {
   toObj(){
     return {
       uid: this.uId,
-      fname: this.fName,
-      lname: this.lName,
+      fName: this.fName,
+      lName: this.lName,
       email: this.email,
       address: this.address,
       age: this.age,

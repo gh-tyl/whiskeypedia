@@ -5,7 +5,7 @@
       <!-- img / icon -->
       <div class="hello">
         <h2 v-if="helloflag">
-          Hello, {{ userinfo.fname }}  {{ userinfo.lname }}
+          Hello, {{ loggedUser.fName }}  {{ loggedUser.lName }}
         </h2>
         <div class="mBox">
           <span  @click="showEdit">View information</span>
@@ -17,7 +17,7 @@
           <div class="modal-content">
             <span class="close" @click="showEdit">&times;</span>
             <div class="fullname">
-              <h4>Name: {{userinfo.fname}}{{userinfo.lname}}</h4>
+              <h4>Name: {{userinfo.fName}}{{userinfo.lName}}</h4>
             </div>
             <h4>Email: {{userinfo.email}}</h4>
             <h4>Country: {{userinfo.country}}</h4>
@@ -98,8 +98,8 @@ export default {
     loadSession(){
       this.userinfo = JSON.parse(sessionStorage.getItem('user'));
       if(this.userinfo){
-        this.fname  = this.userinfo.fname;
-        this.lname = this.userinfo.lname;
+        this.fname  = this.userinfo.fName;
+        this.lname = this.userinfo.lName;
         this.country = this.userinfo.country;
         this.age = this.userinfo.age;
         this.email = this.userinfo.email;
@@ -200,7 +200,7 @@ button {
 }
 
 .sect > .modal-content{
-  color: black;
+  color: whitesmoke;
 }
 
 /* The Close Button */

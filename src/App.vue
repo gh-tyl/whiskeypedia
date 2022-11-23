@@ -92,6 +92,7 @@ export default {
         //   this.logFlag = true;
         // }else{
           this.setShoppingList(JSON.parse(sessionStorage.getItem('user')).fname,JSON.parse(sessionStorage.getItem('user')).lname);
+          this.loggedUser = JSON.parse(sessionStorage.getItem('user'))
         // }
       }else{
         this.logFlag = false;
