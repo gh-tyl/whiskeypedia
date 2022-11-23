@@ -12,7 +12,9 @@
         <!-- Modal content -->
         <div class="modal-content">
           <span class="close" @click="showEdit">&times;</span>
-          <h4>Name: {{userinfo.fname}}{{userinfo.lname}}</h4>
+          <div class="fullname">
+            <h4>Name: {{userinfo.fname}}{{userinfo.lname}}</h4>
+          </div>
           <h4>Email: {{userinfo.email}}</h4>
           <h4>Country: {{userinfo.country}}</h4>
         </div>
@@ -21,8 +23,10 @@
         <div v-if="editflag" class="editProfile sect">
           <div class="modal-content">
             <span class="close" @click="editInfo">&times;</span>
-            <input type="text" v-model="fname"  placeholder="first name">
-            <input type="text" v-model="lname"  placeholder="last name">
+            <div class="fullname">
+              <input type="text" v-model="fname"  placeholder="first name">
+              <input type="text" v-model="lname"  placeholder="last name">
+            </div>
             <input type="text" v-model="email"  placeholder="email">
             <input type="text" v-model="country"  placeholder="country">
             <button @click="editInfo">Edit</button>
@@ -97,21 +101,6 @@ export default {
         this.email = this.userinfo.email;
       }
     },
-    loadProducts(){
-      this.loadSession();
-      JsonService.getJson('data/json/productJson.json')
-      .then((res)=>{
-          this.products = res.data;
-      })
-      .catch((e)=>console.log(e));
-    },
-    loadpurchased(){
-      JsonService.getJson('data/json/purchacedJson.json')
-      .then((res)=>{
-          this.purchased = res.data;
-      })
-      .catch((e)=>console.log(e));
-    },
     loadUsers(){
       JsonService.getJson('data/json/userJson.json')
       .then((res)=>{
@@ -121,14 +110,15 @@ export default {
     },
   },
   mounted(){
-    this.loadProducts();
-    this.loadpurchased();
     this.loadUsers();
     this.setUserinfo();
   },
   watch:{
     users:function(){
       this.flag = !this.flag;
+    },
+    flag:function(){
+      this.loadSession();
     }
   }
   
@@ -136,20 +126,11 @@ export default {
 };
 </script>
 <style scoped>
-.section{
-  display: flex;
-  flex-direction: column;
-  border: .5px solid lightgray;
-}
 
-.prods{
+.fullname{
   display: flex;
+  column-gap: 1vh;
 }
-.prod{
-  display: flex;
-  flex-direction: column;
-}
-
 .sect {
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -163,6 +144,17 @@ export default {
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
+input:nth-child(3){
+  width: 60%;
+}
+input:last-child {
+  width: 100%;
+}
+
+button {
+  width: 25%;
+}
+
 .hello {
   color: whitesmoke;
 }
@@ -173,6 +165,11 @@ export default {
   padding: 20px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
+  height: 25vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .sect > .modal-content{
