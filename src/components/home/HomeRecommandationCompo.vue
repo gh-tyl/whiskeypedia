@@ -2,12 +2,15 @@
   <section>
     <article class="left">
       <figure>
-        <img class="slideImg" src="../../img/month-01.png">
+        <img class="slideImg" src="../../img/month-01.png" />
         <figcaption>
           <h2>THE DALMORE</h2>
-          <p class="desc">Dalmore 12 is aged for the first nine years in American white oak ex-bourbon casks, before
-            half is transferred to ex-oloroso sherry casks for the final three years. The result is a whisky with a
-            combination of sweetness and rich, sherried flavours.</p>
+          <p class="desc">
+            Dalmore 12 is aged for the first nine years in American white oak
+            ex-bourbon casks, before half is transferred to ex-oloroso sherry
+            casks for the final three years. The result is a whisky with a
+            combination of sweetness and rich, sherried flavours.
+          </p>
           <div class="button">
             <button @click="addItem">ADD TO CART</button>
           </div>
@@ -15,7 +18,7 @@
       </figure>
     </article>
     <article class="right">
-      <img class="slideImg" src="../../img/dalmore01.png">
+      <img class="slideImg" src="../../img/dalmore01.png" />
     </article>
   </section>
 </template>
@@ -28,8 +31,8 @@ export default {
     addItem() {
       this.$emit("addToItem", this.logFlag, 0);
     },
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
@@ -69,15 +72,15 @@ figcaption {
 }
 
 h2 {
-  color: #FDEEC0;
-  font-family: 'DM Mono', monospace;
+  color: #fdeec0;
+  font-family: "DM Mono", monospace;
   font-weight: lighter;
   text-decoration: underline;
 }
 
 button {
-  border: 1px solid #FDEEC0;
-  color: #FDEEC0;
+  border: 1px solid #fdeec0;
+  color: #fdeec0;
   background-color: #111111;
   padding: 1%;
   width: 40%;
@@ -86,8 +89,8 @@ button {
 
 button:hover {
   color: #111111;
-  background-color: #FDEEC0;
+  background-color: #fdeec0;
   cursor: pointer;
-  transition: .5s;
+  transition: 0.5s;
 }
 </style>

@@ -5,13 +5,13 @@
   <div class="contact-page">
     <div class="lines">
       <aside class="lines01"></aside>
-      <h1>
-        CONTACT
-      </h1>
+      <h1>CONTACT</h1>
       <aside class="lines01"></aside>
     </div>
     <div class="text">
-      <p>We would love to hear from you! Get in touch and a member of our team will get back to you as soon as possible.
+      <p>
+        We would love to hear from you! Get in touch and a member of our team
+        will get back to you as soon as possible.
       </p>
     </div>
     <div class="contact-main">
@@ -24,9 +24,25 @@
           <button @click="fillDetails">Auto-fill information</button>
         </div>
         <form>
-          <input type="text" placeholder="First Name*" v-model="fName" required />
-          <input type="text" placeholder="Last Name*" v-model="lName" required />
-          <input class="email" type="email" placeholder="Email*" v-model="email" required />
+          <input
+            type="text"
+            placeholder="First Name*"
+            v-model="fName"
+            required
+          />
+          <input
+            type="text"
+            placeholder="Last Name*"
+            v-model="lName"
+            required
+          />
+          <input
+            class="email"
+            type="email"
+            placeholder="Email*"
+            v-model="email"
+            required
+          />
           <input type="text" placeholder="Order Number" />
           <input type="text" placeholder="Subject" />
           <textarea placeholder="Message*" required></textarea>
@@ -41,7 +57,7 @@
 </template>
 
 <script>
-import AlarmCompo from '../common/AlarmCompo.vue';
+import AlarmCompo from "../common/AlarmCompo.vue";
 export default {
   components: { AlarmCompo },
   name: "ContactPage",
@@ -51,13 +67,13 @@ export default {
       fName: undefined,
       lName: undefined,
       email: undefined,
-      alarmText: '',
-      rand: 0
-    }
+      alarmText: "",
+      rand: 0,
+    };
   },
   methods: {
     fillDetails() {
-      if (this.loggedUser == '') {
+      if (this.loggedUser == "") {
         this.rand = Math.random();
         this.alarmText = "Please login";
       } else {
@@ -69,8 +85,8 @@ export default {
     sendContact(e) {
       e.preventDefault();
       console.log("send");
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -135,21 +151,20 @@ form {
   flex-wrap: wrap;
   justify-content: space-between;
   row-gap: 3.5vh;
-
 }
 
 input {
   width: 47%;
   height: 7vh;
   border-top: 20px solid transparent;
-  border: 1px solid #FDEEC0;
+  border: 1px solid #fdeec0;
   background-color: #111111;
-  color: #FDEEC0;
+  color: #fdeec0;
   padding-left: 2vh;
 }
 
 ::placeholder {
-  font-family: 'DM Mono', monospace;
+  font-family: "DM Mono", monospace;
   padding-left: 1vh;
 }
 
@@ -157,9 +172,9 @@ textarea {
   resize: none;
   width: 100%;
   height: 35vh;
-  border: 1px solid #FDEEC0;
+  border: 1px solid #fdeec0;
   background-color: #111111;
-  color: #FDEEC0;
+  color: #fdeec0;
   padding-top: 1vh;
   padding-left: 1vh;
 }
@@ -174,7 +189,7 @@ textarea::placeholder {
 
 textarea:focus,
 input:focus {
-  color: #FDEEC0;
+  color: #fdeec0;
   padding-left: 2vh;
   font-size: 16px;
 }
@@ -188,25 +203,25 @@ input:focus {
 button {
   height: 7vh;
   width: 25vh;
-  border: 1px solid #FDEEC0;
+  border: 1px solid #fdeec0;
   background-color: #111111;
-  color: #FDEEC0;
+  color: #fdeec0;
   font-size: 11px;
-  font-family: 'DM Mono', monospace;
+  font-family: "DM Mono", monospace;
 }
 
 button:hover {
   color: #111111;
-  background-color: #FDEEC0;
+  background-color: #fdeec0;
   border: 1px solid #111111;
   cursor: pointer;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .lines01 {
   width: 50%;
-  height: .1rem;
-  background-color: #FDEEC0;
+  height: 0.1rem;
+  background-color: #fdeec0;
 }
 
 .lines {
@@ -214,5 +229,3 @@ button:hover {
   align-items: center;
 }
 </style>
-
-

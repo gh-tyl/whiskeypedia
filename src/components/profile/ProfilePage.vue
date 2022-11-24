@@ -28,9 +28,7 @@
       <div class="hello">
         <div class="lines">
           <aside class="lines01"></aside>
-          <h1>
-            YOUR PROFILE
-          </h1>
+          <h1>YOUR PROFILE</h1>
           <aside class="lines01"></aside>
         </div>
         <h3 v-if="helloflag">
@@ -62,25 +60,48 @@
           <div class="fullname">
             <div class="col">
               <label for="fname">First Name</label>
-              <input type="text" name="fname" v-model="fname" placeholder="first name">
+              <input
+                type="text"
+                name="fname"
+                v-model="fname"
+                placeholder="first name"
+              />
             </div>
             <div class="col">
               <label for="lname">Last Name</label>
-              <input name="lname" type="text" v-model="lname" placeholder="last name">
+              <input
+                name="lname"
+                type="text"
+                v-model="lname"
+                placeholder="last name"
+              />
             </div>
             <div class="col">
               <label for="email">Email</label>
-              <input type="text" name="email" v-model="email" placeholder="email">
+              <input
+                type="text"
+                name="email"
+                v-model="email"
+                placeholder="email"
+              />
             </div>
             <div class="col">
               <label for="country">Country</label>
-              <input type="text" name="country" class="country" v-model="country" placeholder="country">
+              <input
+                type="text"
+                name="country"
+                class="country"
+                v-model="country"
+                placeholder="country"
+              />
             </div>
           </div>
           <button @click="editInfo" class="editbtn">EDIT</button>
         </div>
         <!-- recommand products for this user -->
-        <profile-heighlight-page :loggedUser="loggedUser"></profile-heighlight-page>
+        <profile-heighlight-page
+          :loggedUser="loggedUser"
+        ></profile-heighlight-page>
         <!-- purchaed history -->
         <profile-track-page :loggedUser="loggedUser"></profile-track-page>
       </div>
@@ -99,7 +120,10 @@
     <!-- Modal content -->
     <div class="modal-content">
       <span @click="closeModal">&times;</span>
-      <profile-login-compo-vue @loggedUser="loggedUser" @closeModal="closeModal"></profile-login-compo-vue>
+      <profile-login-compo-vue
+        @loggedUser="loggedUser"
+        @closeModal="closeModal"
+      ></profile-login-compo-vue>
     </div>
   </div>
 </template>
@@ -148,26 +172,35 @@ export default {
       this.logFlag = val;
     },
     setUserinfo() {
-      if (!sessionStorage.getItem('user')) {
-        this.userinfo = '';
+      if (!sessionStorage.getItem("user")) {
+        this.userinfo = "";
         this.helloflag = false;
       } else {
-        this.userinfo = JSON.parse(sessionStorage.getItem('user'));
+        this.userinfo = JSON.parse(sessionStorage.getItem("user"));
         this.helloflag = true;
       }
     },
     editInfo() {
-      let newUserInfo = new userClass(this.userinfo.uid, this.fname, this.lname, this.email, this.userinfo.address, this.gender, this.age, this.country);
-      sessionStorage.clear()
-      sessionStorage.setItem('user', JSON.stringify(newUserInfo.toObj()));
+      let newUserInfo = new userClass(
+        this.userinfo.uid,
+        this.fname,
+        this.lname,
+        this.email,
+        this.userinfo.address,
+        this.gender,
+        this.age,
+        this.country
+      );
+      sessionStorage.clear();
+      sessionStorage.setItem("user", JSON.stringify(newUserInfo.toObj()));
       this.loadSession();
       this.editflag = !this.editflag;
     },
     showEdit() {
-      this.showProfile = !this.showProfile
+      this.showProfile = !this.showProfile;
     },
     loadSession() {
-      this.userinfo = JSON.parse(sessionStorage.getItem('user'));
+      this.userinfo = JSON.parse(sessionStorage.getItem("user"));
       if (this.userinfo) {
         this.fname = this.userinfo.fName;
         this.lname = this.userinfo.lName;
@@ -178,15 +211,15 @@ export default {
       }
     },
     loadUsers() {
-      JsonService.getJson('data/json/userJson.json')
+      JsonService.getJson("data/json/userJson.json")
         .then((res) => {
           this.users = res.data;
         })
         .catch((e) => console.log(e));
     },
     loggedUser(val) {
-      this.$emit('userInfo', val)
-    }
+      this.$emit("userInfo", val);
+    },
   },
   mounted() {
     this.loadUsers();
@@ -199,10 +232,8 @@ export default {
     },
     flag: function () {
       this.loadSession();
-    }
-  }
-
-
+    },
+  },
 };
 </script>
 <style scoped>
@@ -218,7 +249,7 @@ export default {
   justify-content: center;
   row-gap: 1vh;
   background-color: #111111;
-  border: 1px solid #FDEEC0;
+  border: 1px solid #fdeec0;
   height: 45vh;
   width: 86vh;
   position: absolute;
@@ -236,7 +267,7 @@ export default {
   justify-content: center;
   row-gap: 1vh;
   background-color: #111111;
-  border: 1px solid #FDEEC0;
+  border: 1px solid #fdeec0;
   height: 75vh;
   width: 77vh;
   position: absolute;
@@ -270,8 +301,8 @@ export default {
 } */
 
 label {
-  color: #FDEEC0;
-  font-family: 'DM Mono', monospace;
+  color: #fdeec0;
+  font-family: "DM Mono", monospace;
   font-weight: lighter;
   text-align: left;
   margin-bottom: 1vh;
@@ -280,13 +311,13 @@ label {
 input {
   height: 6vh;
   background-color: black;
-  color: #FDEEC0;
+  color: #fdeec0;
   padding-left: 1vh;
   font-size: 16px;
 }
 
 ::placeholder {
-  font-family: 'DM Mono', monospace;
+  font-family: "DM Mono", monospace;
   padding-left: 1vh;
 }
 
@@ -296,7 +327,7 @@ input {
   border: 1px solid #111111;
   /* border-color: #FDEEC0; */
   width: 25%;
-  color: #FDEEC0;
+  color: #fdeec0;
   font-size: 16px;
 }
 
@@ -312,10 +343,10 @@ button {
 }
 
 button:hover {
-  background-color: #FDEEC0;
+  background-color: #fdeec0;
   color: #111111;
   cursor: pointer;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .mBox {
@@ -333,7 +364,7 @@ button:hover {
   width: 25vh;
   height: 6vh;
   padding: 1%;
-  color: #FDEEC0;
+  color: #fdeec0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -361,7 +392,7 @@ button:hover {
 }
 
 .hello {
-  color: #FDEEC0;
+  color: #fdeec0;
   display: flex;
   flex-direction: column;
   justify-items: center;
@@ -389,13 +420,13 @@ button:hover {
   margin: 15% auto;
   /* 15% from the top and centered */
   padding: 20px;
-  border: 1px solid #FDEEC0 !important;
+  border: 1px solid #fdeec0 !important;
   width: 80%;
   /* Could be more or less, depending on screen size */
   height: 40vh;
 }
 
-.sect>.modal-content {
+.sect > .modal-content {
   color: whitesmoke;
 }
 
@@ -431,7 +462,7 @@ button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url('../../img/bottle-illustration.png');
+  background-image: url("../../img/bottle-illustration.png");
   height: 60vh;
   background-size: contain;
   background-position: center;
@@ -440,15 +471,15 @@ button:hover {
 }
 
 h4 {
-  color: #FDEEC0;
-  font-family: 'DM Mono', monospace;
+  color: #fdeec0;
+  font-family: "DM Mono", monospace;
   font-weight: lighter;
   font-size: 18px;
   text-align: center;
 }
 
 h5 {
-  font-family: 'DM Mono', monospace;
+  font-family: "DM Mono", monospace;
   font-weight: lighter;
   text-align: center !important;
   font-size: 22px;
@@ -459,16 +490,16 @@ h5 {
   height: 8vh;
   width: 35vh;
   background-color: black;
-  color: #FDEEC0;
-  font-family: 'DM Mono', monospace;
+  color: #fdeec0;
+  font-family: "DM Mono", monospace;
   font-size: 20px;
 }
 
 .buttons:hover {
   cursor: pointer;
   color: black;
-  background-color: #FDEEC0;
-  transition: .5s;
+  background-color: #fdeec0;
+  transition: 0.5s;
 }
 
 table {
@@ -482,8 +513,8 @@ table {
   align-items: center;
   justify-content: center;
   width: 38%;
-  height: .1rem;
-  background-color: #FDEEC0;
+  height: 0.1rem;
+  background-color: #fdeec0;
 }
 
 .lines {
@@ -493,7 +524,7 @@ table {
 }
 
 h3 {
-  font-family: 'DM Mono', monospace;
+  font-family: "DM Mono", monospace;
   font-weight: lighter;
   font-size: 22px;
   margin-top: 5vh;

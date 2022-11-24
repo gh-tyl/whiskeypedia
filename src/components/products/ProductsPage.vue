@@ -4,7 +4,11 @@
       <h2>Discover the world of whiskey!</h2>
       <search-compo @search="search" />
       <ProductsMapCompo :products="products" @country="getCountry" />
-      <ProductsListCompo :products="displayProds" @addToItem="addToItem" :logFlag="logFlag" />
+      <ProductsListCompo
+        :products="displayProds"
+        @addToItem="addToItem"
+        :logFlag="logFlag"
+      />
     </div>
   </div>
   <!-- The Modal -->
@@ -12,7 +16,10 @@
     <!-- Modal content -->
     <div class="modal-content">
       <span @click="closeModal">&times;</span>
-      <home-login-compo @userInfo="userinfo" @closeModal="closeModal"></home-login-compo>
+      <home-login-compo
+        @userInfo="userinfo"
+        @closeModal="closeModal"
+      ></home-login-compo>
     </div>
   </div>
   <alarm-compo :alarmText="alarmText" :rand="rand"></alarm-compo>

@@ -1,23 +1,30 @@
 <template>
   <section>
-    <swiper :slidesPerView="3" :spaceBetween="100" :loop="true" :navigation="true" :modules="modules" class="mySwiper">
+    <swiper
+      :slidesPerView="3"
+      :spaceBetween="100"
+      :loop="true"
+      :navigation="true"
+      :modules="modules"
+      class="mySwiper"
+    >
       <swiper-slide>
-        <img class="slideImg" src="../../img/main-01.png">
+        <img class="slideImg" src="../../img/main-01.png" />
       </swiper-slide>
       <swiper-slide>
-        <img class="slideImg" src="../../img/main-02.png">
+        <img class="slideImg" src="../../img/main-02.png" />
       </swiper-slide>
       <swiper-slide>
-        <img class="slideImg" src="../../img/main-03.png">
+        <img class="slideImg" src="../../img/main-03.png" />
       </swiper-slide>
       <swiper-slide>
-        <img class="slideImg" src="../../img/main-04.png">
+        <img class="slideImg" src="../../img/main-04.png" />
       </swiper-slide>
       <swiper-slide>
-        <img class="slideImg" src="../../img/main-05 (2).png">
+        <img class="slideImg" src="../../img/main-05 (2).png" />
       </swiper-slide>
       <swiper-slide>
-        <img class="slideImg" src="../../img/main-06.png">
+        <img class="slideImg" src="../../img/main-06.png" />
       </swiper-slide>
     </swiper>
   </section>
@@ -44,13 +51,9 @@ export default {
       modules: [Navigation],
     };
   },
-  methods: {
-
-  },
-  watch: {
-
-  }
-}
+  methods: {},
+  watch: {},
+};
 </script>
 
 <style>
@@ -76,6 +79,6 @@ video {
 
 .swiper-button-prev:after,
 .swiper-button-next:after {
-  color: #FDEEC0;
+  color: #fdeec0;
 }
 </style>
