@@ -1,9 +1,5 @@
-<script setup>
-// add imports here
-import MainMenu from "./components/common/MainMenu.vue";
-</script>
-
 <template>
+
   <body>
     <div class="cover">
       <div class="header-logo">
@@ -16,7 +12,7 @@ import MainMenu from "./components/common/MainMenu.vue";
     </header>
 
     <main>
-      <router-view @shopcount = "setCount"  @userInfo='setLoggedUser' :loggedUser="loggedUser" :logFlag="logFlag" :shoppingList="shoppingList"/>
+      <router-view @shopcount = "setCount"  @userInfo='setLoggedUser' :loggedUser="loggedUser" :logFlag="logFlag" :shoppingList="shoppingList" :products="products"/>
     </main>
     <div class="footer-logo">
       <img class="logo2" src="./home-img/main-logo.png" alt="logo">
@@ -24,14 +20,17 @@ import MainMenu from "./components/common/MainMenu.vue";
         Please enjoy responsibly.
       </span>
     </div>
+
     </div>
     <div class="copy">
+      <a href="#">^</a>
       <p>&copy; Copyright 2022</p>
     </div>
   </body>
 </template>
 
 <script>
+import MainMenu from "./components/common/MainMenu.vue";
 import UserService from "./services/UserService.js";
 import ProductService from "./services/ProductService.js";
 import PurchasedService from "./services/PurchasedService.js";
@@ -43,10 +42,11 @@ export default {
   },
   data() {
     return {
-      loggedUser:'',
-      logFlag:false,
-      shoppingList:undefined,
-      productCount:0
+      loggedUser: '',
+      logFlag: false,
+      shoppingList: undefined,
+      productCount: 0,
+      products: new Array(),
     };
   },
   methods: {
@@ -62,9 +62,22 @@ export default {
     },
     loadProductJson() {
       ProductService.getJson()
-        .then((res) => console.log(res.data))
+        .then((res) => {
+          this.products = res.data
+        })
         .catch((err) => console.log(err));
     },
+    // // fetch
+    // loadProductJson() {
+    //   console.log("loadProductJson");
+    //   fetch("data/json/productJson.json")
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       this.products = data;
+    //       console.log(this.products);
+    //     })
+    //     .catch((err) => console.log(err));
+    // },
     loadPurchasedJson() {
       PurchasedService.getJson()
         .then((res) => console.log(res.data))
@@ -107,7 +120,7 @@ export default {
   },
   mounted(){
     // this.loadUserJson();
-    // this.loadProductJson();
+    this.loadProductJson();
     // this.loadPurchasedJson();
     this.chkSession();
 
@@ -127,49 +140,71 @@ export default {
 </script>
 
 <style>
-  body {
-    background-color: #111111;
-    transition: .4s;
-  }
-  .cover {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .header-logo {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
-  .logo {
-    height: 13vh;
-    padding-top: 1vh;
-  }
-  .page-style {
-    border: 2px solid #FDEEC0;
-    margin-top: 10vh;
-    margin-left: 5vh;
-    margin-right: 5vh;
-    margin-block: 5vh;
-    padding: 5vh;
-  }
-  .header-logo {
-    height: 10vh;
-    width: 20vh;
-  }
-  .footer-logo {
-    padding-left: 35vh;
-    padding-right: 35vh;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
-  .logo2 {
-    height: 20vh;
-  }
-  .copy {
-    padding-bottom: 4vh;
-    text-align: center;
-  }
+body {
+  background-color: #111111;
+}
+
+.cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.logo {
+  height: 13vh;
+  padding-top: 1vh;
+}
+
+.page-style {
+  border: 2px solid #FDEEC0;
+  margin-top: 10vh;
+  margin-left: 5vh;
+  margin-right: 5vh;
+  margin-block: 5vh;
+  padding: 5vh;
+}
+
+.header-logo {
+  height: 10vh;
+  width: 20vh;
+}
+
+.footer-logo {
+  padding-left: 40vh;
+  padding-right: 40vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.logo2 {
+  height: 20vh;
+}
+
+.copy {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 4vh;
+  width: 100%;
+}
+
+a {
+  color: #FDEEC0;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+.back {
+  font-size: 12px;
+}
 </style>
 
