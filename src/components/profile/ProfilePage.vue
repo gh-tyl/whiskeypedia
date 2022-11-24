@@ -4,14 +4,14 @@
       <!-- Ordered cart -->
       <section>
         <table>
-          <thead>
+          <!-- <thead>
             <th>No</th>
             <th>Name</th>
             <th>Address</th>
             <th>Postal code</th>
             <th>Amount</th>
             <th>Other</th>
-          </thead>
+          </thead> -->
           <tbody>
             <tr v-for="(item, idx) in orderedCart" :key="idx">
               <td>{{ idx }}</td>
@@ -468,9 +468,42 @@ h5 {
   transition: 0.5s;
 }
 
-table {
+/* table {
   color: white;
   border: 1px solid red;
+} */
+
+.lines01 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 38%;
+  height: .1rem;
+  background-color: #FDEEC0;
+}
+
+.lines {
+  display: flex;
+  align-items: center;
+  margin-top: 5vh;
+}
+
+h3 {
+  font-family: 'DM Mono', monospace;
+  font-weight: lighter;
+  font-size: 22px;
+  margin-top: 5vh;
+}
+
+div {
+  width: 100%;
+}
+
+.fullname {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1vh;
 }
 
 .lines01 {
