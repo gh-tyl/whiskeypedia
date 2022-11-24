@@ -8,16 +8,7 @@ class userClass {
   age;
   country;
 
-  constructor(
-    uId,
-    fName,
-    lName,
-    email,
-    address,
-    gender,
-    age,
-    country
-  ) {
+  constructor(uId, fName, lName, email, address, gender, age, country) {
     this.uId = uId;
     this.fName = fName;
     this.lName = lName;
@@ -28,7 +19,7 @@ class userClass {
     this.country = country;
   }
 
-  toObj(){
+  toObj() {
     return {
       uid: this.uId,
       fName: this.fName,
@@ -36,9 +27,9 @@ class userClass {
       email: this.email,
       address: this.address,
       age: this.age,
-      gender:this.gender,
-      country : this.country
-    }
+      gender: this.gender,
+      country: this.country,
+    };
   }
 }
 

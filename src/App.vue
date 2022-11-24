@@ -1,26 +1,34 @@
 <template>
-
   <body>
     <div class="cover">
       <div class="header-logo">
-        <img class="logo" src="./home-img/main-logo.png" alt="logo">
+        <img class="logo" src="./home-img/main-logo.png" alt="logo" />
       </div>
     </div>
     <div class="page-style">
-    <header>
-      <MainMenu @logFlag = 'logFlag' @shoppingFlag = "setShoppingSession" :logFlag="logFlag" :productCount="productCount"/>
-    </header>
+      <header>
+        <MainMenu
+          @logFlag="logFlag"
+          @shoppingFlag="setShoppingSession"
+          :logFlag="logFlag"
+          :productCount="productCount"
+        />
+      </header>
 
-    <main>
-      <router-view @shopcount = "setCount"  @userInfo='setLoggedUser' :loggedUser="loggedUser" :logFlag="logFlag" :shoppingList="shoppingList" :products="products"/>
-    </main>
-    <div class="footer-logo">
-      <img class="logo2" src="./home-img/main-logo.png" alt="logo">
-      <span>
-        Please enjoy responsibly.
-      </span>
-    </div>
-
+      <main>
+        <router-view
+          @shopcount="setCount"
+          @userInfo="setLoggedUser"
+          :loggedUser="loggedUser"
+          :logFlag="logFlag"
+          :shoppingList="shoppingList"
+          :products="products"
+        />
+      </main>
+      <div class="footer-logo">
+        <img class="logo2" src="./home-img/main-logo.png" alt="logo" />
+        <span> Please enjoy responsibly. </span>
+      </div>
     </div>
     <div class="copy">
       <a href="#">^</a>
@@ -42,7 +50,7 @@ export default {
   },
   data() {
     return {
-      loggedUser: '',
+      loggedUser: "",
       logFlag: false,
       shoppingList: undefined,
       productCount: 0,
@@ -50,10 +58,10 @@ export default {
     };
   },
   methods: {
-    logFlag(val){
+    logFlag(val) {
       this.logFlag = val;
       this.shoppingList = undefined;
-      this.loggedUser = '';
+      this.loggedUser = "";
     },
     loadUserJson() {
       UserService.getJson()
@@ -63,7 +71,7 @@ export default {
     loadProductJson() {
       ProductService.getJson()
         .then((res) => {
-          this.products = res.data
+          this.products = res.data;
         })
         .catch((err) => console.log(err));
     },
@@ -83,59 +91,69 @@ export default {
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
     },
-    setCount(val){
+    setCount(val) {
       this.productCount = val;
     },
-    setShoppingSession(){
-      sessionStorage.setItem('shoppingList',JSON.stringify(this.shoppingList.toObj()));
+    setShoppingSession() {
+      sessionStorage.setItem(
+        "shoppingList",
+        JSON.stringify(this.shoppingList.toObj())
+      );
     },
-    setLoggedUser(val){
-      if(!sessionStorage.getItem('user')){
+    setLoggedUser(val) {
+      if (!sessionStorage.getItem("user")) {
         this.loggedUser = val;
-        this.setShoppingList(val.fName,val.lName);
-      }else{
+        this.setShoppingList(val.fName, val.lName);
+      } else {
         this.chkSession();
       }
-      console.log(this.shoppingList)
+      console.log(this.shoppingList);
     },
-    setShoppingList(fname,lname){
-      this.shoppingList = new shoppingCartClass(Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1), fname +" "+ lname);
-      console.log(JSON.stringify(this.shoppingList.toObj()))
+    setShoppingList(fname, lname) {
+      this.shoppingList = new shoppingCartClass(
+        Math.floor((1 + Math.random()) * 0x10000)
+          .toString(16)
+          .substring(1),
+        fname + " " + lname
+      );
+      console.log(JSON.stringify(this.shoppingList.toObj()));
       this.logFlag = true;
     },
-    chkSession(){
-      if(sessionStorage.getItem('user')){
+    chkSession() {
+      if (sessionStorage.getItem("user")) {
         // if(sessionStorage.getItem('shoppingList')){
         //   this.shoppingList = JSON.parse(sessionStorage.getItem('shoppingList'))
         //   this.logFlag = true;
         // }else{
-          this.setShoppingList(JSON.parse(sessionStorage.getItem('user')).fname,JSON.parse(sessionStorage.getItem('user')).lname);
-          this.loggedUser = JSON.parse(sessionStorage.getItem('user'))
+        this.setShoppingList(
+          JSON.parse(sessionStorage.getItem("user")).fname,
+          JSON.parse(sessionStorage.getItem("user")).lname
+        );
+        this.loggedUser = JSON.parse(sessionStorage.getItem("user"));
         // }
-      }else{
+      } else {
         this.logFlag = false;
       }
-      console.log(this.shoppingList)
-    }
+      console.log(this.shoppingList);
+    },
   },
-  mounted(){
+  mounted() {
     // this.loadUserJson();
     this.loadProductJson();
     // this.loadPurchasedJson();
     this.chkSession();
-
   },
-  watch:{
+  watch: {
     // shoppingList:{
     //   handler(){
     //     this.productCount = this.shoppingList.returnSize();
     //   },
     //   deep: true
     // },
-    loggedUser: function(){
-      this.chkSession()
-    }
-  }
+    loggedUser: function () {
+      this.chkSession();
+    },
+  },
 };
 </script>
 
@@ -162,7 +180,7 @@ body {
 }
 
 .page-style {
-  border: 2px solid #FDEEC0;
+  border: 2px solid #fdeec0;
   margin-top: 10vh;
   margin-left: 5vh;
   margin-right: 5vh;
@@ -197,7 +215,7 @@ body {
 }
 
 a {
-  color: #FDEEC0;
+  color: #fdeec0;
   text-decoration: none;
   font-weight: 400;
   font-size: 30px;
@@ -207,4 +225,3 @@ a {
   font-size: 12px;
 }
 </style>
-
