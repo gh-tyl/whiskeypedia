@@ -4,6 +4,10 @@
       <h2>Discover the world of whiskey!</h2>
       <ProductsMapCompo :products="products" @country="getCountry" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      <search-compo @search="search" />
+>>>>>>> 41f57cb (minor style fix)
       <ProductsListCompo
         :products="displayProds"
         @addToItem="addToItem"
