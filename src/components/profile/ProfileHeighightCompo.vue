@@ -2,10 +2,10 @@
   <div>
     <!-- recommand products for this user -->
     <div class="section">
-      <h3>Recommand Products</h3>
+      <h3>Recommended Products</h3>
       <div class="cBox">
         <div>
-          <input type="checkbox" @change="chgHeigh" v-model="female" /> Female
+          <input type="checkbox" @change="chgHeigh" v-model="female" /> female
         </div>
         <div>
           <input type="checkbox" @change="chgHeigh" v-model="male" /> male
@@ -14,8 +14,7 @@
           <input type="checkbox" @change="chgHeigh" v-model="young" /> under 40
         </div>
         <div>
-          <input type="checkbox" @change="chgHeigh" v-model="old" /> older than
-          40
+          <input type="checkbox" @change="chgHeigh" v-model="old" /> over 40
         </div>
       </div>
       <!-- <swiper :slidesPerView="3" :spaceBetween="10"  :navigation="true" :modules="modules" class="mySwiper">
@@ -28,15 +27,16 @@
       </swiper> -->
       <div class="prods">
         <div class="prod" v-for="(prod, idx) in heighlight" :key="idx">
-          <h2>{{ prod[1].name }}</h2>
-          <h1>{{ prod[1].ocuntry }}</h1>
           <img :src="prod[1].image_path_0" alt="img" />
-          <h1>{{ prod[1].price }}</h1>
+          <h2>{{ prod[1].name }}</h2>
+          <h1>{{ prod[1].country }}</h1>
+          <h1>${{ prod[1].price }}</h1>
         </div>
       </div>
     </div>
   </div>
 </template>
+
 
 <script>
 import JsonService from "../../services/JsonService";
@@ -243,75 +243,101 @@ export default {
 };
 </script>
 
+
 <style scoped>
 .section {
   display: flex;
   flex-direction: column;
   row-gap: 3vh;
-  border: 0.5px solid lightgray;
+  border-top: 3px solid #fdeec0;
 }
-
 h3 {
   padding: 1.5% 3%;
 }
-
 .cBox {
-  width: 60%;
+  width: 100%;
   display: flex;
   column-gap: 3vh;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   padding-left: 4vh;
   font-size: 20px;
+  font-family: "DM Mono", monospace;
+  font-weight: lighter;
 }
-
 .cBox input {
   border-radius: 0.2m;
   box-shadow: inset 0px 0px 0px 2px #f7f2f2;
 }
-
 /* .cBox input::before{
     transform: rotateZ(180deg);
     background: #FF4040;
 } */
-
 /* .prods{
   display: flex;
   overflow: hidden;
-
 }
 .prod{
   display: flex;
   flex-direction: column;
 } */
-
 .slideImg {
   width: 10%;
 }
-
 .swiper {
   overflow: hidden;
 }
-
 .swiper-slide {
   display: flex;
   justify-content: center;
   align-content: center;
 }
-
 .prods {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  row-gap: 6vh;
   padding: 1% 3%;
-  column-gap: 3vh;
 }
-
 .prod {
-  border: 1px solid whitesmoke;
-  padding: 3%;
-  width: fit-content;
-  height: 65vh;
+  /* padding: 1% 3%; */
+  width: 40vh;
+  height: 60vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding-top: 2vh;
+  padding-bottom: 5vh;
+  justify-content: space-between;
   row-gap: 1vh;
+  background-color: #111111;
+  border-radius: 5%;
+}
+h1 {
+  font-family: "DM Mono", monospace;
+  font-size: 20px;
+}
+h2 {
+  font-family: "DM Mono", monospace;
+  font-weight: lighter;
+  font-size: 18px;
+  text-align: center;
+  padding-left: 2vh;
+  padding-right: 2vh;
+  text-decoration: underline;
+}
+h3 {
+  font-family: "DM Mono", monospace;
+  font-weight: lighter;
+  font-size: 22px;
+  text-align: center;
+  text-decoration: underline;
+  margin-top: 5vh;
+}
+img {
+  height: 35vh;
+  width: 25vh;
+  margin-top: 4vh;
 }
 </style>

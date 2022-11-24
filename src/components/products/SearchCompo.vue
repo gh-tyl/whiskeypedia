@@ -26,4 +26,25 @@ export default {
 .icon {
   color: white;
 }
+input{
+  height: 8vh;
+  width: 40vh;
+  border: 1px solid #FDEEC0;
+  background-color: #111111;
+  color: #FDEEC0;
+  padding-left: 2vh;
+  font-size: 18px;
+}
+.search{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  margin-top: 5vh;
+}
+
+::placeholder {
+  font-family: 'DM Mono', monospace;
+  padding-left: 1vh;
+}
 </style>
