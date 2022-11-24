@@ -6,8 +6,8 @@
           &times;
         </span>
       </div>
-      <h4> Are you sure you want to logout ?</h4>
-      <button @click="logOut" class="logoutbtn">Logout</button>
+      <h4>"Are you sure you want to logout ?"</h4>
+      <button @click="logOut">Logout</button>
     </div>
   </div>
 </template>
@@ -56,7 +56,6 @@ export default {
   left: 30%;
   z-index: 4;
 }
-
 h4 {
   color: #FDEEC0;
   font-family: 'DM Mono', monospace;
@@ -70,7 +69,6 @@ h4 {
   width: 80%;
   align-items: flex-start;
 }
-
 button {
   height: 6vh;
   background-color: #111111;
@@ -82,18 +80,12 @@ button {
   font-size: 16px;
 }
 
-.logoutbtn {
-  background-color: black;
-  border: 0px none transparent;
-}
-
 button:hover {
   background-color: #FDEEC0;
   color: #111111;
   cursor: pointer;
   transition: .5s;
 }
-
 h3 {
   color: #FDEEC0;
   font-family: 'DM Mono', monospace;

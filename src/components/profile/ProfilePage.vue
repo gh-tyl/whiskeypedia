@@ -4,14 +4,14 @@
       <!-- Ordered cart -->
       <section>
         <table>
-          <!-- <thead>
+          <thead>
             <th>No</th>
             <th>Name</th>
             <th>Address</th>
             <th>Postal code</th>
             <th>Amount</th>
             <th>Other</th>
-          </thead> -->
+          </thead>
           <tbody>
             <tr v-for="(item, idx) in orderedCart" :key="idx">
               <td>{{ idx }}</td>
@@ -28,9 +28,7 @@
       <div class="hello">
         <div class="lines">
           <aside class="lines01"></aside>
-          <h1>
-            YOUR PROFILE
-          </h1>
+          <h1>YOUR PROFILE</h1>
           <aside class="lines01"></aside>
         </div>
         <h3 v-if="helloflag">
@@ -66,15 +64,31 @@
             </div>
             <div class="col">
               <label for="lname">Last Name</label>
-              <input name="lname" type="text" v-model="lname" placeholder="last name">
+              <input
+                name="lname"
+                type="text"
+                v-model="lname"
+                placeholder="last name"
+              />
             </div>
             <div class="col">
               <label for="email">Email</label>
-              <input type="text" name="email" v-model="email" placeholder="email">
+              <input
+                type="text"
+                name="email"
+                v-model="email"
+                placeholder="email"
+              />
             </div>
             <div class="col">
               <label for="country">Country</label>
-              <input type="text" name="country" class="country" v-model="country" placeholder="country">
+              <input
+                type="text"
+                name="country"
+                class="country"
+                v-model="country"
+                placeholder="country"
+              />
             </div>
           </div>
           <button @click="editInfo" class="editbtn">EDIT</button>
@@ -236,7 +250,7 @@ export default {
   justify-content: center;
   row-gap: 1vh;
   background-color: #111111;
-  border: 1px solid #FDEEC0;
+  border: 1px solid #fdeec0;
   height: 75vh;
   width: 77vh;
   position: absolute;
@@ -270,8 +284,8 @@ export default {
 } */
 
 label {
-  color: #FDEEC0;
-  font-family: 'DM Mono', monospace;
+  color: #fdeec0;
+  font-family: "DM Mono", monospace;
   font-weight: lighter;
   text-align: left;
   margin-bottom: 1vh;
@@ -280,7 +294,7 @@ label {
 input {
   height: 6vh;
   background-color: black;
-  color: #FDEEC0;
+  color: #fdeec0;
   padding-left: 1vh;
   font-size: 16px;
 }
@@ -296,7 +310,7 @@ input {
   border: 1px solid #111111;
   /* border-color: #FDEEC0; */
   width: 25%;
-  color: #FDEEC0;
+  color: #fdeec0;
   font-size: 16px;
 }
 
@@ -333,7 +347,7 @@ button:hover {
   width: 25vh;
   height: 6vh;
   padding: 1%;
-  color: #FDEEC0;
+  color: #fdeec0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -361,7 +375,7 @@ button:hover {
 }
 
 .hello {
-  color: #FDEEC0;
+  color: #fdeec0;
   display: flex;
   flex-direction: column;
   justify-items: center;
@@ -389,7 +403,7 @@ button:hover {
   margin: 15% auto;
   /* 15% from the top and centered */
   padding: 20px;
-  border: 1px solid #FDEEC0 !important;
+  border: 1px solid #fdeec0 !important;
   width: 80%;
   /* Could be more or less, depending on screen size */
   height: 40vh;
@@ -448,7 +462,7 @@ h4 {
 }
 
 h5 {
-  font-family: 'DM Mono', monospace;
+  font-family: "DM Mono", monospace;
   font-weight: lighter;
   text-align: center !important;
   font-size: 22px;
@@ -494,6 +508,44 @@ h5 {
 
 h3 {
   font-family: 'DM Mono', monospace;
+  font-weight: lighter;
+  font-size: 22px;
+  margin-top: 5vh;
+}
+
+div {
+  width: 100%;
+}
+
+.fullname {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1vh;
+}
+
+table {
+  color: white;
+  border: 1px solid red;
+}
+
+.lines01 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 38%;
+  height: 0.1rem;
+  background-color: #fdeec0;
+}
+
+.lines {
+  display: flex;
+  align-items: center;
+  margin-top: 5vh;
+}
+
+h3 {
+  font-family: "DM Mono", monospace;
   font-weight: lighter;
   font-size: 22px;
   margin-top: 5vh;
