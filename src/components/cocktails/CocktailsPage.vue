@@ -13,15 +13,15 @@
     <!-- logo -->
     <div class="recipes">
       <figure>
-        <img src="data\/images\/whiskey-pics\/Boozy-dark-delight-a2e6c41.webp" alt="recipe1">
+        <img src="../../img/dark-stormy.webp" alt="recipe1">
         <figcaption>
           <h2>Boozy dark delight</h2>
           <ul>
-            <li>Ice cubes ........................................... optional</li>
-            <li>Orange Liqueur .......................................... 25ml</li>
-            <li>Whisky .................................................. 25ml</li>
-            <li>Stout .................................................. 200ml</li>
-            <li>hocolate orange shavings, to garnish ................ optional</li>
+            <li>Ice cubes ....................................... optional</li>
+            <li>Orange Liqueur ...................................... 25ml</li>
+            <li>Whisky .............................................. 25ml</li>
+            <li>Stout .............................................. 200ml</li>
+            <li>Chocolate orange shavings, to garnish............ optional</li>
           </ul>
           <ol>
             <li>
@@ -34,15 +34,15 @@
         </figcaption>
       </figure>
       <figure>
-        <img src="data\/images\/whiskey-pics/\Brown-Derby.jpg" alt="recipe2">
+        <img src="../../img/brown-derby.jpeg" alt="recipe2">
         <figcaption>
           <h2>Brown derby</h2>
           <ul>
-            <li>Sugar ................................................... 2tsp</li>
-            <li>Honey ................................................... 10ml</li>
-            <li>Pink grapefruit juice ................................... 35ml</li>
-            <li>Irish Whisky ............................................ 50ml</li>
-            <li>grapefruit wedge .................................. to garnish</li>
+            <li>Sugar ............................................... 2tsp</li>
+            <li>Honey ............................................... 10ml</li>
+            <li>Pink grapefruit juice ............................... 35ml</li>
+            <li>Irish Whisky ........................................ 50ml</li>
+            <li>grapefruit wedge .............................. to garnish</li>
           </ul>
           <ol>
             <li>
@@ -55,16 +55,16 @@
         </figcaption>
       </figure>
       <figure>
-        <img src="data\/images\/whiskey-pics/\drink-g07713b27e_1920.jpg" alt="recipe3">
+        <img src="../../img/old-fashioned.jpeg" alt="recipe3">
         <figcaption>
           <h2>Old Fashioned</h2>
           <ul>
-            <li>Sugar ................................................... 2tsp</li>
-            <li>Angostura bitters ................................. 1-2 dashes</li>
-            <li>Water ................................................. little</li>
-            <li>Scotch Whisky ........................................... 60ml</li>
-            <li>soda water .......................................... optional</li>
-            <li>Orange Slice ............................................ some</li>
+            <li>Sugar ............................................... 2tsp</li>
+            <li>Angostura bitters ............................. 1-2 dashes</li>
+            <li>Water ............................................. little</li>
+            <li>Scotch Whisky ....................................... 60ml</li>
+            <li>soda water ...................................... optional</li>
+            <li>Orange Slice ........................................ some</li>
           </ul>
           <ol>
             <li>
@@ -119,7 +119,7 @@ export default {
   figure{
     display: flex;
     flex-direction: row;
-    column-gap: 3vh;
+    column-gap: 2vh;
     justify-content: space-between;
     background-color: black;
     padding: 3%;
@@ -129,15 +129,15 @@ export default {
     flex-direction: row-reverse;
   }
   img{
-    width: 30%;
-    height: 50vh;
+    width: 35%;
+    height: 52vh;
   }
   figcaption{
     color: #FDEEC0;
     font-family: 'DM Mono', monospace;
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 65%;
     margin-left: 1vh;
     margin-right: 1vh;
   }
