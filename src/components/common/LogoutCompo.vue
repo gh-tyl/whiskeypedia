@@ -14,23 +14,23 @@
 
 <script>
 export default {
-name: "LogoutCompo",
-data(){
-  return {
-  }
-},
-methods:{
-  logOut(){
-    sessionStorage.clear();
-    this.$router.push({name:'home-page'});
-    this.$emit('logout',false)
+  name: "LogoutCompo",
+  data() {
+    return {
+    }
   },
-  close(){
-    this.$emit('close',false)
+  methods: {
+    logOut() {
+      sessionStorage.clear();
+      this.$router.push({ name: 'home-page' });
+      this.$emit('logout', false)
+    },
+    close() {
+      this.$emit('close', false)
+    }
+  },
+  mounted() {
   }
-},
-mounted(){
-}
 };
 </script>
 
@@ -41,7 +41,7 @@ mounted(){
   justify-content: center;
 }
 
-.logout-page{
+.logout-page {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,7 +56,8 @@ mounted(){
   left: 30%;
   z-index: 4;
 }
-h4{
+
+h4 {
   color: #FDEEC0;
   font-family: 'DM Mono', monospace;
   font-weight: lighter;
@@ -69,7 +70,8 @@ h4{
   width: 80%;
   align-items: flex-start;
 }
-button{
+
+button {
   height: 6vh;
   background-color: #111111;
   border: 1px solid #111111;
@@ -79,18 +81,20 @@ button{
   padding-left: 1vh;
   font-size: 16px;
 }
-.logoutbtn{
+
+.logoutbtn {
   background-color: black;
   border: 0px none transparent;
 }
 
-button:hover{
+button:hover {
   background-color: #FDEEC0;
   color: #111111;
   cursor: pointer;
   transition: .5s;
 }
-h3{
+
+h3 {
   color: #FDEEC0;
   font-family: 'DM Mono', monospace;
   font-weight: lighter;

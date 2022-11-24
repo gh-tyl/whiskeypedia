@@ -1,11 +1,12 @@
 <template>
   <section class="cartmain">
     <section>
-    <cart-list-compo :shoppingList="shoppingList"></cart-list-compo>
-  </section>
-  <section>
-    <cart-detail-compo :loggedUser="loggedUser" :shoppingList="shoppingList" :orderedCart="orderedCart"></cart-detail-compo>
-  </section>
+      <cart-list-compo :shoppingList="shoppingList"></cart-list-compo>
+    </section>
+    <section>
+      <cart-detail-compo :loggedUser="loggedUser" :shoppingList="shoppingList" :orderedCart="orderedCart">
+      </cart-detail-compo>
+    </section>
   </section>
 </template>
 
@@ -15,12 +16,12 @@ import CartListCompo from './CartListCompo.vue';
 export default {
   components: { CartListCompo, CartDetailCompo },
   name: "CartPage",
-  props:["shoppingList", "loggedUser", "orderedCart"]
+  props: ["shoppingList", "loggedUser", "orderedCart"]
 };
 </script>
 
 <style scoped>
-.cartmain{
+.cartmain {
   background-color: black;
   border-radius: 25px;
   color: #fdeec0;
