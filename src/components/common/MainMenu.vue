@@ -2,11 +2,6 @@
   <div>
     <nav>
       <ul>
-        <div class="search-icon">
-          <li>
-            <a href="#">s</a>
-          </li>
-        </div>
         <div class="nav-text">
           <li>
             <router-link class="router-link" to="/">Home</router-link>
@@ -23,14 +18,16 @@
         </div>
         <div class="nav-icons">
           <li @click="clickProfile">
-            <router-link class="router-link" to="/profile">P</router-link>
-          </li>
-          <li v-show="logFlag">
-            <router-link @click="setShopSession" class="router-link" to="/cart">C<span>{{productCount}}</span></router-link>
+            <router-link class="router-link" to="/profile">
+            <i class="fa-solid fa-user"/>
+            </router-link>
           </li>
           <li>
-            <a @click="lChg" href="#">L</a>
+            <a @click="lChg" href="#"><i class="fa-solid fa-gear"></i></a>
             <!-- settings: logout -->
+          </li>
+          <li id="cart" v-show="logFlag">
+            <router-link @click="setShopSession" class="router-link" to="/cart"><i class="fa-solid fa-cart-shopping"/><span>{{productCount}}</span></router-link>
           </li>
         </div>
       </ul>
@@ -95,7 +92,7 @@ export default {
     text-decoration: none;
   }
   .router-link {
-    text-decoration: none;
+    /* text-decoration: none; */
     color: #FDEEC0;
   }
   .nav-text {
@@ -114,6 +111,9 @@ export default {
     right: 4vh;
     display: flex;
     flex-direction: row;
-    column-gap: 2.5vh;
+    align-items: center;
+    column-gap: 3vh;
   }
+  
+  
 </style>

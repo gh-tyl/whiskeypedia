@@ -24,30 +24,38 @@
         </tbody>
       </table>
     </section>
-    <h1>Your Profile</h1>
       <!-- img / icon -->
       <div class="hello">
-        <h2 v-if="helloflag">
+        <div class="lines">
+      <aside class="lines01"></aside>
+      <h1>
+      YOUR PROFILE
+      </h1>
+      <aside class="lines01"></aside>
+      </div>
+        <h3 v-if="helloflag">
           Hello, {{ userinfo.fName }}  {{ userinfo.lName }}
-        </h2>
+        </h3>
         <div class="mBox">
           <button class="open" @click="showEdit">View information</button>
           <button class="open"  @click="editInfo">Update information</button>
         </div>
         <!-- from here, modal box -->
-        <div v-if="showProfile" class="showProfile sect">
+        <div v-if="showProfile" class="showProfile-sect">
         <!-- Modal content -->
           <div class="closediv">
             <span class="close" @click="showEdit">&times;</span>
           </div>
-          <div class="fullname">
-            <h4>Name: {{userinfo.fName}}{{userinfo.lName}}</h4>
+          <div>
+            <div class="fullname">
+            <h5>Name: {{userinfo.fName}} {{userinfo.lName}}</h5>
+          <h5>Email: {{userinfo.email}}</h5>
+          <h5>Country: {{userinfo.country}}</h5>
           </div>
-          <h4>Email: {{userinfo.email}}</h4>
-          <h4>Country: {{userinfo.country}}</h4>
+          </div>
         </div>
         <!-- edit modal -->
-        <div v-if="editflag" class="editProfile sect">
+        <div v-if="editflag" class="editProfile-sect">
           <div class="closediv">
             <span class="close" @click="editInfo">&times;</span>
           </div>
@@ -57,10 +65,9 @@
               <input type="text" name="fname" v-model="fname"  placeholder="first name">
             </div>
             <div class="col">
-              <label for="lname">last Name</label>
+              <label for="lname">Last Name</label>
               <input name="lname" type="text" v-model="lname"  placeholder="last name">
             </div>
-          </div>
           <div class="col">
             <label for="email">Email</label>
             <input type="text" name="email" v-model="email"  placeholder="email">
@@ -69,7 +76,8 @@
             <label for="country">Country</label>
             <input type="text" name="country" class="country" v-model="country"  placeholder="country">
           </div>
-          <button @click="editInfo">Edit</button>
+          </div>
+          <button @click="editInfo" class="editbtn">EDIT</button>
         </div>
         <!-- recommand products for this user -->
         <profile-heighlight-page :loggedUser = "loggedUser"></profile-heighlight-page>
@@ -80,7 +88,7 @@
     <article v-else>
       <h4>Please sign in to view your profile</h4>
       <div class="profile-before">
-        <div class="button">
+        <div class="buttonprof">
           <button class="buttons" @click="openModal">Login</button>
         </div>
       </div>
@@ -203,7 +211,7 @@ export default {
   display: flex;
   column-gap: 2.5vh;
 }
-.sect {
+.showProfile-sect {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -212,34 +220,64 @@ export default {
   background-color: #111111;
   border: 1px solid #FDEEC0;
   height: 45vh;
-  width: 100vh;
+  width: 86vh;
   position: absolute;
   top: 25% ;
   left: 30%;
   z-index: 4;
+  row-gap: 5vh;
+  text-align: center;
+}
+.editProfile-sect{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 1vh;
+  background-color: #111111;
+  border: 1px solid #FDEEC0;
+  height: 75vh;
+  width: 77vh;
+  position: absolute;
+  top: 25% ;
+  left: 30%;
+  z-index: 4;
+  row-gap: 5vh;
+  text-align: center;
+  padding-left: 5vh;
+  padding-right: 5vh;
+}
+.closediv{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.country{
+/* .country{
   width: 60vh;
-}
+} */
 
 .col {
   display: flex;
   flex-direction: column;
 }
 
-.col:nth-child(3) input{
+/* .col:nth-child(3) input{
   width:60vh;
-}
+} */
 
 label {
   color: #FDEEC0;
+  font-family: 'DM Mono', monospace;
+  font-weight: lighter;
+  text-align: left;
+  margin-bottom: 1vh;
 }
 
 input{
   height: 6vh;
-  background-color: #111111;
-  border: 1px solid #FDEEC0;
+  background-color: black;
   color: #FDEEC0;
   padding-left: 1vh;
   font-size: 16px;
@@ -249,15 +287,24 @@ input{
     padding-left: 1vh;
 }
 
-button {
+.editbtn {
   height: 6vh;
-  background-color: #111111;
+  background-color: black;
   border: 1px solid #111111;
-  border-color: #FDEEC0;
+  /* border-color: #FDEEC0; */
   width: 25%;
   color: #FDEEC0;
-  padding-left: 1vh;
   font-size: 16px;
+}
+
+button{
+  background-color: #111111;
+}
+.buttonprof{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 button:hover{
@@ -270,7 +317,8 @@ button:hover{
 .mBox {
   display: flex;
   column-gap: 3vh;
-  width: 100%;
+  width: 50vh;
+  padding-bottom: 6vh;
 }
 
 .mBox:hover {
@@ -279,10 +327,9 @@ button:hover{
 
 .open {
   width: 25vh;
-  height: 2.5vh;
+  height: 6vh;
   padding: 1%;
   color: #FDEEC0;
-  border:1px double #FDEEC0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -302,10 +349,16 @@ button:hover{
 }
 
 .hello {
-  color: whitesmoke;
+  color: #FDEEC0;
   display: flex;
   flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  flex-wrap: wrap;
   row-gap: 4vh;
+  background-color: black;
+  border-radius: 25px;
+  padding-bottom: 5vh;
 }
 /* Modal Content/Box */
 .modal-content {
@@ -376,6 +429,12 @@ button:hover{
     font-size: 18px;
     text-align: center;
   }
+  h5{
+    font-family: 'DM Mono', monospace;
+    font-weight: lighter;
+    text-align: center !important;
+    font-size: 22px;
+  }
   .buttons{
     margin-top: 17vh;
     height: 8vh;
@@ -393,5 +452,35 @@ button:hover{
   }
   table{
     color: white;
+    border: 1px solid red;
+  }
+  .lines01{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 38%;
+    height: .1rem;
+    background-color: #FDEEC0;
+  }
+  .lines{
+    display: flex;
+    align-items: center;
+    margin-top: 5vh;
+  }
+  h3{
+  font-family: 'DM Mono', monospace;
+  font-weight: lighter;
+  font-size: 22px;
+  margin-top: 5vh;
+  }
+  
+  div{
+    width: 100%;
+  }
+  .fullname{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1vh;
   }
 </style>

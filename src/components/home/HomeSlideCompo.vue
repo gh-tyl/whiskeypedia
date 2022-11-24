@@ -14,7 +14,7 @@
         <img class="slideImg" src="../../img/main-04.png">
       </swiper-slide>
       <swiper-slide>
-        <img class="slideImg" src="../../img/main-05.png">
+        <img class="slideImg" src="../../img/main-05 (2).png">
       </swiper-slide>
       <swiper-slide>
         <img class="slideImg" src="../../img/main-06.png">

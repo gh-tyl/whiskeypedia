@@ -5,7 +5,7 @@
         <img class="slideImg" src="../../img/month-01.png">
         <figcaption>
           <h2>THE DALMORE</h2>
-          <p>Dalmore 12 is aged for the first nine years in American white oak ex-bourbon casks, before half is transferred to ex-oloroso sherry casks for the final three years. The result is a whisky with a combination of sweetness and rich, sherried flavours.</p>
+          <p class="desc">Dalmore 12 is aged for the first nine years in American white oak ex-bourbon casks, before half is transferred to ex-oloroso sherry casks for the final three years. The result is a whisky with a combination of sweetness and rich, sherried flavours.</p>
           <div class="button">
             <button @click="addItem">ADD TO CART</button>
           </div>
@@ -57,6 +57,9 @@ export default {
     text-align: center;
     font-size: 14px;
     justify-content: space-between;
+  }
+  .desc{
+    font-size: 14px;
   }
   h2{
     color: #FDEEC0;

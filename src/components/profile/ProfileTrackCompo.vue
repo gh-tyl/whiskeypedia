@@ -1,14 +1,14 @@
 <template>
   <!-- purchaed history -->
-    <div class="section">
-      <h3>Purchased History</h3>
+    <div class="purchase">
+      <h2>Your purchase history</h2>
       <div class="prods">
         <div class="tracking" v-for="(track,idx) in tracking" :key="idx">
-          <h2>{{track[1].name}}</h2>
-          <h3>{{track[1].country}}</h3>
-          <h3>{{track[1].class}}</h3>
-          <a>{{track[1].status}}</a>
           <img :src="track[1].image_path_0" alt="img" />
+          <h3>Name: {{track[1].name}}</h3>
+          <h3>Origin: {{track[1].country}}</h3>
+          <h3>Class: {{track[1].class}}</h3>
+          <a>Status: {{track[1].status}}</a>
           <star-rating :star-size="15"></star-rating>
         </div>
       </div>
@@ -107,30 +107,55 @@ export default {
 };
 </script>
 <style scoped>
-.section{
+.purchase{
   display: flex;
   flex-direction: column;
-  border: .5px solid lightgray;
+  border-bottom: 1vh solid black;
   overflow: hidden;
+  margin-top: 10vh;
+  
+  width: fit-content;
 }
 
-h3 {
-  padding: 1.5% 3% .5% 3%;
+h2{
+  font-family: 'DM Mono', monospace;
+  font-weight: lighter;
+  text-align: center;
+  padding: 2vh;
+  background-color: #111111;
+}
+
+h3,
+a {
+  font-family: 'DM Mono', monospace;
+  font-weight: lighter;
+  font-size: 16px;
+  width: 20vh;
+  margin-left: 2vh;
+}
+a{
+  width: 20vh;
 }
 
 .prods{
   display: flex;
-  padding: 1% 3%;
-  column-gap: 3vh;
+  flex-direction: column;
 }
 .tracking{
-  border: 1px solid whitesmoke;
-  padding: 3%;
-  width: fit-content;
-  height: 65vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
   row-gap: 1vh;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  border-bottom: 1vh solid #111111 ;
+}
+
+
+img{
+  height: 35vh;
+  width: 25vh;
 }
 
 </style>

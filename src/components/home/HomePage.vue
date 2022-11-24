@@ -15,8 +15,8 @@
     <!-- Recommandation Compo -->
     <home-recommandation-compo @addToItem="addToItem" :logFlag="logFlag"></home-recommandation-compo>
     <!-- TESTIMONIAL -->
-    <section>
-      <blockquote>" What whiskey will not cure,<br/> there is no cure for. "</blockquote>
+    <section class="text-animate">
+      <p>" What whiskey will not cure, there is no cure for. "</p>
       <h3 class="quote">-IRISH PROVERB</h3>
     </section>
   </div>
@@ -179,12 +179,12 @@ export default {
     margin-top: 10vh;
   }
   .quote,
-  blockquote{
+  p{
     font-family: 'DM Mono', monospace;
     color: #FDEEC0;
     text-align: center;  
   }
-  blockquote{
+  p{
     font-size: 36px;
     margin: 2vh;
   }
@@ -192,4 +192,39 @@ export default {
     font-weight: lighter;
     margin-bottom: 15vh;
   }
+
+  .textanime {
+  margin: 1%;
+}
+/* DEMO-SPECIFIC STYLES */
+.text-animate p {
+  color: #FDEEC0;
+  overflow: hidden;
+  border-right: 0.15px solid #FDEEC0;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
+  animation: typing 3.5s steps(30, end), blink-caret 1.0s step-end infinite;
+  font-family: 'DM Mono', monospace;
+  font-size: 26px;
+}
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #FDEEC0;
+  }
+}
 </style>

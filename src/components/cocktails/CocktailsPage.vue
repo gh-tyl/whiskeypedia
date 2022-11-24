@@ -122,7 +122,6 @@ export default {
     column-gap: 2vh;
     justify-content: space-between;
     background-color: black;
-    padding: 3%;
   }
   figure:nth-child(2){
     display: flex;

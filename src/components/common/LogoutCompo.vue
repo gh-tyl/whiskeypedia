@@ -6,8 +6,8 @@
           &times;
         </span>
       </div>
-      <h4> "Are you sure you want to logout ?"</h4>
-      <button @click="logOut" >Logout</button>
+      <h4> Are you sure you want to logout ?</h4>
+      <button @click="logOut" class="logoutbtn">Logout</button>
     </div>
   </div>
 </template>
@@ -78,6 +78,10 @@ button{
   color: #FDEEC0;
   padding-left: 1vh;
   font-size: 16px;
+}
+.logoutbtn{
+  background-color: black;
+  border: 0px none transparent;
 }
 
 button:hover{
