@@ -3,7 +3,7 @@
     <cart-list-compo :shoppingList="shoppingList"></cart-list-compo>
   </section>
   <section>
-    <cart-detail-compo :loggedUser="loggedUser" :shoppingList="shoppingList"></cart-detail-compo>
+    <cart-detail-compo :loggedUser="loggedUser" :shoppingList="shoppingList" :orderedCart="orderedCart"></cart-detail-compo>
   </section>
 </template>
 
@@ -13,6 +13,6 @@ import CartListCompo from './CartListCompo.vue';
 export default {
   components: { CartListCompo, CartDetailCompo },
   name: "CartPage",
-  props:["shoppingList", "loggedUser"]
+  props:["shoppingList", "loggedUser", "orderedCart"]
 };
 </script>

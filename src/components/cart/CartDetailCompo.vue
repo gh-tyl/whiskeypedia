@@ -15,16 +15,15 @@
     <input type="text" placeholder="City*" v-model="city" required>
     <input type="text" placeholder="Postal Code*" v-model="postal" required>
     <input type="text" placeholder="Country*" v-model="country" required>
-    <textarea placeholder="Notes for delivery"></textarea>
+    <textarea placeholder="Notes for delivery" v-model="text"></textarea>
     <button>CHECKOUT</button>
   </form>
 </template>
 
 <script>
-import shoppingCartClass from '../../classes/shoppingCartClass.js'
 export default {
   name:"CartDetailCompo",
-  props:["loggedUser", "shoppingList"],
+  props:["loggedUser", "shoppingList", "orderedCart"],
   data(){
     return{
       fName:undefined,
@@ -35,7 +34,8 @@ export default {
       tel:undefined,
       city:undefined,
       postal:undefined,
-      country:undefined
+      country:undefined,
+      text:''
     }
   },
   methods:{
@@ -47,7 +47,7 @@ export default {
     },
     checkOut(e){
       e.preventDefault();
-      let checkoutObj = {
+      this.orderedCart.push({
         fName: this.fName,
         lName: this.lName,
         email: this.email,
@@ -56,13 +56,12 @@ export default {
         city: this.city,
         postal: this.postal,
         country: this.country,
+        text: this.text,
 
-        shoppingList: this.shoppingList
-      }
-      // this.shoppingList = new shoppingCartClass(Math.floor((1 + Math.random()) * 0x10000)
-      // .toString(16)
-      // .substring(1), this.loggedUser.fName+" "+this.loggedUser.lName);
-      console.log(checkoutObj);
+        shoppingList: this.shoppingList.shoppingList
+      });
+      this.shoppingList.shoppingList = new Map();
+      console.log(this.orderedCart);
       this.$router.push({name:'profile-page'});
     }
   }
