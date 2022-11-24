@@ -35,7 +35,7 @@
         </div>
       </ul>
     </nav>
-    <logout-compo @logout = 'setlogoutFlag' v-if="logout"></logout-compo>
+    <logout-compo @close = close @logout = 'setlogoutFlag' v-if="logout"></logout-compo>
   </div>
 </template>
 
@@ -54,6 +54,9 @@ export default {
     }
   },
   methods :{
+    close(val){
+      this.logout = val;
+    },
     setShopSession(){
       this.$emit('shoppingFlag', true)
     },
