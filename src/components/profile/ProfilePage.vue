@@ -1,15 +1,15 @@
 <template>
   <div class="profile-page">
+  <article v-if="logFlag">
     <h1>Your Profile</h1>
-    <div>
       <!-- img / icon -->
       <div class="hello">
         <h2 v-if="helloflag">
           Hello, {{ userinfo.fName }}  {{ userinfo.lName }}
         </h2>
         <div class="mBox">
-          <button class="modal" @click="showEdit">View information</button>
-          <button class="modal"  @click="editInfo">Update information</button>
+          <button class="open" @click="showEdit">View information</button>
+          <button class="open"  @click="editInfo">Update information</button>
         </div>
         <!-- from here, modal box -->
         <div v-if="showProfile" class="showProfile sect">
@@ -55,21 +55,20 @@
       </div>
     </article>
     <article v-else>
-        <h4>Please sign in to view your profile</h4>
+      <h4>Please sign in to view your profile</h4>
       <div class="profile-before">
         <div class="button">
           <button class="buttons" @click="openModal">Login</button>
         </div>
       </div>
-      
     </article>
   </div>
   <!-- The Modal -->
   <div id="myModal" class="modal">
     <!-- Modal content -->
-    <div class="modal-content">
+    <div  class="modal-content">
       <span @click="closeModal">&times;</span>
-      <profile-login-compo @loggedUser="loggedUser" @closeModal="closeModal"></profile-login-compo>
+      <profile-login-compo-vue  @loggedUser="loggedUser" @closeModal="closeModal"></profile-login-compo-vue>
     </div>
   </div>
 </template>
@@ -78,6 +77,7 @@
 import JsonService from '../../services/JsonService';
 import userClass from '../../classes/userClass';
 import ProfileHeighlightPage from './ProfileHeighightCompo.vue';
+import ProfileLoginCompoVue from './ProfileLoginCompo.vue';
 import ProfileTrackPage from './ProfileTrackCompo.vue'
 
 export default {
@@ -85,7 +85,8 @@ export default {
   props:['loggedUser'],
   components:{
     ProfileHeighlightPage,
-    ProfileTrackPage
+    ProfileTrackPage,
+    ProfileLoginCompoVue
   },
   data(){
     return {
@@ -102,9 +103,19 @@ export default {
       showProfile:false,
       editflag:false,
       flag:false,
+      logFlag: false
     }
   },
   methods:{
+    openModal(){
+      var modal = document.getElementById("myModal");
+      modal.style.display = "block";
+    },
+    closeModal(val){
+      var modal = document.getElementById("myModal");
+      modal.style.display = "none";
+      this.logFlag = val;
+    },
     setUserinfo(){
       if(!sessionStorage.getItem('user')){
         this.userinfo = '';
@@ -132,6 +143,7 @@ export default {
         this.country = this.userinfo.country;
         this.age = this.userinfo.age;
         this.email = this.userinfo.email;
+        this.logFlag = true;
       }
     },
     loadUsers(){
@@ -141,6 +153,9 @@ export default {
       })
       .catch((e)=>console.log(e));
     },
+    loggedUser(val){
+      this.$emit('userInfo',val)
+    }
   },
   mounted(){
     this.loadUsers();
@@ -238,7 +253,7 @@ button:hover{
   cursor: pointer;
 }
 
-.modal {
+.open {
   width: 25vh;
   height: 2.5vh;
   padding: 1%;
@@ -247,8 +262,19 @@ button:hover{
   display: flex;
   align-items: center;
   justify-content: center;
-  position:unset !important;
-  overflow: unset !important;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
 .hello {
@@ -259,16 +285,22 @@ button:hover{
 }
 /* Modal Content/Box */
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
+  /* background-color: #fefefe;
+  margin: 15% auto; 
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 80%; 
   height: 25vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; */
+
+  background-color: black !important;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #FDEEC0 !important;
+  width: 80%; /* Could be more or less, depending on screen size */
+  height: 40vh;
 }
 
 .sect > .modal-content{
@@ -294,8 +326,6 @@ button:hover{
   text-decoration: none;
   cursor: pointer;
 }
-
-</style>
   .close:hover,
   .close:focus {
     color: black;

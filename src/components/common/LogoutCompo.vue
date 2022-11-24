@@ -1,6 +1,11 @@
 <template>
   <div class="main">
     <div class="logout-page">
+      <div class="close">
+        <span @click="close">
+          &times;
+        </span>
+      </div>
       <h4> "Are you sure you want to logout ?"</h4>
       <button @click="logOut" >Logout</button>
     </div>
@@ -19,6 +24,9 @@ methods:{
     sessionStorage.clear();
     this.$router.push({name:'home-page'});
     this.$emit('logout',false)
+  },
+  close(){
+    this.$emit('close',false)
   }
 },
 mounted(){
@@ -32,6 +40,7 @@ mounted(){
   align-items: center;
   justify-content: center;
 }
+
 .logout-page{
   display: flex;
   flex-direction: column;
@@ -53,6 +62,12 @@ h4{
   font-weight: lighter;
   margin-bottom: 2vh;
   font-size: 24px;
+}
+
+.close {
+  display: flex;
+  width: 80%;
+  align-items: flex-start;
 }
 button{
   height: 6vh;

@@ -13,7 +13,7 @@
     <!-- logo -->
     <div class="recipes">
       <figure>
-        <img src="data\/images\/Bruichladdich_Octomore_8.3_0.jpg" alt="recipe1">
+        <img src="data\/images\/whiskey-pics\/Boozy-dark-delight-a2e6c41.webp" alt="recipe1">
         <figcaption>
           <h2>Boozy dark delight</h2>
           <ul>
@@ -34,7 +34,7 @@
         </figcaption>
       </figure>
       <figure>
-        <img src="data\/images\/Bruichladdich_Octomore_8.3_1.jpg" alt="recipe2">
+        <img src="data\/images\/whiskey-pics/\Brown-Derby.jpg" alt="recipe2">
         <figcaption>
           <h2>Brown derby</h2>
           <ul>
@@ -55,7 +55,7 @@
         </figcaption>
       </figure>
       <figure>
-        <img src="data\/images\/Bruichladdich_Octomore_8.3_2.jpg" alt="recipe3">
+        <img src="data\/images\/whiskey-pics/\drink-g07713b27e_1920.jpg" alt="recipe3">
         <figcaption>
           <h2>Old Fashioned</h2>
           <ul>
