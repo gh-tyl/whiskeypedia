@@ -96,7 +96,7 @@ textarea:focus, input:focus {
     padding-left: 2vh;
     font-size: 16px;
 }
-.buttons{
+.log-buttons{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
