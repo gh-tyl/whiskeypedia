@@ -1,27 +1,27 @@
 <template>
   <div class="profile-page">
-  <article v-if="logFlag">
-    <h1>Your Profile</h1>
+    <article v-if="logFlag">
+      <h1>Your Profile</h1>
       <!-- img / icon -->
       <div class="hello">
         <h2 v-if="helloflag">
-          Hello, {{ userinfo.fName }}  {{ userinfo.lName }}
+          Hello, {{ userinfo.fName }} {{ userinfo.lName }}
         </h2>
         <div class="mBox">
           <button class="open" @click="showEdit">View information</button>
-          <button class="open"  @click="editInfo">Update information</button>
+          <button class="open" @click="editInfo">Update information</button>
         </div>
         <!-- from here, modal box -->
         <div v-if="showProfile" class="showProfile sect">
-        <!-- Modal content -->
+          <!-- Modal content -->
           <div class="closediv">
             <span class="close" @click="showEdit">&times;</span>
           </div>
           <div class="fullname">
-            <h4>Name: {{userinfo.fName}}{{userinfo.lName}}</h4>
+            <h4>Name: {{ userinfo.fName }}{{ userinfo.lName }}</h4>
           </div>
-          <h4>Email: {{userinfo.email}}</h4>
-          <h4>Country: {{userinfo.country}}</h4>
+          <h4>Email: {{ userinfo.email }}</h4>
+          <h4>Country: {{ userinfo.country }}</h4>
         </div>
         <!-- edit modal -->
         <div v-if="editflag" class="editProfile sect">
@@ -31,27 +31,50 @@
           <div class="fullname">
             <div class="col">
               <label for="fname">First Name</label>
-              <input type="text" name="fname" v-model="fname"  placeholder="first name">
+              <input
+                type="text"
+                name="fname"
+                v-model="fname"
+                placeholder="first name"
+              />
             </div>
             <div class="col">
               <label for="lname">last Name</label>
-              <input name="lname" type="text" v-model="lname"  placeholder="last name">
+              <input
+                name="lname"
+                type="text"
+                v-model="lname"
+                placeholder="last name"
+              />
             </div>
           </div>
           <div class="col">
             <label for="email">Email</label>
-            <input type="text" name="email" v-model="email"  placeholder="email">
+            <input
+              type="text"
+              name="email"
+              v-model="email"
+              placeholder="email"
+            />
           </div>
           <div class="col">
             <label for="country">Country</label>
-            <input type="text" name="country" class="country" v-model="country"  placeholder="country">
+            <input
+              type="text"
+              name="country"
+              class="country"
+              v-model="country"
+              placeholder="country"
+            />
           </div>
           <button @click="editInfo">Edit</button>
         </div>
         <!-- recommand products for this user -->
-        <profile-heighlight-page :loggedUser = "loggedUser"></profile-heighlight-page>
+        <profile-heighlight-page
+          :loggedUser="loggedUser"
+        ></profile-heighlight-page>
         <!-- purchaed history -->
-        <profile-track-page :loggedUser = "loggedUser"></profile-track-page>
+        <profile-track-page :loggedUser="loggedUser"></profile-track-page>
       </div>
     </article>
     <article v-else>
@@ -66,79 +89,91 @@
   <!-- The Modal -->
   <div id="myModal" class="modal">
     <!-- Modal content -->
-    <div  class="modal-content">
+    <div class="modal-content">
       <span @click="closeModal">&times;</span>
-      <profile-login-compo-vue  @loggedUser="loggedUser" @closeModal="closeModal"></profile-login-compo-vue>
+      <profile-login-compo-vue
+        @loggedUser="loggedUser"
+        @closeModal="closeModal"
+      ></profile-login-compo-vue>
     </div>
   </div>
 </template>
 
 <script>
-import JsonService from '../../services/JsonService';
-import userClass from '../../classes/userClass';
-import ProfileHeighlightPage from './ProfileHeighightCompo.vue';
-import ProfileLoginCompoVue from './ProfileLoginCompo.vue';
-import ProfileTrackPage from './ProfileTrackCompo.vue'
+import JsonService from "../../services/JsonService";
+import userClass from "../../classes/userClass";
+import ProfileHeighlightPage from "./ProfileHeighightCompo.vue";
+import ProfileLoginCompoVue from "./ProfileLoginCompo.vue";
+import ProfileTrackPage from "./ProfileTrackCompo.vue";
 
 export default {
   name: "ProfilePage",
-  props:['loggedUser'],
-  components:{
+  props: ["loggedUser"],
+  components: {
     ProfileHeighlightPage,
     ProfileTrackPage,
-    ProfileLoginCompoVue
+    ProfileLoginCompoVue,
   },
-  data(){
+  data() {
     return {
-      helloflag:false,
-      products:'',
-      purchased:[],
-      userinfo: '',
-      fname: '',
-      lname:"",
-      country:"",
-      age:'',
-      email:'',
-      users:[],
-      showProfile:false,
-      editflag:false,
-      flag:false,
-      logFlag: false
-    }
+      helloflag: false,
+      products: "",
+      purchased: [],
+      userinfo: "",
+      fname: "",
+      lname: "",
+      country: "",
+      age: "",
+      email: "",
+      users: [],
+      showProfile: false,
+      editflag: false,
+      flag: false,
+      logFlag: false,
+    };
   },
-  methods:{
-    openModal(){
+  methods: {
+    openModal() {
       var modal = document.getElementById("myModal");
       modal.style.display = "block";
     },
-    closeModal(val){
+    closeModal(val) {
       var modal = document.getElementById("myModal");
       modal.style.display = "none";
       this.logFlag = val;
     },
-    setUserinfo(){
-      if(!sessionStorage.getItem('user')){
-        this.userinfo = '';
+    setUserinfo() {
+      if (!sessionStorage.getItem("user")) {
+        this.userinfo = "";
         this.helloflag = false;
-      }else{
-        this.userinfo = JSON.parse(sessionStorage.getItem('user'));
+      } else {
+        this.userinfo = JSON.parse(sessionStorage.getItem("user"));
         this.helloflag = true;
       }
     },
-    editInfo(){
-      let newUserInfo = new userClass(this.userinfo.uid,this.fname,this.lname,this.email,this.userinfo.address, this.gender, this.age,this.country);
-      sessionStorage.clear()
-      sessionStorage.setItem('user',JSON.stringify(newUserInfo.toObj()));
+    editInfo() {
+      let newUserInfo = new userClass(
+        this.userinfo.uid,
+        this.fname,
+        this.lname,
+        this.email,
+        this.userinfo.address,
+        this.gender,
+        this.age,
+        this.country
+      );
+      sessionStorage.clear();
+      sessionStorage.setItem("user", JSON.stringify(newUserInfo.toObj()));
       this.loadSession();
       this.editflag = !this.editflag;
     },
-    showEdit(){
-      this.showProfile = !this.showProfile
+    showEdit() {
+      this.showProfile = !this.showProfile;
     },
-    loadSession(){
-      this.userinfo = JSON.parse(sessionStorage.getItem('user'));
-      if(this.userinfo){
-        this.fname  = this.userinfo.fName;
+    loadSession() {
+      this.userinfo = JSON.parse(sessionStorage.getItem("user"));
+      if (this.userinfo) {
+        this.fname = this.userinfo.fName;
         this.lname = this.userinfo.lName;
         this.country = this.userinfo.country;
         this.age = this.userinfo.age;
@@ -146,36 +181,33 @@ export default {
         this.logFlag = true;
       }
     },
-    loadUsers(){
-      JsonService.getJson('data/json/userJson.json')
-      .then((res)=>{
+    loadUsers() {
+      JsonService.getJson("data/json/userJson.json")
+        .then((res) => {
           this.users = res.data;
-      })
-      .catch((e)=>console.log(e));
+        })
+        .catch((e) => console.log(e));
     },
-    loggedUser(val){
-      this.$emit('userInfo',val)
-    }
+    loggedUser(val) {
+      this.$emit("userInfo", val);
+    },
   },
-  mounted(){
+  mounted() {
     this.loadUsers();
     this.setUserinfo();
   },
-  watch:{
-    users:function(){
+  watch: {
+    users: function () {
       this.flag = !this.flag;
     },
-    flag:function(){
+    flag: function () {
       this.loadSession();
-    }
-  }
-  
-
+    },
+  },
 };
 </script>
 <style scoped>
-
-.fullname{
+.fullname {
   display: flex;
   column-gap: 2.5vh;
 }
@@ -186,16 +218,16 @@ export default {
   justify-content: center;
   row-gap: 1vh;
   background-color: #111111;
-  border: 1px solid #FDEEC0;
+  border: 1px solid #fdeec0;
   height: 45vh;
   width: 100vh;
   position: absolute;
-  top: 25% ;
+  top: 25%;
   left: 30%;
   z-index: 4;
 }
 
-.country{
+.country {
   width: 60vh;
 }
 
@@ -204,43 +236,43 @@ export default {
   flex-direction: column;
 }
 
-.col:nth-child(3) input{
-  width:60vh;
+.col:nth-child(3) input {
+  width: 60vh;
 }
 
 label {
-  color: #FDEEC0;
+  color: #fdeec0;
 }
 
-input{
+input {
   height: 6vh;
   background-color: #111111;
-  border: 1px solid #FDEEC0;
-  color: #FDEEC0;
+  border: 1px solid #fdeec0;
+  color: #fdeec0;
   padding-left: 1vh;
   font-size: 16px;
 }
 ::placeholder {
-    font-family: 'DM Mono', monospace;
-    padding-left: 1vh;
+  font-family: "DM Mono", monospace;
+  padding-left: 1vh;
 }
 
 button {
   height: 6vh;
   background-color: #111111;
   border: 1px solid #111111;
-  border-color: #FDEEC0;
+  border-color: #fdeec0;
   width: 25%;
-  color: #FDEEC0;
+  color: #fdeec0;
   padding-left: 1vh;
   font-size: 16px;
 }
 
-button:hover{
-  background-color: #FDEEC0;
+button:hover {
+  background-color: #fdeec0;
   color: #111111;
   cursor: pointer;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .mBox {
@@ -257,8 +289,8 @@ button:hover{
   width: 25vh;
   height: 2.5vh;
   padding: 1%;
-  color: #FDEEC0;
-  border:1px double #FDEEC0;
+  color: #fdeec0;
+  border: 1px double #fdeec0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -273,8 +305,8 @@ button:hover{
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 .hello {
@@ -298,12 +330,12 @@ button:hover{
   background-color: black !important;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
-  border: 1px solid #FDEEC0 !important;
+  border: 1px solid #fdeec0 !important;
   width: 80%; /* Could be more or less, depending on screen size */
   height: 40vh;
 }
 
-.sect > .modal-content{
+.sect > .modal-content {
   color: whitesmoke;
 }
 
@@ -326,46 +358,45 @@ button:hover{
   text-decoration: none;
   cursor: pointer;
 }
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-  .profile-before{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url('../../img/bottle-illustration.png');
-    height: 60vh;
-    background-size: contain;
-    background-position: center;
-    row-gap: 15vh;
-    width: 100%;
-  }
-  h4{
-    color: #FDEEC0;
-    font-family: 'DM Mono', monospace;
-    font-weight: lighter;
-    font-size: 18px;
-    text-align: center;
-  }
-  .buttons{
-    margin-top: 17vh;
-    height: 8vh;
-    width: 35vh;
-    background-color: black;
-    color: #FDEEC0;
-    font-family: 'DM Mono', monospace;
-    font-size: 20px;
-  }
-  .buttons:hover{
-    cursor: pointer;
-    color: black;
-    background-color: #FDEEC0;
-    transition: .5s;
-  }
-
+.profile-before {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../img/bottle-illustration.png");
+  height: 60vh;
+  background-size: contain;
+  background-position: center;
+  row-gap: 15vh;
+  width: 100%;
+}
+h4 {
+  color: #fdeec0;
+  font-family: "DM Mono", monospace;
+  font-weight: lighter;
+  font-size: 18px;
+  text-align: center;
+}
+.buttons {
+  margin-top: 17vh;
+  height: 8vh;
+  width: 35vh;
+  background-color: black;
+  color: #fdeec0;
+  font-family: "DM Mono", monospace;
+  font-size: 20px;
+}
+.buttons:hover {
+  cursor: pointer;
+  color: black;
+  background-color: #fdeec0;
+  transition: 0.5s;
+}
 </style>
