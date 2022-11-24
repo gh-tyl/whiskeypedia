@@ -4,7 +4,7 @@
     <input type="text" v-model="uName" placeholder="Write your email"> 
     <input :type="[passflag == 'Show' ? 'password' : 'text']" v-model="pass" placeholder="enter your password">
     <div class="button">
-      <button @click="chgPassFlag" >{{ passflag }}</button>
+      <button @click="chgPassFlag">{{ passflag }}</button>
       <button @click="logIn(uName,pass)">Log In</button>
     </div>
     <h3>{{logText}}</h3>
@@ -32,15 +32,13 @@ methods:{
     this.userList.map((user)=>{
       if(user.email == this.uName && user.password == this.pass){
         this.loggedUser = new userClass(user.id, user.first_name,user.last_name,user.email, user.address,user.gender, user.age, user.country);
-        this.$emit("closeModal");
-        this.$emit('loggedUser',this.loggedUser);
+        sessionStorage.setItem('user', JSON.stringify(this.loggedUser.toObj()))
+        this.$emit("closeModal",true);
+        this.$emit('loggedUser',this.loggedUser.toObj());
       }else{
         this.logText = "Incorrect ID or Password";
       }
     })
-  },
-  logOut(){
-    sessionStorage.clear();
   },
   chgPassFlag(){
     if(this.passflag == 'Show'){

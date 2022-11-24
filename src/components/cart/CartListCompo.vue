@@ -37,7 +37,7 @@ export default {
   props:["shoppingList"],
   methods:{
     continueShopping(){
-      this.$router.push({name:'home-page'});
+      this.$router.push({name:'products-page'});
     },
     addItem(item){
       this.shoppingList.addItem(item[1]);

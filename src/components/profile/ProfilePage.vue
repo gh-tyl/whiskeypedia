@@ -1,90 +1,173 @@
 <template>
   <div class="profile-page">
-    <article v-if="logFlag">
-      <h1>Your Profile</h1>
-      <div>
-        <!-- img / icon -->
-        <div>
-          <h2>Hello, {{ fname }}{{ lname }}</h2>
-          <span>View information</span>
-          <span>Update information</span>
-          <!-- from here, modal box -->
-          <div class="showProfile">
-            <h2>Name: {{fname}}{{lname}}</h2>
-            <h2>Email: {{email}}</h2>
-            <span>Country: {{country}}</span>
+  <article v-if="logFlag">
+    <!-- Ordered cart -->
+    <section>
+      <table>
+        <thead>
+          <th>No</th>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Postal code</th>
+          <th>Amount</th>
+          <th>Other</th>
+        </thead>
+        <tbody>
+          <tr v-for="(item, idx) in orderedCart" :key="idx">
+            <td>{{idx}}</td>
+            <td>{{item.fName}} {{item.lName}}</td>
+            <td>{{item.address}}</td>
+            <td>{{item.postal}}</td>
+            <td>{{item.shoppingList.size}}</td>
+            <td>{{item.text}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <h1>Your Profile</h1>
+      <!-- img / icon -->
+      <div class="hello">
+        <h2 v-if="helloflag">
+          Hello, {{ userinfo.fName }}  {{ userinfo.lName }}
+        </h2>
+        <div class="mBox">
+          <button class="open" @click="showEdit">View information</button>
+          <button class="open"  @click="editInfo">Update information</button>
+        </div>
+        <!-- from here, modal box -->
+        <div v-if="showProfile" class="showProfile sect">
+        <!-- Modal content -->
+          <div class="closediv">
+            <span class="close" @click="showEdit">&times;</span>
           </div>
-          <div class="editProfile">
-            <div>
-              <input type="text" v-model="fname" placeholder="first name">
-              <input type="text" v-model="lname" placeholder="last name">
-              <input type="text" v-model="email" placeholder="email">
-              <input type="text" v-model="country" placeholder="country">
-              <button @click="update">Edit</button>
+          <div class="fullname">
+            <h4>Name: {{userinfo.fName}}{{userinfo.lName}}</h4>
+          </div>
+          <h4>Email: {{userinfo.email}}</h4>
+          <h4>Country: {{userinfo.country}}</h4>
+        </div>
+        <!-- edit modal -->
+        <div v-if="editflag" class="editProfile sect">
+          <div class="closediv">
+            <span class="close" @click="editInfo">&times;</span>
+          </div>
+          <div class="fullname">
+            <div class="col">
+              <label for="fname">First Name</label>
+              <input type="text" name="fname" v-model="fname"  placeholder="first name">
+            </div>
+            <div class="col">
+              <label for="lname">last Name</label>
+              <input name="lname" type="text" v-model="lname"  placeholder="last name">
             </div>
           </div>
-          <div class="heighlight">
-        
+          <div class="col">
+            <label for="email">Email</label>
+            <input type="text" name="email" v-model="email"  placeholder="email">
           </div>
+          <div class="col">
+            <label for="country">Country</label>
+            <input type="text" name="country" class="country" v-model="country"  placeholder="country">
+          </div>
+          <button @click="editInfo">Edit</button>
         </div>
+        <!-- recommand products for this user -->
+        <profile-heighlight-page :loggedUser = "loggedUser"></profile-heighlight-page>
+        <!-- purchaed history -->
+        <profile-track-page :loggedUser = "loggedUser"></profile-track-page>
       </div>
     </article>
     <article v-else>
-        <h4>Please sign in to view your profile</h4>
+      <h4>Please sign in to view your profile</h4>
       <div class="profile-before">
         <div class="button">
           <button class="buttons" @click="openModal">Login</button>
         </div>
       </div>
-      
     </article>
   </div>
   <!-- The Modal -->
   <div id="myModal" class="modal">
     <!-- Modal content -->
-    <div class="modal-content">
+    <div  class="modal-content">
       <span @click="closeModal">&times;</span>
-      <profile-login-compo @loggedUser="loggedUser" @closeModal="closeModal"></profile-login-compo>
+      <profile-login-compo-vue  @loggedUser="loggedUser" @closeModal="closeModal"></profile-login-compo-vue>
     </div>
   </div>
 </template>
 
 <script>
-import JsonService from '../../services/JsonService.js';
-import ProfileLoginCompo from './ProfileLoginCompo.vue';
+import JsonService from '../../services/JsonService';
+import userClass from '../../classes/userClass';
+import ProfileHeighlightPage from './ProfileHeighightCompo.vue';
+import ProfileLoginCompoVue from './ProfileLoginCompo.vue';
+import ProfileTrackPage from './ProfileTrackCompo.vue'
+
 export default {
-  name: "ProfileCompo",
+  name: "ProfilePage",
+  props:['loggedUser', "orderedCart"],
   components:{
-    ProfileLoginCompo
+    ProfileHeighlightPage,
+    ProfileTrackPage,
+    ProfileLoginCompoVue
   },
-  props:["logFlag"],
   data(){
     return {
+      helloflag:false,
       products:'',
       purchased:[],
-      fname:'',
-      lname:'',
-      country:'',
+      userinfo: '',
+      fname: '',
+      lname:"",
+      country:"",
       age:'',
-      heighlight:new Map(),
-      genders:new Map(),
+      email:'',
       users:[],
+      showProfile:false,
+      editflag:false,
+      flag:false,
+      logFlag: false
     }
   },
   methods:{
-    loadProducts(){
-      JsonService.getJson('data/json/productJson.json')
-      .then((res)=>{
-          this.products = res.data;
-      })
-      .catch((e)=>console.log(e));
+    openModal(){
+      var modal = document.getElementById("myModal");
+      modal.style.display = "block";
     },
-    loadpurchased(){
-      JsonService.getJson('data/json/purchacedJson.json')
-      .then((res)=>{
-          this.purchased = res.data;
-      })
-      .catch((e)=>console.log(e));
+    closeModal(val){
+      var modal = document.getElementById("myModal");
+      modal.style.display = "none";
+      this.logFlag = val;
+    },
+    setUserinfo(){
+      if(!sessionStorage.getItem('user')){
+        this.userinfo = '';
+        this.helloflag = false;
+      }else{
+        this.userinfo = JSON.parse(sessionStorage.getItem('user'));
+        this.helloflag = true;
+      }
+    },
+    editInfo(){
+      let newUserInfo = new userClass(this.userinfo.uid,this.fname,this.lname,this.email,this.userinfo.address, this.gender, this.age,this.country);
+      sessionStorage.clear()
+      sessionStorage.setItem('user',JSON.stringify(newUserInfo.toObj()));
+      this.loadSession();
+      this.editflag = !this.editflag;
+    },
+    showEdit(){
+      this.showProfile = !this.showProfile
+    },
+    loadSession(){
+      this.userinfo = JSON.parse(sessionStorage.getItem('user'));
+      if(this.userinfo){
+        this.fname  = this.userinfo.fName;
+        this.lname = this.userinfo.lName;
+        this.country = this.userinfo.country;
+        this.age = this.userinfo.age;
+        this.email = this.userinfo.email;
+        this.logFlag = true;
+      }
     },
     loadUsers(){
       JsonService.getJson('data/json/userJson.json')
@@ -93,130 +176,180 @@ export default {
       })
       .catch((e)=>console.log(e));
     },
-    update(){
-      // this.$router.push({name:'product-page'})
-    },
-    setHighlight(){
-      // let id = 1;
-      // let gender = female;
-      // let age = 21;
-      let femalegenders = new Map();
-      let malegenders = new Map();
-      let youngs = new Map();
-      let olders = new Map();
-      this.users.forEach(function(user){
-        // if(user.gender == 'Female'){
-        //   femalegenders.set(user.id,user)
-        // }else if(user.gender == 'Male'){
-        //   malegenders.set(user.id,user)
-        // }
-        if(user.age > 18 && user.age < 40){
-          youngs.set(user.id, user)
-        }else if(user.age >= 40){
-          olders.set(user.id,user);
-        }
-      })
-      
-      let maleProd = new Map();
-      let femaleProd = new Map();
-      this.purchased.forEach(function(prod){
-        if(femalegenders.has(prod.user_id)){
-          if(femaleProd.has(prod.user_id)){
-            femaleProd.get(prod.user_id).amount += 1;
-          }else{
-            let obj = {id:prod.id,pId:prod.product_id,uid:prod.user_id,amount:1}
-            femaleProd.set(prod.user_id,obj);
-          }
-        }else{
-          if(maleProd.has(prod.user_id)){
-            maleProd.get(prod.user_id).amount += 1;
-          }else{
-            let obj = {id:prod.id,pId:prod.product_id,uid:prod.user_id,amount:1}
-            maleProd.set(prod.user_id,obj);
-          }
-        }
-      })
-      // if(gender == 'Femail'){
-      // }
-      // console.log(maleProd);
-      // console.log(femaleProd)
-    },
-    // chk(product,prod){
-    //   if(product.has(prod.user_id)){
-    //       product.get(prod.user_id).amount += 1;
-    //     }else{
-    //       let obj = {id:prod.id,pId:prod.product_id,uid:prod.user_id,amount:1}
-    //       product.set(prod.user_id,obj);
-    //     }
-    // },
-    setTracking(){
-      // let purchased = [];
-      // let id = JSON.parse(sessionStorage.getItem('user')).uid;
-      // this.purchased.forEach(function(prod){
-      //   if(prod.user_id == id){
-      //     purchased.push(prod);
-      //   }
-      // })
-      // this.purchased = purchased;
-      // console.log(purchased)
-    },
-    openModal(){
-      var modal = document.getElementById("myModal");
-      modal.style.display = "block";
-    },
-    closeModal(){
-      var modal = document.getElementById("myModal");
-      modal.style.display = "none";
-    },
-    loggedUser(userData){
-      this.$emit("loggedUser", userData);
+    loggedUser(val){
+      this.$emit('userInfo',val)
     }
   },
   mounted(){
-    this.loadProducts();
-    this.loadpurchased();
     this.loadUsers();
+    this.setUserinfo();
+    console.log(this.orderedCart);
   },
   watch:{
     users:function(){
-      this.setHighlight();
+      this.flag = !this.flag;
+    },
+    flag:function(){
+      this.loadSession();
     }
   }
+  
+
 };
 </script>
+<style scoped>
 
-<style>
-/* The Modal (background) */
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
+.fullname{
+  display: flex;
+  column-gap: 2.5vh;
+}
+.sect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 1vh;
+  background-color: #111111;
+  border: 1px solid #FDEEC0;
+  height: 45vh;
+  width: 100vh;
+  position: absolute;
+  top: 25% ;
+  left: 30%;
+  z-index: 4;
+}
 
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-  }
+.country{
+  width: 60vh;
+}
 
-  /* The Close Button */
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
+.col {
+  display: flex;
+  flex-direction: column;
+}
 
+.col:nth-child(3) input{
+  width:60vh;
+}
+
+label {
+  color: #FDEEC0;
+}
+
+input{
+  height: 6vh;
+  background-color: #111111;
+  border: 1px solid #FDEEC0;
+  color: #FDEEC0;
+  padding-left: 1vh;
+  font-size: 16px;
+}
+::placeholder {
+    font-family: 'DM Mono', monospace;
+    padding-left: 1vh;
+}
+
+button {
+  height: 6vh;
+  background-color: #111111;
+  border: 1px solid #111111;
+  border-color: #FDEEC0;
+  width: 25%;
+  color: #FDEEC0;
+  padding-left: 1vh;
+  font-size: 16px;
+}
+
+button:hover{
+  background-color: #FDEEC0;
+  color: #111111;
+  cursor: pointer;
+  transition: .5s;
+}
+
+.mBox {
+  display: flex;
+  column-gap: 3vh;
+  width: 100%;
+}
+
+.mBox:hover {
+  cursor: pointer;
+}
+
+.open {
+  width: 25vh;
+  height: 2.5vh;
+  padding: 1%;
+  color: #FDEEC0;
+  border:1px double #FDEEC0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.hello {
+  color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4vh;
+}
+/* Modal Content/Box */
+.modal-content {
+  /* background-color: #fefefe;
+  margin: 15% auto; 
+  border: 1px solid #888;
+  width: 80%; 
+  height: 25vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; */
+
+  background-color: black !important;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #FDEEC0 !important;
+  width: 80%; /* Could be more or less, depending on screen size */
+  height: 40vh;
+}
+
+.sect > .modal-content{
+  color: whitesmoke;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.closediv {
+  display: flex;
+  justify-content: start;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
   .close:hover,
   .close:focus {
     color: black;
@@ -258,5 +391,7 @@ export default {
     background-color: #FDEEC0;
     transition: .5s;
   }
-
+  table{
+    color: white;
+  }
 </style>
