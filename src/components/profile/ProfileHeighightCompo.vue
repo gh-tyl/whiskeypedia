@@ -254,6 +254,7 @@ export default {
 h3 {
   padding: 1.5% 3%;
 }
+
 .cBox {
   width: 60%;
   display: flex;
@@ -287,9 +288,11 @@ h3 {
 .slideImg {
   width: 10%;
 }
+
 .swiper {
   overflow: hidden;
 }
+
 .swiper-slide {
   display: flex;
   justify-content: center;
@@ -301,6 +304,7 @@ h3 {
   padding: 1% 3%;
   column-gap: 3vh;
 }
+
 .prod {
   border: 1px solid whitesmoke;
   padding: 3%;

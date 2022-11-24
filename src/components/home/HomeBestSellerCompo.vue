@@ -3,7 +3,7 @@
     <ul>
       <li v-for="(item, idx) in bestSellerItems" :key="idx">
         <figure>
-          <img v-bind:src="item.image_path_0" v-bind:alt="item.name" />
+          <img v-bind:src="item.image_path_0" v-bind:alt="item.name">
           <figcaption>
             <div>
               <h2>{{ item.name }}</h2>
@@ -19,9 +19,7 @@
         </figure>
       </li>
     </ul>
-    <button class="see-more" @click="goToProducts">
-      SEE OUR FULL COLLECTION
-    </button>
+    <button class="see-more" @click="goToProducts">SEE OUR FULL COLLECTION</button>
   </section>
 </template>
 
@@ -34,10 +32,10 @@ export default {
       this.$emit("addToItem", this.logFlag, item);
     },
     goToProducts() {
-      this.$router.push({ name: "products-page" });
-    },
-  },
-};
+      this.$router.push({ name: 'products-page' });
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -48,11 +46,13 @@ section {
   align-items: center;
   row-gap: 5vh;
 }
+
 ul {
   display: flex;
   column-gap: 15vh;
   list-style: none;
 }
+
 figure {
   display: flex;
   flex-direction: column;
@@ -62,11 +62,13 @@ figure {
   width: 45vh;
   border-radius: 5%;
 }
+
 img {
   height: 40vh;
   width: 30vh;
   margin-top: 2vh;
 }
+
 figcaption {
   text-align: center;
   display: flex;
@@ -74,52 +76,59 @@ figcaption {
   height: 33vh;
   justify-content: space-between;
   row-gap: 2vh;
-  font-family: "DM Mono", monospace;
+  font-family: 'DM Mono', monospace;
 }
+
 .info {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
+
 h2 {
   font-size: 20px;
   margin-top: 1vh;
   width: 30vh;
   text-decoration: underline;
-  color: #fdeec0;
+  color: #FDEEC0;
   font-weight: lighter;
 }
+
 h3 {
   font-size: 16px;
-  color: #fdeec0;
+  color: #FDEEC0;
   font-weight: lighter;
 }
-div > button {
+
+div>button {
   background-color: #111111;
-  color: #fdeec0;
+  color: #FDEEC0;
   height: 6vh;
   margin-top: 2vh;
 }
-div > button:hover {
+
+div>button:hover {
   border: 1px solid #111111;
-  background-color: #fdeec0;
+  background-color: #FDEEC0;
   color: #111111;
-  transition: 0.5s;
+  transition: .5s;
   cursor: pointer;
 }
+
 .see-more {
   background-color: #111111;
-  color: #fdeec0;
-  border: 2px solid #fdeec0;
+  color: #FDEEC0;
+  border: 2px solid #FDEEC0;
   margin-top: 6vh;
   margin-bottom: 15vh;
   height: 10vh;
   width: 70vh;
   font-size: 22px;
 }
+
 .see-more:hover {
-  background-color: #fdeec0;
+  background-color: #FDEEC0;
   color: #111111;
-  transition: 0.5s;
+  transition: .5s;
 }
 </style>

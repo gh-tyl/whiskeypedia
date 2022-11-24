@@ -1,11 +1,7 @@
 <!-- access_token: import.meta.env.VITE_MAPBOX_APIKEY, -->
 
 <template>
-  <div
-    id="regions_div"
-    class="mx-auto"
-    style="width: 900px; height: 500px"
-  ></div>
+  <div id="regions_div" class="mx-auto" style="width: 900px; height: 500px;"></div>
 </template>
 
 <script>
@@ -17,7 +13,9 @@ export default {
   data() {
     return {
       access_token: import.meta.env.VITE_GOOGLE_APIKEY,
-      map_data: [["Country", "Number of Products"]],
+      map_data: [
+        ["Country", "Number of Products"],
+      ],
       chart: null,
       data: null,
     };
@@ -48,16 +46,14 @@ export default {
       google.charts.setOnLoadCallback(this.drawRegionsMap);
     },
     drawRegionsMap() {
-      this.data = google.visualization.arrayToDataTable(this.map_data);
+      this.data = google.visualization.arrayToDataTable(
+        this.map_data
+      );
       let options = {};
       this.chart = new google.visualization.GeoChart(
         document.getElementById("regions_div")
       );
-      google.visualization.events.addListener(
-        this.chart,
-        "select",
-        this.selectHandler
-      );
+      google.visualization.events.addListener(this.chart, "select", this.selectHandler);
       this.chart.draw(this.data, options);
     },
     selectHandler() {

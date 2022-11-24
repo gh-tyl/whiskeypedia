@@ -1,8 +1,8 @@
 <template>
   <div class="products-page">
-    <h1>Products</h1>
-    <search-compo @search="search" />
     <div>
+      <h2>Discover the world of whiskey!</h2>
+      <search-compo @search="search" />
       <ProductsMapCompo :products="products" @country="getCountry" />
       <ProductsListCompo :products="displayProds" @addToItem="addToItem" :logFlag="logFlag" />
     </div>
