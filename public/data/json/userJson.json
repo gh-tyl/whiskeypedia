@@ -18,7 +18,7 @@
         "password": "b",
         "address": "739 Myrtle Street",
         "gender": "Female",
-        "age": 11,
+        "age": 31,
         "country": "Russia"
     },
     {
@@ -62,7 +62,7 @@
         "password": "rWHIeSLJ",
         "address": "7 Barby Point",
         "gender": "Male",
-        "age": 82,
+        "age": 19,
         "country": "Guatemala"
     },
     {
@@ -84,7 +84,7 @@
         "password": "5YbNfb",
         "address": "58 Lukken Street",
         "gender": "Male",
-        "age": 51,
+        "age": 20,
         "country": "Russia"
     },
     {
@@ -106,7 +106,7 @@
         "password": "PoboZvSCsYlw",
         "address": "70 Atwood Park",
         "gender": "Female",
-        "age": 42,
+        "age": 21,
         "country": "Poland"
     }
 ]
