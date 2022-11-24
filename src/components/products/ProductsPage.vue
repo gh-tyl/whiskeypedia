@@ -2,8 +2,8 @@
   <div class="products-page">
     <div>
       <h2>Discover the world of whiskey!</h2>
-      <search-compo @search="search" />
       <ProductsMapCompo :products="products" @country="getCountry" />
+      <search-compo @search="search" />
       <ProductsListCompo
         :products="displayProds"
         @addToItem="addToItem"
