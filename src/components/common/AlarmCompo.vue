@@ -32,7 +32,7 @@ export default {
   font-family: 'DM Mono', monospace;
   ;
   position: fixed;
-  top: -10%;
+  top: -15%;
   left: 0%;
   right: 0%;
   margin: auto;
@@ -49,7 +49,7 @@ export default {
 
 @keyframes slide-down {
   0% {
-    top: -10%;
+    top: -15%;
   }
 
   20% {
@@ -61,7 +61,7 @@ export default {
   }
 
   100% {
-    top: -10%;
+    top: -15%;
   }
 }
 </style>
