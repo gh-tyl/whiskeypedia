@@ -12,6 +12,7 @@
           <p>{{ product.price }}</p>
           <p>{{ product.country }}</p>
           <p>{{ product.type }}</p>
+          <button @click="addItem(product.id)">ADD TO CART</button>
         </div>
       </div>
     </div>
@@ -23,6 +24,12 @@ export default {
   name: "ProductsListCompo",
   props: {
     products: Array,
+    logFlag: Boolean
   },
+  methods:{
+    addItem(id){
+      this.$emit("addToItem", this.logFlag, id);
+    }
+  }
 }
 </script>

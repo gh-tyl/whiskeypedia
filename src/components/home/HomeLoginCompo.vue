@@ -36,7 +36,6 @@ methods:{
         console.log(this.loggedUser.toObj())
         sessionStorage.setItem('user', JSON.stringify(this.loggedUser.toObj()))
         this.$emit('userInfo',this.loggedUser.toObj());
-        this.$router.push({name:"profile-page"})
       }else{
         this.logText = "Incorrect ID or Password";
       }
