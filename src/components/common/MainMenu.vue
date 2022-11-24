@@ -27,8 +27,11 @@
             <!-- settings: logout -->
           </li>
           <li id="cart" v-show="logFlag">
-            <router-link @click="setShopSession" class="router-link" to="/cart"><i
-                class="fa-solid fa-cart-shopping" /><span>{{ productCount }}</span></router-link>
+            <router-link @click="setShopSession" class="router-link" to="/cart"
+              ><i class="fa-solid fa-cart-shopping" /><span>{{
+                productCount
+              }}</span></router-link
+            >
           </li>
         </div>
       </ul>
@@ -97,7 +100,7 @@ a {
 
 .router-link {
   /* text-decoration: none; */
-  color: #FDEEC0;
+  color: #fdeec0;
 }
 
 .nav-text {

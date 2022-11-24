@@ -26,11 +26,12 @@
             <td><button @click="removeItem(item)">X</button></td>
           </tr>
         </tbody>
-        <tfoot>
-        </tfoot>
+        <tfoot></tfoot>
       </table>
       <p>Total : ${{ shoppingList.calcTotal().toFixed(2) }}</p>
-      <button @click="continueShopping" class="shopbtn">CONTINUE SHOPPING</button>
+      <button @click="continueShopping" class="shopbtn">
+        CONTINUE SHOPPING
+      </button>
     </div>
   </section>
 </template>
@@ -41,7 +42,7 @@ export default {
   props: ["shoppingList"],
   methods: {
     continueShopping() {
-      this.$router.push({ name: 'products-page' });
+      this.$router.push({ name: "products-page" });
     },
     addItem(item) {
       this.shoppingList.addItem(item[1]);
@@ -63,9 +64,9 @@ article {
   column-gap: 1rem;
 }
 
-article>div {
+article > div {
   width: 23.8rem;
-  height: .1rem;
+  height: 0.1rem;
   background-color: #fdeec0;
 }
 
@@ -88,7 +89,7 @@ article>div {
 }
 
 h2 {
-  font-family: 'DM Mono', monospace;
+  font-family: "DM Mono", monospace;
   font-weight: lighter;
   margin-top: 3vh;
 }
@@ -101,7 +102,7 @@ th {
   background-color: #111111;
   height: 8vh;
   text-align: center;
-  font-family: 'DM Mono', monospace;
+  font-family: "DM Mono", monospace;
   font-weight: lighter;
   padding-left: 1vh;
 }
@@ -111,7 +112,7 @@ td {
   text-align: center;
 }
 
-td>p {
+td > p {
   font-size: 22px;
 }
 
@@ -123,30 +124,30 @@ td>p {
   column-gap: 2vh;
 }
 
-td>button {
+td > button {
   width: 10vh;
   height: 4vh;
   color: #fdeec0;
   background-color: black;
 }
 
-td>button:hover {
+td > button:hover {
   color: black;
   background-color: #fdeec0;
   cursor: pointer;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 tbody {
   background-color: #111111;
-  font-family: 'DM Mono', monospace;
+  font-family: "DM Mono", monospace;
   font-weight: lighter;
 }
 
 .shopbtn {
   height: 10vh;
   width: 60vh;
-  font-family: 'DM Mono', monospace;
+  font-family: "DM Mono", monospace;
   font-weight: lighter;
   font-size: 24px;
   background-color: #111111;
@@ -157,6 +158,6 @@ tbody {
   background-color: #fdeec0;
   color: #111111;
   cursor: pointer;
-  transition: .5s;
+  transition: 0.5s;
 }
 </style>

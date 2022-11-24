@@ -2,9 +2,13 @@
   <div class="products-page">
     <div>
       <h2>Discover the world of whiskey!</h2>
-      <ProductsMapCompo :products="products" @country="getCountry" />
       <search-compo @search="search" />
-      <ProductsListCompo :products="displayProds" @addToItem="addToItem" :logFlag="logFlag" />
+      <ProductsMapCompo :products="products" @country="getCountry" />
+      <ProductsListCompo
+        :products="displayProds"
+        @addToItem="addToItem"
+        :logFlag="logFlag"
+      />
     </div>
   </div>
   <!-- The Modal -->
@@ -12,7 +16,10 @@
     <!-- Modal content -->
     <div class="modal-content">
       <span @click="closeModal">&times;</span>
-      <home-login-compo @userInfo="userinfo" @closeModal="closeModal"></home-login-compo>
+      <home-login-compo
+        @userInfo="userinfo"
+        @closeModal="closeModal"
+      ></home-login-compo>
     </div>
   </div>
   <alarm-compo :alarmText="alarmText" :rand="rand"></alarm-compo>

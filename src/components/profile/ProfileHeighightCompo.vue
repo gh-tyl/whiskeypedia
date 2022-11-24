@@ -37,13 +37,11 @@
   </div>
 </template>
 
-
 <script>
 import JsonService from "../../services/JsonService";
 // npm install vue-star-rating@next
 import StarRating from "vue-star-rating";
 import { Swiper, SwiperSlide } from "swiper/vue";
-
 export default {
   name: "ProfileHeighlightPage",
   props: ["loggedUser"],
@@ -116,7 +114,6 @@ export default {
           olders.set(user.id, user);
         }
       });
-
       let maleProd = new Map();
       let femaleProd = new Map();
       this.purchased.forEach(function (prod) {
@@ -243,7 +240,6 @@ export default {
 };
 </script>
 
-
 <style scoped>
 .section {
   display: flex;
@@ -251,9 +247,11 @@ export default {
   row-gap: 3vh;
   border-top: 3px solid #fdeec0;
 }
+
 h3 {
   padding: 1.5% 3%;
 }
+
 .cBox {
   width: 100%;
   display: flex;
@@ -265,10 +263,12 @@ h3 {
   font-family: "DM Mono", monospace;
   font-weight: lighter;
 }
+
 .cBox input {
   border-radius: 0.2m;
   box-shadow: inset 0px 0px 0px 2px #f7f2f2;
 }
+
 /* .cBox input::before{
     transform: rotateZ(180deg);
     background: #FF4040;
@@ -284,14 +284,17 @@ h3 {
 .slideImg {
   width: 10%;
 }
+
 .swiper {
   overflow: hidden;
 }
+
 .swiper-slide {
   display: flex;
   justify-content: center;
   align-content: center;
 }
+
 .prods {
   display: flex;
   flex-wrap: wrap;
@@ -300,6 +303,7 @@ h3 {
   row-gap: 6vh;
   padding: 1% 3%;
 }
+
 .prod {
   /* padding: 1% 3%; */
   width: 40vh;
@@ -314,10 +318,12 @@ h3 {
   background-color: #111111;
   border-radius: 5%;
 }
+
 h1 {
   font-family: "DM Mono", monospace;
   font-size: 20px;
 }
+
 h2 {
   font-family: "DM Mono", monospace;
   font-weight: lighter;
@@ -327,6 +333,7 @@ h2 {
   padding-right: 2vh;
   text-decoration: underline;
 }
+
 h3 {
   font-family: "DM Mono", monospace;
   font-weight: lighter;
@@ -335,6 +342,7 @@ h3 {
   text-decoration: underline;
   margin-top: 5vh;
 }
+
 img {
   height: 35vh;
   width: 25vh;

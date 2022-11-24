@@ -100,14 +100,14 @@ h3 {
   font-weight: lighter;
 }
 
-div>button {
+div > button {
   background-color: #111111;
   color: #FDEEC0;
   height: 6vh;
   margin-top: 2vh;
 }
 
-div>button:hover {
+div > button:hover {
   border: 1px solid #111111;
   background-color: #FDEEC0;
   color: #111111;

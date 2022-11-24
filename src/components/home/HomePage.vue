@@ -166,7 +166,7 @@ export default {
   margin: 15% auto;
   /* 15% from the top and centered */
   padding: 20px;
-  border: 1px solid #FDEEC0 !important;
+  border: 1px solid #fdeec0 !important;
   width: 80%;
   /* Could be more or less, depending on screen size */
   height: 40vh;
@@ -196,8 +196,8 @@ export default {
 
 .quote,
 p {
-  font-family: 'DM Mono', monospace;
-  color: #FDEEC0;
+  font-family: "DM Mono", monospace;
+  color: #fdeec0;
   text-align: center;
 }
 
@@ -217,14 +217,14 @@ p {
 
 /* DEMO-SPECIFIC STYLES */
 .text-animate p {
-  color: #FDEEC0;
+  color: #fdeec0;
   overflow: hidden;
-  border-right: 0.15px solid #FDEEC0;
+  border-right: 0.15px solid #fdeec0;
   white-space: nowrap;
   margin: 0 auto;
   letter-spacing: 0.15em;
-  animation: typing 3.5s steps(30, end), blink-caret 1.0s step-end infinite;
-  font-family: 'DM Mono', monospace;
+  animation: typing 3.5s steps(30, end), blink-caret 1s step-end infinite;
+  font-family: "DM Mono", monospace;
   font-size: 26px;
 }
 
@@ -241,14 +241,13 @@ p {
 
 /* The typewriter cursor effect */
 @keyframes blink-caret {
-
   from,
   to {
     border-color: transparent;
   }
 
   50% {
-    border-color: #FDEEC0;
+    border-color: #fdeec0;
   }
 }
 </style>

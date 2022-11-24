@@ -11,7 +11,7 @@
     <!-- logo -->
     <div class="recipes">
       <figure>
-        <img src="../../img/dark-stormy.webp" alt="recipe1">
+        <img src="../../img/dark-stormy.webp" alt="recipe1" />
         <figcaption>
           <h2>Boozy dark delight</h2>
           <ul>
@@ -32,7 +32,7 @@
         </figcaption>
       </figure>
       <figure>
-        <img src="../../img/brown-derby.jpeg" alt="recipe2">
+        <img src="../../img/brown-derby.jpeg" alt="recipe2" />
         <figcaption>
           <h2>Brown derby</h2>
           <ul>
@@ -54,7 +54,7 @@
         </figcaption>
       </figure>
       <figure>
-        <img src="../../img/old-fashioned.jpeg" alt="recipe3">
+        <img src="../../img/old-fashioned.jpeg" alt="recipe3" />
         <figcaption>
           <h2>Old Fashioned</h2>
           <ul>
