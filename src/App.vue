@@ -14,7 +14,7 @@
 
       <main>
         <router-view @shopcount="setCount" @userInfo="setLoggedUser" :loggedUser="loggedUser" :logFlag="logFlag"
-          :shoppingList="shoppingList" :products="products" />
+          :shoppingList="shoppingList" :products="products" :orderedCart="orderedCart" />
       </main>
       <div class="footer-logo">
         <img class="logo2" src="./home-img/main-logo.png" alt="logo" />
@@ -46,6 +46,7 @@ export default {
       shoppingList: undefined,
       productCount: 0,
       products: new Array(),
+      orderedCart: []
     };
   },
   methods: {

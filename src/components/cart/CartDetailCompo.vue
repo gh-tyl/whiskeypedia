@@ -13,21 +13,14 @@
       <input type="text" placeholder="First Name*" v-model="fName" required />
       <input type="text" placeholder="Last Name*" v-model="lName" required />
       <input type="email" placeholder="Email*" v-model="email" required />
-      <input
-        type="text"
-        placeholder="Phone (for delivery)*"
-        v-model="tel"
-        required
-      />
+      <input type="text" placeholder="Phone (for delivery)*" v-model="tel" required />
       <input type="text" placeholder="Address*" v-model="address" required />
       <input type="text" placeholder="City*" v-model="city" required />
       <input type="text" placeholder="Postal Code*" v-model="postal" required />
       <input type="text" placeholder="Country*" v-model="country" required />
       <textarea placeholder="Notes for delivery" v-model="text"></textarea>
-    </form>
-    <div class="checkout">
       <button>CHECKOUT</button>
-    </div>
+    </form>
   </section>
 </template>
 
@@ -41,13 +34,12 @@ export default {
       lName: undefined,
       email: undefined,
       address: undefined,
-
       tel: undefined,
       city: undefined,
       postal: undefined,
       country: undefined,
-      text: "",
-    };
+      text: ''
+    }
   },
   methods: {
     fillDetails() {
@@ -59,9 +51,6 @@ export default {
     checkOut(e) {
       e.preventDefault();
       this.orderedCart.push({
-        // checkOut(e) {
-        //   e.preventDefault();
-        //   let checkoutObj = {
         fName: this.fName,
         lName: this.lName,
         email: this.email,
@@ -71,15 +60,14 @@ export default {
         postal: this.postal,
         country: this.country,
         text: this.text,
-
-        shoppingList: this.shoppingList.shoppingList,
+        shoppingList: this.shoppingList.shoppingList
       });
       this.shoppingList.shoppingList = new Map();
       console.log(this.orderedCart);
-      this.$router.push({ name: "profile-page" });
-    },
-  },
-};
+      this.$router.push({ name: 'profile-page' });
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -89,7 +77,7 @@ article {
   column-gap: 1rem;
 }
 
-article > div {
+article>div {
   width: 10rem;
   height: .1rem;
   background-color: black;
@@ -188,7 +176,7 @@ article {
   column-gap: 1rem;
 }
 
-article > div {
+article>div {
   width: 19rem;
   height: 0.1rem;
   background-color: #fdeec0;

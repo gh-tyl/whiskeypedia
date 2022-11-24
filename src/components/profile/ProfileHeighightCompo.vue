@@ -37,11 +37,13 @@
   </div>
 </template>
 
+
 <script>
 import JsonService from "../../services/JsonService";
 // npm install vue-star-rating@next
 import StarRating from "vue-star-rating";
 import { Swiper, SwiperSlide } from "swiper/vue";
+
 export default {
   name: "ProfileHeighlightPage",
   props: ["loggedUser"],
@@ -114,6 +116,7 @@ export default {
           olders.set(user.id, user);
         }
       });
+
       let maleProd = new Map();
       let femaleProd = new Map();
       this.purchased.forEach(function (prod) {
@@ -239,6 +242,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 .section {

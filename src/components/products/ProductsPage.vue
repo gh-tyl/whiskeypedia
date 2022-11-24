@@ -4,11 +4,7 @@
       <h2>Discover the world of whiskey!</h2>
       <ProductsMapCompo :products="products" @country="getCountry" />
       <search-compo @search="search" />
-      <ProductsListCompo
-        :products="displayProds"
-        @addToItem="addToItem"
-        :logFlag="logFlag"
-      />
+      <ProductsListCompo :products="displayProds" @addToItem="addToItem" :logFlag="logFlag" />
     </div>
   </div>
   <!-- The Modal -->
@@ -16,10 +12,7 @@
     <!-- Modal content -->
     <div class="modal-content">
       <span @click="closeModal">&times;</span>
-      <home-login-compo
-        @userInfo="userinfo"
-        @closeModal="closeModal"
-      ></home-login-compo>
+      <home-login-compo @userInfo="userinfo" @closeModal="closeModal"></home-login-compo>
     </div>
   </div>
   <alarm-compo :alarmText="alarmText" :rand="rand"></alarm-compo>
@@ -32,7 +25,6 @@ import ProductsListCompo from "./ListCompo.vue";
 import productClass from "../../classes/productClass.js";
 import AlarmCompo from "../common/AlarmCompo.vue";
 import HomeLoginCompo from "../home/HomeLoginCompo.vue";
-
 export default {
   name: "ProductsPage",
   components: {
@@ -117,13 +109,14 @@ export default {
 </script>
 
 <style scoped>
-.products-page{
+.products-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-h2{
+
+h2 {
   text-align: center;
   color: #FDEEC0;
   font-family: 'DM Mono', monospace;
