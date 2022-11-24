@@ -60,48 +60,25 @@
           <div class="fullname">
             <div class="col">
               <label for="fname">First Name</label>
-              <input
-                type="text"
-                name="fname"
-                v-model="fname"
-                placeholder="first name"
-              />
+              <input type="text" name="fname" v-model="fname" placeholder="first name" />
             </div>
             <div class="col">
               <label for="lname">Last Name</label>
-              <input
-                name="lname"
-                type="text"
-                v-model="lname"
-                placeholder="last name"
-              />
+              <input name="lname" type="text" v-model="lname" placeholder="last name" />
             </div>
             <div class="col">
               <label for="email">Email</label>
-              <input
-                type="text"
-                name="email"
-                v-model="email"
-                placeholder="email"
-              />
+              <input type="text" name="email" v-model="email" placeholder="email" />
             </div>
             <div class="col">
               <label for="country">Country</label>
-              <input
-                type="text"
-                name="country"
-                class="country"
-                v-model="country"
-                placeholder="country"
-              />
+              <input type="text" name="country" class="country" v-model="country" placeholder="country" />
             </div>
           </div>
           <button @click="editInfo" class="editbtn">EDIT</button>
         </div>
         <!-- recommand products for this user -->
-        <profile-heighlight-page
-          :loggedUser="loggedUser"
-        ></profile-heighlight-page>
+        <profile-heighlight-page :loggedUser="loggedUser"></profile-heighlight-page>
         <!-- purchaed history -->
         <profile-track-page :loggedUser="loggedUser"></profile-track-page>
       </div>
@@ -120,10 +97,7 @@
     <!-- Modal content -->
     <div class="modal-content">
       <span @click="closeModal">&times;</span>
-      <profile-login-compo-vue
-        @loggedUser="loggedUser"
-        @closeModal="closeModal"
-      ></profile-login-compo-vue>
+      <profile-login-compo-vue @loggedUser="loggedUser" @closeModal="closeModal"></profile-login-compo-vue>
     </div>
   </div>
 </template>
@@ -137,29 +111,29 @@ import ProfileTrackPage from "./ProfileTrackCompo.vue";
 
 export default {
   name: "ProfilePage",
-  props: ["loggedUser"],
+  props: ['loggedUser', "orderedCart"],
   components: {
     ProfileHeighlightPage,
     ProfileTrackPage,
-    ProfileLoginCompoVue,
+    ProfileLoginCompoVue
   },
   data() {
     return {
       helloflag: false,
-      products: "",
+      products: '',
       purchased: [],
-      userinfo: "",
-      fname: "",
+      userinfo: '',
+      fname: '',
       lname: "",
       country: "",
-      age: "",
-      email: "",
+      age: '',
+      email: '',
       users: [],
       showProfile: false,
       editflag: false,
       flag: false,
-      logFlag: false,
-    };
+      logFlag: false
+    }
   },
   methods: {
     openModal() {
@@ -172,35 +146,26 @@ export default {
       this.logFlag = val;
     },
     setUserinfo() {
-      if (!sessionStorage.getItem("user")) {
-        this.userinfo = "";
+      if (!sessionStorage.getItem('user')) {
+        this.userinfo = '';
         this.helloflag = false;
       } else {
-        this.userinfo = JSON.parse(sessionStorage.getItem("user"));
+        this.userinfo = JSON.parse(sessionStorage.getItem('user'));
         this.helloflag = true;
       }
     },
     editInfo() {
-      let newUserInfo = new userClass(
-        this.userinfo.uid,
-        this.fname,
-        this.lname,
-        this.email,
-        this.userinfo.address,
-        this.gender,
-        this.age,
-        this.country
-      );
-      sessionStorage.clear();
-      sessionStorage.setItem("user", JSON.stringify(newUserInfo.toObj()));
+      let newUserInfo = new userClass(this.userinfo.uid, this.fname, this.lname, this.email, this.userinfo.address, this.gender, this.age, this.country);
+      sessionStorage.clear()
+      sessionStorage.setItem('user', JSON.stringify(newUserInfo.toObj()));
       this.loadSession();
       this.editflag = !this.editflag;
     },
     showEdit() {
-      this.showProfile = !this.showProfile;
+      this.showProfile = !this.showProfile
     },
     loadSession() {
-      this.userinfo = JSON.parse(sessionStorage.getItem("user"));
+      this.userinfo = JSON.parse(sessionStorage.getItem('user'));
       if (this.userinfo) {
         this.fname = this.userinfo.fName;
         this.lname = this.userinfo.lName;
@@ -211,15 +176,15 @@ export default {
       }
     },
     loadUsers() {
-      JsonService.getJson("data/json/userJson.json")
+      JsonService.getJson('data/json/userJson.json')
         .then((res) => {
           this.users = res.data;
         })
         .catch((e) => console.log(e));
     },
     loggedUser(val) {
-      this.$emit("userInfo", val);
-    },
+      this.$emit('userInfo', val)
+    }
   },
   mounted() {
     this.loadUsers();
@@ -232,8 +197,9 @@ export default {
     },
     flag: function () {
       this.loadSession();
-    },
-  },
+    }
+  }
+
 };
 </script>
 <style scoped>
@@ -426,7 +392,7 @@ button:hover {
   height: 40vh;
 }
 
-.sect > .modal-content {
+.sect>.modal-content {
   color: whitesmoke;
 }
 
