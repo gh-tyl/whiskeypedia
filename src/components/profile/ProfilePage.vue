@@ -1,6 +1,29 @@
 <template>
   <div class="profile-page">
   <article v-if="logFlag">
+    <!-- Ordered cart -->
+    <section>
+      <table>
+        <thead>
+          <th>No</th>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Postal code</th>
+          <th>Amount</th>
+          <th>Other</th>
+        </thead>
+        <tbody>
+          <tr v-for="(item, idx) in orderedCart" :key="idx">
+            <td>{{idx}}</td>
+            <td>{{item.fName}} {{item.lName}}</td>
+            <td>{{item.address}}</td>
+            <td>{{item.postal}}</td>
+            <td>{{item.shoppingList.size}}</td>
+            <td>{{item.text}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
     <h1>Your Profile</h1>
       <!-- img / icon -->
       <div class="hello">
@@ -82,7 +105,7 @@ import ProfileTrackPage from './ProfileTrackCompo.vue'
 
 export default {
   name: "ProfilePage",
-  props:['loggedUser'],
+  props:['loggedUser', "orderedCart"],
   components:{
     ProfileHeighlightPage,
     ProfileTrackPage,
@@ -160,6 +183,7 @@ export default {
   mounted(){
     this.loadUsers();
     this.setUserinfo();
+    console.log(this.orderedCart);
   },
   watch:{
     users:function(){
@@ -367,5 +391,7 @@ button:hover{
     background-color: #FDEEC0;
     transition: .5s;
   }
-
+  table{
+    color: white;
+  }
 </style>
