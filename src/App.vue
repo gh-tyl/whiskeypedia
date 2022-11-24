@@ -7,20 +7,20 @@
       </div>
     </div>
     <div class="page-style">
-      <header>
-        <MainMenu :logFlag="logFlag" :productCount="productCount" />
-      </header>
+    <header>
+      <MainMenu @logFlag = 'logFlag' @shoppingFlag = "setShoppingSession" :logFlag="logFlag" :productCount="productCount"/>
+    </header>
 
-      <main>
-        <router-view @loggedUser='setLoggedUser' :loggedUser="loggedUser" :logFlag="logFlag"
-          :shoppingList="shoppingList" :products="products" />
-      </main>
-      <div class="footer-logo">
-        <img class="logo2" src="./home-img/main-logo.png" alt="logo">
-        <span>
-          Please enjoy responsibly.
-        </span>
-      </div>
+    <main>
+      <router-view @shopcount = "setCount"  @userInfo='setLoggedUser' :loggedUser="loggedUser" :logFlag="logFlag" :shoppingList="shoppingList" :products="products" :orderedCart="orderedCart"/>
+    </main>
+    <div class="footer-logo">
+      <img class="logo2" src="./home-img/main-logo.png" alt="logo">
+      <span>
+        Please enjoy responsibly.
+      </span>
+    </div>
+
     </div>
     <div class="copy">
       <a href="#">^</a>
@@ -47,9 +47,15 @@ export default {
       shoppingList: undefined,
       productCount: 0,
       products: new Array(),
+      orderedCart: []
     };
   },
   methods: {
+    logFlag(val){
+      this.logFlag = val;
+      this.shoppingList = undefined;
+      this.loggedUser = '';
+    },
     loadUserJson() {
       UserService.getJson()
         .then((res) => console.log(res.data))
@@ -78,26 +84,57 @@ export default {
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
     },
-    setLoggedUser(val) {
-      this.loggedUser = val;
-      this.logFlag = true;
-      this.shoppingList = new shoppingCartClass(Math.floor((1 + Math.random()) * 0x10000)
-        .toString(16)
-        .substring(1), val.fName + " " + val.lName);
-      console.log(this.shoppingList);
+    setCount(val){
+      this.productCount = val;
     },
+    setShoppingSession(){
+      sessionStorage.setItem('shoppingList',JSON.stringify(this.shoppingList.toObj()));
+    },
+    setLoggedUser(val){
+      if(!sessionStorage.getItem('user')){
+        this.loggedUser = val;
+        this.setShoppingList(val.fName,val.lName);
+      }else{
+        this.chkSession();
+      }
+      console.log(this.shoppingList)
+    },
+    setShoppingList(fname,lname){
+      this.shoppingList = new shoppingCartClass(Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1), fname +" "+ lname);
+      console.log(JSON.stringify(this.shoppingList.toObj()))
+      this.logFlag = true;
+    },
+    chkSession(){
+      if(sessionStorage.getItem('user')){
+        // if(sessionStorage.getItem('shoppingList')){
+        //   this.shoppingList = JSON.parse(sessionStorage.getItem('shoppingList'))
+        //   this.logFlag = true;
+        // }else{
+          this.setShoppingList(JSON.parse(sessionStorage.getItem('user')).fname,JSON.parse(sessionStorage.getItem('user')).lname);
+          this.loggedUser = JSON.parse(sessionStorage.getItem('user'))
+        // }
+      }else{
+        this.logFlag = false;
+      }
+      console.log(this.shoppingList)
+    }
   },
-  mounted() {
+  mounted(){
     // this.loadUserJson();
     this.loadProductJson();
     // this.loadPurchasedJson();
+    this.chkSession();
+
   },
-  watch: {
-    shoppingList: {
-      handler() {
+  watch:{
+    shoppingList:{
+      handler(){
         this.productCount = this.shoppingList.returnSize();
       },
       deep: true
+    },
+    loggedUser: function(){
+      this.chkSession()
     }
   }
 };
