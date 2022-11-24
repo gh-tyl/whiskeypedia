@@ -38,7 +38,7 @@
 
 <script>
 export default {
-  name: "CartListCompo",
+  name: 'CartListCompo',
   props: ["shoppingList"],
   methods: {
     continueShopping() {
@@ -52,9 +52,9 @@ export default {
     },
     removeItem(item) {
       this.shoppingList.deleteItem(item[1]);
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style scoped>

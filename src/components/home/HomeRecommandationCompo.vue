@@ -2,7 +2,7 @@
   <section>
     <article class="left">
       <figure>
-        <img class="slideImg" src="../../img/month-01.png" />
+        <img class="slideImg" src="../../img/month-01.png">
         <figcaption>
           <h2>THE DALMORE</h2>
           <p class="desc">
@@ -18,7 +18,7 @@
       </figure>
     </article>
     <article class="right">
-      <img class="slideImg" src="../../img/dalmore01.png" />
+      <img class="slideImg" src="../../img/dalmore01.png">
     </article>
   </section>
 </template>
@@ -31,8 +31,8 @@ export default {
     addItem() {
       this.$emit("addToItem", this.logFlag, 0);
     },
-  },
-};
+  }
+}
 </script>
 
 <style scoped>
@@ -72,15 +72,15 @@ figcaption {
 }
 
 h2 {
-  color: #fdeec0;
-  font-family: "DM Mono", monospace;
+  color: #FDEEC0;
+  font-family: 'DM Mono', monospace;
   font-weight: lighter;
   text-decoration: underline;
 }
 
 button {
-  border: 1px solid #fdeec0;
-  color: #fdeec0;
+  border: 1px solid #FDEEC0;
+  color: #FDEEC0;
   background-color: #111111;
   padding: 1%;
   width: 40%;
@@ -89,8 +89,8 @@ button {
 
 button:hover {
   color: #111111;
-  background-color: #fdeec0;
+  background-color: #FDEEC0;
   cursor: pointer;
-  transition: 0.5s;
+  transition: .5s;
 }
 </style>

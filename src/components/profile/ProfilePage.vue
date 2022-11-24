@@ -199,7 +199,6 @@ export default {
       this.loadSession();
     }
   }
-
 };
 </script>
 <style scoped>
@@ -215,7 +214,7 @@ export default {
   justify-content: center;
   row-gap: 1vh;
   background-color: #111111;
-  border: 1px solid #fdeec0;
+  border: 1px solid #FDEEC0;
   height: 45vh;
   width: 86vh;
   position: absolute;
@@ -283,7 +282,7 @@ input {
 }
 
 ::placeholder {
-  font-family: "DM Mono", monospace;
+  font-family: 'DM Mono', monospace;
   padding-left: 1vh;
 }
 
@@ -309,10 +308,10 @@ button {
 }
 
 button:hover {
-  background-color: #fdeec0;
+  background-color: #FDEEC0;
   color: #111111;
   cursor: pointer;
-  transition: 0.5s;
+  transition: .5s;
 }
 
 .mBox {
@@ -428,7 +427,7 @@ button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("../../img/bottle-illustration.png");
+  background-image: url('../../img/bottle-illustration.png');
   height: 60vh;
   background-size: contain;
   background-position: center;
@@ -437,8 +436,8 @@ button:hover {
 }
 
 h4 {
-  color: #fdeec0;
-  font-family: "DM Mono", monospace;
+  color: #FDEEC0;
+  font-family: 'DM Mono', monospace;
   font-weight: lighter;
   font-size: 18px;
   text-align: center;
@@ -456,16 +455,16 @@ h5 {
   height: 8vh;
   width: 35vh;
   background-color: black;
-  color: #fdeec0;
-  font-family: "DM Mono", monospace;
+  color: #FDEEC0;
+  font-family: 'DM Mono', monospace;
   font-size: 20px;
 }
 
 .buttons:hover {
   cursor: pointer;
   color: black;
-  background-color: #fdeec0;
-  transition: 0.5s;
+  background-color: #FDEEC0;
+  transition: .5s;
 }
 
 /* table {

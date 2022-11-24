@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import CartDetailCompo from "./CartDetailCompo.vue";
-import CartListCompo from "./CartListCompo.vue";
+import CartDetailCompo from './CartDetailCompo.vue';
+import CartListCompo from './CartListCompo.vue';
 export default {
   components: { CartListCompo, CartDetailCompo },
   name: "CartPage",

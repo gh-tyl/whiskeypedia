@@ -23,12 +23,10 @@
           </ul>
           <ol>
             <li>
-              Drop a few ice cubes, if using, into a short glass and pour over
-              the orange liqueur and whisky.
+              Drop a few ice cubes, if using, into a short glass and pour over the orange liqueur and whisky.
             </li>
             <li>
-              Top up the drink with the stout, then garnish with the chocolate
-              orange shavings, if you like.
+              Top up the drink with the stout, then garnish with the chocolate orange shavings, if you like.
             </li>
           </ol>
         </figcaption>
@@ -46,13 +44,11 @@
           </ul>
           <ol>
             <li>
-              Tip the whiskey, grapefruit juice and honey into a cocktail
-              shaker.
+              Tip the whiskey, grapefruit juice and honey into a cocktail shaker.
             </li>
             <li>
-              Shake to combine, then double- strain into a stemmed cocktail
-              glass (sometimes called a Nick and Nora glass). Garnish with a
-              grapefruit wedge before serving.
+              Shake to combine, then double- strain into a stemmed cocktail glass (sometimes called a Nick and Nora
+              glass). Garnish with a grapefruit wedge before serving.
             </li>
           </ol>
         </figcaption>
@@ -71,10 +67,9 @@
           </ul>
           <ol>
             <li>
-              Put the sugar, bitters and water in a small tumbler. Mix until the
-              sugar dissolves if using granulated. Fill your glass with ice and
-              stir in the whisky. Add a splash of soda water if you like and
-              mix. Garnish with the orange and cherry.
+              Put the sugar, bitters and water in a small tumbler. Mix until the sugar dissolves if using granulated.
+              Fill your glass with ice and stir in the whisky. Add a splash of soda water if you like and mix. Garnish
+              with the orange and cherry.
             </li>
           </ol>
         </figcaption>
@@ -93,8 +88,8 @@ export default {
 <style scoped>
 .lines01 {
   width: 50%;
-  height: 0.1rem;
-  background-color: #fdeec0;
+  height: .1rem;
+  background-color: #FDEEC0;
 }
 
 .lines {
@@ -146,8 +141,8 @@ img {
 }
 
 figcaption {
-  color: #fdeec0;
-  font-family: "DM Mono", monospace;
+  color: #FDEEC0;
+  font-family: 'DM Mono', monospace;
   display: flex;
   flex-direction: column;
   width: 65%;

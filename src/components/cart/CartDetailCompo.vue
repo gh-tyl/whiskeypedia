@@ -79,7 +79,7 @@ article {
 
 article>div {
   width: 10rem;
-  height: 0.1rem;
+  height: .1rem;
   background-color: black;
 }
 
