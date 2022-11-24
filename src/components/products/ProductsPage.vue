@@ -1,8 +1,8 @@
 <template>
   <div class="products-page">
-    <h1>Products</h1>
-    <search-compo></search-compo>
     <div>
+      <h2>Discover the world of whiskey!</h2>
+      <SearchCompo :products="products"></SearchCompo>
       <ProductsMapCompo :products="products" @country="getCountry" />
       <ProductsListCompo :products="displayProds" />
     </div>
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import SearchCompo from './SearchCompo.vue'
+import SearchCompo from './SearchCompo.vue';
 import ProductsMapCompo from "./MapCompo.vue";
 import ProductsListCompo from "./ListCompo.vue";
 
@@ -20,6 +20,7 @@ export default {
     ProductsMapCompo,
     ProductsListCompo,
     SearchCompo
+    
   },
   props: {
     products: Array,
@@ -45,5 +46,7 @@ export default {
   mounted() {
     this.displayProds = this.products;
   },
+  
+
 };
 </script>
