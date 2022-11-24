@@ -10,14 +10,19 @@
       <h2>* indicates required field</h2>
     </div>
     <form @submit="checkOut">
-      <input type="text" placeholder="First Name*" v-model="fName" required>
-      <input type="text" placeholder="Last Name*" v-model="lName" required>
-      <input type="email" placeholder="Email*" v-model="email" required>
-      <input type="text" placeholder="Phone (for delivery)*" v-model="tel" required>
-      <input type="text" placeholder="Address*" v-model="address" required>
-      <input type="text" placeholder="City*" v-model="city" required>
-      <input type="text" placeholder="Postal Code*" v-model="postal" required>
-      <input type="text" placeholder="Country*" v-model="country" required>
+      <input type="text" placeholder="First Name*" v-model="fName" required />
+      <input type="text" placeholder="Last Name*" v-model="lName" required />
+      <input type="email" placeholder="Email*" v-model="email" required />
+      <input
+        type="text"
+        placeholder="Phone (for delivery)*"
+        v-model="tel"
+        required
+      />
+      <input type="text" placeholder="Address*" v-model="address" required />
+      <input type="text" placeholder="City*" v-model="city" required />
+      <input type="text" placeholder="Postal Code*" v-model="postal" required />
+      <input type="text" placeholder="Country*" v-model="country" required />
       <textarea placeholder="Notes for delivery" v-model="text"></textarea>
     </form>
     <div class="checkout">
@@ -41,8 +46,8 @@ export default {
       city: undefined,
       postal: undefined,
       country: undefined,
-      text: ''
-    }
+      text: "",
+    };
   },
   methods: {
     fillDetails() {
@@ -67,14 +72,14 @@ export default {
         country: this.country,
         text: this.text,
 
-        shoppingList: this.shoppingList.shoppingList
+        shoppingList: this.shoppingList.shoppingList,
       });
       this.shoppingList.shoppingList = new Map();
       console.log(this.orderedCart);
-      this.$router.push({ name: 'profile-page' });
-    }
-  }
-}
+      this.$router.push({ name: "profile-page" });
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -84,9 +89,9 @@ article {
   column-gap: 1rem;
 }
 
-article>div {
+article > div {
   width: 10rem;
-  height: .1rem;
+  height: 0.1rem;
   background-color: black;
 }
 
@@ -116,7 +121,7 @@ form {
 input {
   height: 8vh;
   width: 60vh;
-  font-family: 'DM Mono', monospace;
+  font-family: "DM Mono", monospace;
   font-size: 16px;
   color: #fdeec0;
   background-color: #111111;
@@ -125,7 +130,7 @@ input {
 }
 
 ::placeholder {
-  font-family: 'DM Mono', monospace;
+  font-family: "DM Mono", monospace;
   padding-left: 1vh;
 }
 
@@ -153,18 +158,18 @@ button {
   width: 30vh;
   background-color: #111111;
   color: #fdeec0;
-  font-family: 'DM Mono', monospace;
+  font-family: "DM Mono", monospace;
 }
 
 button:hover {
   background-color: #fdeec0;
   color: #111111;
   cursor: pointer;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 h2 {
-  font-family: 'DM Mono', monospace;
+  font-family: "DM Mono", monospace;
   font-weight: lighter;
   font-size: 16px;
   margin-top: 5vh;
@@ -183,9 +188,9 @@ article {
   column-gap: 1rem;
 }
 
-article>div {
+article > div {
   width: 19rem;
-  height: .1rem;
+  height: 0.1rem;
   background-color: #fdeec0;
 }
 </style>

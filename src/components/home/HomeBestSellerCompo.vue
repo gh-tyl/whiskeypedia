@@ -3,7 +3,7 @@
     <ul>
       <li v-for="(item, idx) in bestSellerItems" :key="idx">
         <figure>
-          <img v-bind:src="item.image_path_0" v-bind:alt="item.name">
+          <img v-bind:src="item.image_path_0" v-bind:alt="item.name" />
           <figcaption>
             <div>
               <h2>{{ item.name }}</h2>
@@ -19,7 +19,9 @@
         </figure>
       </li>
     </ul>
-    <button class="see-more" @click="goToProducts">SEE OUR FULL COLLECTION</button>
+    <button class="see-more" @click="goToProducts">
+      SEE OUR FULL COLLECTION
+    </button>
   </section>
 </template>
 
@@ -32,10 +34,10 @@ export default {
       this.$emit("addToItem", this.logFlag, item);
     },
     goToProducts() {
-      this.$router.push({ name: 'products-page' });
-    }
-  }
-}
+      this.$router.push({ name: "products-page" });
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -76,7 +78,7 @@ figcaption {
   height: 33vh;
   justify-content: space-between;
   row-gap: 2vh;
-  font-family: 'DM Mono', monospace;
+  font-family: "DM Mono", monospace;
 }
 
 .info {
@@ -90,35 +92,35 @@ h2 {
   margin-top: 1vh;
   width: 30vh;
   text-decoration: underline;
-  color: #FDEEC0;
+  color: #fdeec0;
   font-weight: lighter;
 }
 
 h3 {
   font-size: 16px;
-  color: #FDEEC0;
+  color: #fdeec0;
   font-weight: lighter;
 }
 
-div>button {
+div > button {
   background-color: #111111;
-  color: #FDEEC0;
+  color: #fdeec0;
   height: 6vh;
   margin-top: 2vh;
 }
 
-div>button:hover {
+div > button:hover {
   border: 1px solid #111111;
-  background-color: #FDEEC0;
+  background-color: #fdeec0;
   color: #111111;
-  transition: .5s;
+  transition: 0.5s;
   cursor: pointer;
 }
 
 .see-more {
   background-color: #111111;
-  color: #FDEEC0;
-  border: 2px solid #FDEEC0;
+  color: #fdeec0;
+  border: 2px solid #fdeec0;
   margin-top: 6vh;
   margin-bottom: 15vh;
   height: 10vh;
@@ -127,8 +129,8 @@ div>button:hover {
 }
 
 .see-more:hover {
-  background-color: #FDEEC0;
+  background-color: #fdeec0;
   color: #111111;
-  transition: .5s;
+  transition: 0.5s;
 }
 </style>

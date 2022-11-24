@@ -6,7 +6,12 @@
       <div>
         <h4>You must be 19 years of age or older to enter</h4>
         <div>
-          <input type="number" v-model="years" placeholder="YY" @keyup.enter="verify">
+          <input
+            type="number"
+            v-model="years"
+            placeholder="YY"
+            @keyup.enter="verify"
+          />
           <p>Please enter your Years of birth</p>
           <h3>{{ result }}</h3>
         </div>
@@ -21,12 +26,12 @@ export default {
   props: [],
   data() {
     return {
-      month: '',
-      date: '',
-      years: '',
+      month: "",
+      date: "",
+      years: "",
       now: new Date().toLocaleDateString("en-US"),
-      result: ''
-    }
+      result: "",
+    };
   },
   methods: {
     verify() {
@@ -34,9 +39,9 @@ export default {
       if (year - this.years > 18) {
         // this.$router.push({name:'main-page'})
       } else {
-        this.result = 'you are not allowed';
+        this.result = "you are not allowed";
       }
-    }
+    },
   },
 };
 </script>

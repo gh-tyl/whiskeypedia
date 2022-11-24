@@ -1,5 +1,4 @@
 <template>
-
   <body>
     <div class="cover">
       <div class="header-logo">
@@ -8,13 +7,23 @@
     </div>
     <div class="page-style">
       <header>
-        <MainMenu @logFlag="logFlag" @shoppingFlag="setShoppingSession" :logFlag="logFlag"
-          :productCount="productCount" />
+        <MainMenu
+          @logFlag="logFlag"
+          @shoppingFlag="setShoppingSession"
+          :logFlag="logFlag"
+          :productCount="productCount"
+        />
       </header>
 
       <main>
-        <router-view @shopcount="setCount" @userInfo="setLoggedUser" :loggedUser="loggedUser" :logFlag="logFlag"
-          :shoppingList="shoppingList" :products="products" />
+        <router-view
+          @shopcount="setCount"
+          @userInfo="setLoggedUser"
+          :loggedUser="loggedUser"
+          :logFlag="logFlag"
+          :shoppingList="shoppingList"
+          :products="products"
+        />
       </main>
       <div class="footer-logo">
         <img class="logo2" src="./home-img/main-logo.png" alt="logo" />
@@ -220,4 +229,3 @@ a {
   font-size: 16px;
 }
 </style>
-
