@@ -2,13 +2,17 @@
   <div class="products-page">
     <div>
       <h2>Discover the world of whiskey!</h2>
-      <search-compo @search="search" />
       <ProductsMapCompo :products="products" @country="getCountry" />
+<<<<<<< HEAD
       <ProductsListCompo
         :products="displayProds"
         @addToItem="addToItem"
         :logFlag="logFlag"
       />
+=======
+      <search-compo @search="search" />
+      <ProductsListCompo :products="displayProds" @addToItem="addToItem" :logFlag="logFlag" />
+>>>>>>> 648d911 (design finalized- please review)
     </div>
   </div>
   <!-- The Modal -->
@@ -115,3 +119,19 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.products-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+h2{
+  text-align: center;
+  color: #FDEEC0;
+  font-family: 'DM Mono', monospace;
+  font-weight: lighter;
+  margin-bottom: 5vh;
+}
+</style>
