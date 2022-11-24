@@ -12,10 +12,14 @@
             <router-link class="router-link" to="/">Home</router-link>
           </li>
           <li>
-            <router-link class="router-link" to="/products">Products</router-link>
+            <router-link class="router-link" to="/products"
+              >Products</router-link
+            >
           </li>
           <li>
-            <router-link class="router-link" to="/cocktails">Cocktails</router-link>
+            <router-link class="router-link" to="/cocktails"
+              >Cocktails</router-link
+            >
           </li>
           <li>
             <router-link class="router-link" to="/contact">Contact</router-link>
@@ -26,7 +30,9 @@
             <router-link class="router-link" to="/profile">P</router-link>
           </li>
           <li v-show="logFlag">
-            <router-link @click="setShopSession" class="router-link" to="/cart">C<span>{{productCount}}</span></router-link>
+            <router-link @click="setShopSession" class="router-link" to="/cart"
+              >C<span>{{ productCount }}</span></router-link
+            >
           </li>
           <li>
             <a @click="lChg" href="#">L</a>
@@ -35,85 +41,87 @@
         </div>
       </ul>
     </nav>
-    <logout-compo @close = close @logout = 'setlogoutFlag' v-if="logout"></logout-compo>
+    <logout-compo
+      @close="close"
+      @logout="setlogoutFlag"
+      v-if="logout"
+    ></logout-compo>
   </div>
 </template>
 
 <script>
-import LogoutCompo from './LogoutCompo.vue';
-import LogoutCompoVue from './LogoutCompo.vue';
+import LogoutCompo from "./LogoutCompo.vue";
+import LogoutCompoVue from "./LogoutCompo.vue";
 export default {
   name: "MainMenu",
-  components:{
-    LogoutCompo
+  components: {
+    LogoutCompo,
   },
-  props:["logFlag", "productCount"],
-  data(){
+  props: ["logFlag", "productCount"],
+  data() {
     return {
-      logout:false
-    }
+      logout: false,
+    };
   },
-  methods :{
-    close(val){
+  methods: {
+    close(val) {
       this.logout = val;
     },
-    setShopSession(){
-      this.$emit('shoppingFlag', true)
+    setShopSession() {
+      this.$emit("shoppingFlag", true);
     },
-    lChg(){
-      this.logout = ! this.logout
+    lChg() {
+      this.logout = !this.logout;
     },
-    setlogoutFlag(val){
+    setlogoutFlag(val) {
       this.logout = val;
       this.logFlag = val;
-      this.$emit('logFlag',false)
-    }
+      this.$emit("logFlag", false);
+    },
   },
-  watch:{
+  watch: {
     // logFlag: function(){
     //   this.logFlag = val;
     // }
-
-  }
+  },
 };
 </script>
 
 <style scoped>
-  ul {
-    display: flex;
-    position: relative;
-    width: 100%;
-    margin-bottom: 10vh;
-  }
-  li {
-    display: flex;
-    list-style-type: none;
-    text-transform: uppercase;
-    font-size: 20px;
-  }
-  a {
-    text-decoration: none;
-  }
-  .router-link {
-    text-decoration: none;
-    color: #FDEEC0;
-  }
-  .nav-text {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    column-gap: 5vh;
-    font-family: 'DM Mono', monospace;
-    font-weight: 300;
-  
-  }
-  .nav-icons {
-    position: absolute;
-    right: 4vh;
-    display: flex;
-    flex-direction: row;
-    column-gap: 2.5vh;
-  }
+ul {
+  display: flex;
+  position: relative;
+  width: 100%;
+  margin-bottom: 10vh;
+}
+li {
+  display: flex;
+  list-style-type: none;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+a {
+  text-decoration: none;
+}
+.router-link {
+  text-decoration: none;
+  color: #fdeec0;
+}
+.nav-text {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5vh;
+  font-family: "DM Mono", monospace;
+  font-weight: 300;
+}
+.nav-icons {
+  position: absolute;
+  right: 4vh;
+  display: flex;
+  flex-direction: row;
+  column-gap: 2.5vh;
+}
 </style>

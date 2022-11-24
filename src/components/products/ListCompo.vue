@@ -24,12 +24,12 @@ export default {
   name: "ProductsListCompo",
   props: {
     products: Array,
-    logFlag: Boolean
+    logFlag: Boolean,
   },
-  methods:{
-    addItem(id){
+  methods: {
+    addItem(id) {
       this.$emit("addToItem", this.logFlag, id);
-    }
-  }
-}
+    },
+  },
+};
 </script>
