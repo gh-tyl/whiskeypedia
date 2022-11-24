@@ -31,12 +31,12 @@ class userClass {
   toObj(){
     return {
       uid: this.uId,
-      fname: this.fName,
-      lname: this.lName,
+      fName: this.fName,
+      lName: this.lName,
       email: this.email,
       address: this.address,
-      gender: this.gender,
-      age: this.gender,
+      age: this.age,
+      gender:this.gender,
       country : this.country
     }
   }

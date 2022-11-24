@@ -7,6 +7,18 @@ class shoppingCartClass{
     this.cartId = cartId;
     this.uName = uName;
   }
+  mapToObj(){
+    return 
+  }
+  
+  toObj(){
+    return {
+      id: this.cartId,
+      uname: this.uName,
+      list: this.shoppingList
+    }
+  }
+
 
   addItem(item){
     if(this.shoppingList.has(item.pId)){
