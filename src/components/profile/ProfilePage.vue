@@ -479,6 +479,39 @@ h5 {
   align-items: center;
   justify-content: center;
   width: 38%;
+  height: .1rem;
+  background-color: #FDEEC0;
+}
+
+.lines {
+  display: flex;
+  align-items: center;
+  margin-top: 5vh;
+}
+
+h3 {
+  font-family: 'DM Mono', monospace;
+  font-weight: lighter;
+  font-size: 22px;
+  margin-top: 5vh;
+}
+
+div {
+  width: 100%;
+}
+
+.fullname {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1vh;
+}
+
+.lines01 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 38%;
   height: 0.1rem;
   background-color: #fdeec0;
 }
