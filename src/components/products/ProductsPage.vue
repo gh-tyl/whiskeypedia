@@ -1,14 +1,10 @@
 <template>
   <div class="products-page">
     <h1>Products</h1>
-    <search-compo></search-compo>
+    <search-compo @search="search" />
     <div>
       <ProductsMapCompo :products="products" @country="getCountry" />
-      <ProductsListCompo
-        :products="displayProds"
-        @addToItem="addToItem"
-        :logFlag="logFlag"
-      />
+      <ProductsListCompo :products="displayProds" @addToItem="addToItem" :logFlag="logFlag" />
     </div>
   </div>
   <!-- The Modal -->
@@ -16,10 +12,7 @@
     <!-- Modal content -->
     <div class="modal-content">
       <span @click="closeModal">&times;</span>
-      <home-login-compo
-        @userInfo="userinfo"
-        @closeModal="closeModal"
-      ></home-login-compo>
+      <home-login-compo @userInfo="userinfo" @closeModal="closeModal"></home-login-compo>
     </div>
   </div>
   <alarm-compo :alarmText="alarmText" :rand="rand"></alarm-compo>
@@ -46,6 +39,8 @@ export default {
   data() {
     return {
       displayProds: new Array(),
+      // backup for search
+      displayProdsBackup: new Array(),
       country: "",
       alarmText: "",
       userInfo: "",
@@ -56,6 +51,7 @@ export default {
       this.country = country;
       console.log(this.country);
       this.filterCountry();
+      this.displayProdsBackup = this.displayProds;
     },
     filterCountry() {
       this.displayProds = this.products.filter((product) => {
@@ -100,9 +96,15 @@ export default {
       this.userInfo = val;
       this.$emit("userInfo", this.userInfo);
     },
+    search(val) {
+      this.displayProds = this.displayProdsBackup.filter((product) => {
+        return product.name.toLowerCase().includes(val.toLowerCase());
+      });
+    },
   },
   mounted() {
     this.displayProds = this.products;
+    this.displayProdsBackup = this.products;
   },
 };
 </script>
