@@ -2,7 +2,6 @@
   <div class="products-page">
     <div>
       <h2>Discover the world of whiskey!</h2>
-      <SearchCompo :products="products"></SearchCompo>
       <ProductsMapCompo :products="products" @country="getCountry" />
       <ProductsListCompo :products="displayProds" @addToItem="addToItem" :logFlag="logFlag"/>
     </div>
@@ -19,7 +18,6 @@
 </template>
 
 <script>
-import SearchCompo from './SearchCompo.vue';
 import ProductsMapCompo from "./MapCompo.vue";
 import ProductsListCompo from "./ListCompo.vue";
 import productClass from "../../classes/productClass.js";
@@ -31,7 +29,6 @@ export default {
   components: {
     ProductsMapCompo,
     ProductsListCompo,
-    SearchCompo,
     AlarmCompo,
     HomeLoginCompo
   },

@@ -24,7 +24,7 @@
     </div>
     <div class="copy">
       <a href="#">^</a>
-      <p>&copy; Copyright 2022</p>
+      <p class="copyright">&copy; Copyright 2022</p>
     </div>
   </body>
 </template>
@@ -206,6 +206,9 @@ a {
 
 .back {
   font-size: 12px;
+}
+.copyright{
+  font-size: 16px;
 }
 </style>
 
