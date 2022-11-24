@@ -2,8 +2,8 @@
   <div class="login-page">
     <h4>Please log-in to continue</h4>
     <input type="text" v-model="uName" placeholder="Email"> 
-    <input :type="[passflag == 'Show' ? 'password' : 'text']" v-model="pass" placeholder="Password">
-    <div class="log-buttons">
+    <input :type="[passflag == 'Show' ? 'password' : 'text']" v-model="pass" placeholder="Password" @keyup.enter="logIn(uName,pass)">
+    <div class="buttons">
       <button @click="chgPassFlag" >{{ passflag }}</button>
       <button @click="logIn(uName,pass)">Log In</button>
     </div>
@@ -33,14 +33,13 @@ methods:{
       if(user.email == this.uName && user.password == this.pass){
         this.loggedUser = new userClass(user.id, user.first_name,user.last_name,user.email, user.address,user.gender, user.age, user.country);
         this.$emit("closeModal");
-        this.$emit('loggedUser',this.loggedUser);
+        console.log(this.loggedUser.toObj())
+        sessionStorage.setItem('user', JSON.stringify(this.loggedUser.toObj()))
+        this.$emit('userInfo',this.loggedUser.toObj());
       }else{
         this.logText = "Incorrect ID or Password";
       }
     })
-  },
-  logOut(){
-    sessionStorage.clear();
   },
   chgPassFlag(){
     if(this.passflag == 'Show'){
