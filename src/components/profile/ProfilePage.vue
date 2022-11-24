@@ -60,35 +60,19 @@
           <div class="fullname">
             <div class="col">
               <label for="fname">First Name</label>
-              <input type="text" name="fname" v-model="fname" placeholder="first name">
+              <input type="text" name="fname" v-model="fname" placeholder="first name" />
             </div>
             <div class="col">
               <label for="lname">Last Name</label>
-              <input
-                name="lname"
-                type="text"
-                v-model="lname"
-                placeholder="last name"
-              />
+              <input name="lname" type="text" v-model="lname" placeholder="last name" />
             </div>
             <div class="col">
               <label for="email">Email</label>
-              <input
-                type="text"
-                name="email"
-                v-model="email"
-                placeholder="email"
-              />
+              <input type="text" name="email" v-model="email" placeholder="email" />
             </div>
             <div class="col">
               <label for="country">Country</label>
-              <input
-                type="text"
-                name="country"
-                class="country"
-                v-model="country"
-                placeholder="country"
-              />
+              <input type="text" name="country" class="country" v-model="country" placeholder="country" />
             </div>
           </div>
           <button @click="editInfo" class="editbtn">EDIT</button>
@@ -127,29 +111,29 @@ import ProfileTrackPage from "./ProfileTrackCompo.vue";
 
 export default {
   name: "ProfilePage",
-  props: ["loggedUser"],
+  props: ['loggedUser', "orderedCart"],
   components: {
     ProfileHeighlightPage,
     ProfileTrackPage,
-    ProfileLoginCompoVue,
+    ProfileLoginCompoVue
   },
   data() {
     return {
       helloflag: false,
-      products: "",
+      products: '',
       purchased: [],
-      userinfo: "",
-      fname: "",
+      userinfo: '',
+      fname: '',
       lname: "",
       country: "",
-      age: "",
-      email: "",
+      age: '',
+      email: '',
       users: [],
       showProfile: false,
       editflag: false,
       flag: false,
-      logFlag: false,
-    };
+      logFlag: false
+    }
   },
   methods: {
     openModal() {
@@ -215,8 +199,6 @@ export default {
       this.loadSession();
     }
   }
-
-
 };
 </script>
 <style scoped>
