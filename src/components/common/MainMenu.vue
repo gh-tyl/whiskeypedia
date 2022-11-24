@@ -1,40 +1,77 @@
 <template>
-  <nav>
-    <ul>
-      <div class="nav-text">
-        <li>
-          <router-link class="router-link" to="/">Home</router-link>
-        </li>
-        <li>
-          <router-link class="router-link" to="/products">Products</router-link>
-        </li>
-        <li>
-          <router-link class="router-link" to="/cocktails">Cocktails</router-link>
-        </li>
-        <li>
-          <router-link class="router-link" to="/contact">Contact</router-link>
-        </li>
-      </div>
-      <div class="nav-icons">
-        <li @click="clickProfile">
-          <router-link class="router-link" to="/profile">P</router-link>
-        </li>
-        <li v-show="logFlag">
-          <router-link class="router-link" to="/cart">C<span>{{productCount}}</span></router-link>
-        </li>
-        <li>
-          <a href="#">L</a>
-          <!-- settings: logout -->
-        </li>
-      </div>
-    </ul>
-  </nav>
+  <div>
+    <nav>
+      <ul>
+        <div class="search-icon">
+          <li>
+            <a href="#">s</a>
+          </li>
+        </div>
+        <div class="nav-text">
+          <li>
+            <router-link class="router-link" to="/">Home</router-link>
+          </li>
+          <li>
+            <router-link class="router-link" to="/products">Products</router-link>
+          </li>
+          <li>
+            <router-link class="router-link" to="/cocktails">Cocktails</router-link>
+          </li>
+          <li>
+            <router-link class="router-link" to="/contact">Contact</router-link>
+          </li>
+        </div>
+        <div class="nav-icons">
+          <li @click="clickProfile">
+            <router-link class="router-link" to="/profile">P</router-link>
+          </li>
+          <li v-show="logFlag">
+            <router-link @click="setShopSession" class="router-link" to="/cart">C<span>{{productCount}}</span></router-link>
+          </li>
+          <li>
+            <a @click="lChg" href="#">L</a>
+            <!-- settings: logout -->
+          </li>
+        </div>
+      </ul>
+    </nav>
+    <logout-compo @logout = 'setlogoutFlag' v-if="logout"></logout-compo>
+  </div>
 </template>
 
 <script>
+import LogoutCompo from './LogoutCompo.vue';
+import LogoutCompoVue from './LogoutCompo.vue';
 export default {
   name: "MainMenu",
+  components:{
+    LogoutCompo
+  },
   props:["logFlag", "productCount"],
+  data(){
+    return {
+      logout:false
+    }
+  },
+  methods :{
+    setShopSession(){
+      this.$emit('shoppingFlag', true)
+    },
+    lChg(){
+      this.logout = ! this.logout
+    },
+    setlogoutFlag(val){
+      this.logout = val;
+      this.logFlag = val;
+      this.$emit('logFlag',false)
+    }
+  },
+  watch:{
+    // logFlag: function(){
+    //   this.logFlag = val;
+    // }
+
+  }
 };
 </script>
 

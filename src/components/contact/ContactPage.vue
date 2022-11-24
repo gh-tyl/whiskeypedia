@@ -28,7 +28,7 @@
           <input class="email" type="email" placeholder="Email*" v-model="email" required/>
           <input type="text" placeholder="Order Number"/>
           <input type="text" placeholder="Subject"/>
-          <textarea placeholder="Message*" required />
+          <textarea placeholder="Message*" required></textarea>
           <div class="button">
             <button type="button" @click="sendContact">SEND</button>
           </div>
