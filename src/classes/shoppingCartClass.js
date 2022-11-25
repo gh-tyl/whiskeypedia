@@ -1,60 +1,60 @@
-class shoppingCartClass{
+class shoppingCartClass {
   cartId;
   uName;
   shoppingList = new Map();
 
-  constructor(cartId, uName){
+  constructor(cartId, uName) {
     this.cartId = cartId;
     this.uName = uName;
   }
-  mapToObj(){
-    return 
+  mapToObj() {
+    return;
   }
-  
-  toObj(){
+
+  toObj() {
     return {
       id: this.cartId,
       uname: this.uName,
-      list: this.shoppingList
-    }
+      list: this.shoppingList,
+    };
   }
 
-
-  addItem(item){
-    if(this.shoppingList.has(item.pId)){
+  addItem(item) {
+    if (this.shoppingList.has(item.pId)) {
       let selectedItem = this.shoppingList.get(item.pId);
       selectedItem.amount += 1;
       this.shoppingList.set(selectedItem.pId, selectedItem);
-    }else{
+    } else {
       this.shoppingList.set(item.pId, item);
     }
   }
 
-  substractItem(item){
-    if(this.shoppingList.has(item.pId)){
+  substractItem(item) {
+    if (this.shoppingList.has(item.pId)) {
       let selectedItem = this.shoppingList.get(item.pId);
       selectedItem.amount -= 1;
-      if(selectedItem.amount == 0){
+      if (selectedItem.amount == 0) {
         this.shoppingList.delete(item.pId);
-      }else{
+      } else {
         this.shoppingList.set(selectedItem.pId, selectedItem);
       }
     }
   }
 
-  deleteItem(item){
+  deleteItem(item) {
     this.shoppingList.delete(item.pId);
   }
 
-  returnSize(){
+  returnSize() {
     return this.shoppingList.size;
   }
 
-  calcTotal(){
+  calcTotal() {
     let total = 0;
-    this.shoppingList.forEach(val=>{
+    this.shoppingList.forEach((val) => {
       total += val.price * val.amount;
-    })
+    });
     return total;
   }
-}export default shoppingCartClass;
+}
+export default shoppingCartClass;
