@@ -136,12 +136,12 @@ export default {
     this.chkSession();
   },
   watch: {
-    // shoppingList:{
-    //   handler(){
-    //     this.productCount = this.shoppingList.returnSize();
-    //   },
-    //   deep: true
-    // },
+    shoppingList:{
+      handler(){
+        this.productCount = this.shoppingList.returnSize();
+      },
+      deep: true
+    },
     loggedUser: function () {
       this.chkSession();
     },

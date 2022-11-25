@@ -66,7 +66,7 @@ export default {
     },
     setlogoutFlag(val) {
       this.logout = val;
-      this.logFlag = val;
+      // this.logFlag = val;
       this.$emit('logFlag', false)
     }
   },

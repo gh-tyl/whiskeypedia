@@ -3,15 +3,15 @@
     <article v-if="logFlag">
       <!-- Ordered cart -->
       <section>
-        <table>
-          <!-- <thead>
+        <table id="order">
+          <thead>
             <th>No</th>
             <th>Name</th>
             <th>Address</th>
             <th>Postal code</th>
             <th>Amount</th>
             <th>Other</th>
-          </thead> -->
+          </thead>
           <tbody>
             <tr v-for="(item, idx) in orderedCart" :key="idx">
               <td>{{ idx }}</td>
@@ -467,10 +467,27 @@ h5 {
   transition: .5s;
 }
 
-/* table {
-  color: white;
-  border: 1px solid red;
-} */
+#order {
+  width: 100%;
+  text-align: center;
+  color: #FDEEC0;
+  border: 1px solid #FDEEC0;
+  font-family: 'DM Mono', monospace;
+  margin-bottom: 5%;
+  font-size: 1.5rem;
+  padding: 2%;
+  border-radius: 1rem;
+}
+#order th{
+  text-transform: uppercase;
+  padding: 1%;
+}
+#order tbody td{
+  margin: 2% 0;
+  padding: 2% 0;
+  border-top: 1px solid #fdeec0;
+  border-collapse: collapse;
+}
 
 .lines01 {
   display: flex;

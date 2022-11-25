@@ -31,6 +31,7 @@
           <h2>{{ prod[1].name }}</h2>
           <h1>{{ prod[1].country }}</h1>
           <h1>${{ prod[1].price }}</h1>
+          <button class="add" @click="goto">Go To Buy</button>
         </div>
       </div>
     </div>
@@ -224,6 +225,9 @@ export default {
         this.heighlight = this.youngProds;
       }
     },
+    goto(){
+      this.$router.push({ name: 'products-page' });
+    }
   },
   mounted() {
     this.loadProducts();
@@ -351,5 +355,22 @@ img {
   height: 35vh;
   width: 25vh;
   margin-top: 4vh;
+}
+
+.add{
+  width: 100%;
+}
+.add{
+  margin-top: 1vh;
+  height: 5vh;
+  width: 20vh;
+  background-color: #111111;
+  color: #FDEEC0;
+}
+.add:hover{
+  background-color: #FDEEC0;
+  color: #111111;
+  cursor: pointer;
+  transition: .5s;
 }
 </style>
