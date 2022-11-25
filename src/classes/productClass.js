@@ -7,15 +7,7 @@ class productClass {
   pClass;
   amount;
 
-  constructor(
-    pId,
-    pName,
-    price,
-    country,
-    type,
-    pClass,
-    amount = 1
-  ) {
+  constructor(pId, pName, price, country, type, pClass, amount = 1) {
     this.pId = pId;
     this.pName = pName;
     this.price = price;

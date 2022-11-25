@@ -73,3 +73,15 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  div{
+    background-color: black;
+    padding: 8vh 33vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+</style>

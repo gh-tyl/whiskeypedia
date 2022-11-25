@@ -14,7 +14,7 @@
         <img class="slideImg" src="../../img/main-04.png">
       </swiper-slide>
       <swiper-slide>
-        <img class="slideImg" src="../../img/main-05.png">
+        <img class="slideImg" src="../../img/main-05 (2).png" />
       </swiper-slide>
       <swiper-slide>
         <img class="slideImg" src="../../img/main-06.png">
@@ -34,44 +34,48 @@ import "swiper/css/navigation";
 
 export default {
   name: "HomeSlideCompo",
-  components:{
+  components: {
     Swiper,
     SwiperSlide,
   },
-  props:[],
-  setup(){
+  props: [],
+  setup() {
     return {
       modules: [Navigation],
     };
   },
-  methods:{
+  methods: {
 
   },
-  watch:{
+  watch: {
 
   }
 }
 </script>
 
 <style>
-  .slideImg{
-    width: 60vh;
-    height: 70vh;
-  }
-  video{
-    width: 60vh;
-    height: 70vh;
-  }
-  .swiper{
-    overflow: hidden;
-  }
-  .swiper-slide{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-  }
-  .swiper-button-prev:after,
-  .swiper-button-next:after{
-    color: #FDEEC0;
-  }
+.slideImg {
+  width: 60vh;
+  height: 70vh;
+}
+
+video {
+  width: 60vh;
+  height: 70vh;
+}
+
+.swiper {
+  overflow: hidden;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  color: #FDEEC0;
+}
 </style>
