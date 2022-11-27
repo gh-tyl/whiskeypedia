@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Halant:wght@300;400;500;600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+h1 {
+    font-size: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FDEEC0;
+    font-family: 'DM Mono', monospace;
+    font-weight: 400;
+    padding-left: 2vh;
+    padding-right: 2vh;
+}
+p {
+    color: #FDEEC0;
+    font-family: 'DM Mono', monospace;
+    font-weight: 300; 
+}
+span {
+    color: #FDEEC0;
+    font-family: 'DM Mono', monospace;
+    font-weight: 300;
+}

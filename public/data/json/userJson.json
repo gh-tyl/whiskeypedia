@@ -1,0 +1,112 @@
+[
+    {
+        "id": 1,
+        "first_name": "Rodney",
+        "last_name": "Brabender",
+        "email": "a@a.com",
+        "password": "a",
+        "address": "14980 Carpenter Hill",
+        "gender": "Male",
+        "age": 18,
+        "country": "Indonesia"
+    },
+    {
+        "id": 2,
+        "first_name": "Carlye",
+        "last_name": "Hauck",
+        "email": "b@b.com",
+        "password": "b",
+        "address": "739 Myrtle Street",
+        "gender": "Female",
+        "age": 31,
+        "country": "Russia"
+    },
+    {
+        "id": 3,
+        "first_name": "Jenny",
+        "last_name": "Francombe",
+        "email": "jfrancombe2@issuu.com",
+        "password": "aJJvWmuj9",
+        "address": "3327 Killdeer Center",
+        "gender": "Female",
+        "age": 84,
+        "country": "Portugal"
+    },
+    {
+        "id": 4,
+        "first_name": "Bogart",
+        "last_name": "Sharland",
+        "email": "bsharland3@yahoo.co.jp",
+        "password": "bfd0J0slgcFB",
+        "address": "21 Moose Street",
+        "gender": "Male",
+        "age": 24,
+        "country": "Costa Rica"
+    },
+    {
+        "id": 5,
+        "first_name": "Harvey",
+        "last_name": "Findlow",
+        "email": "hfindlow4@google.com.br",
+        "password": "2bYNU6Rzm7z",
+        "address": "725 Oakridge Road",
+        "gender": "Male",
+        "age": 42,
+        "country": "China"
+    },
+    {
+        "id": 6,
+        "first_name": "Grantham",
+        "last_name": "Khilkov",
+        "email": "gkhilkov5@newsvine.com",
+        "password": "rWHIeSLJ",
+        "address": "7 Barby Point",
+        "gender": "Male",
+        "age": 19,
+        "country": "Guatemala"
+    },
+    {
+        "id": 7,
+        "first_name": "Foss",
+        "last_name": "Aspinal",
+        "email": "faspinal6@live.com",
+        "password": "TlZZIND",
+        "address": "78 Surrey Trail",
+        "gender": "Male",
+        "age": 115,
+        "country": "Tunisia"
+    },
+    {
+        "id": 8,
+        "first_name": "Gerry",
+        "last_name": "Souttar",
+        "email": "gsouttar7@multiply.com",
+        "password": "5YbNfb",
+        "address": "58 Lukken Street",
+        "gender": "Male",
+        "age": 20,
+        "country": "Russia"
+    },
+    {
+        "id": 9,
+        "first_name": "Erinna",
+        "last_name": "Pyrah",
+        "email": "epyrah8@huffingtonpost.com",
+        "password": "oUwGPW6nvbPb",
+        "address": "950 Carpenter Junction",
+        "gender": "Female",
+        "age": 98,
+        "country": "Thailand"
+    },
+    {
+        "id": 10,
+        "first_name": "Anitra",
+        "last_name": "Voase",
+        "email": "avoase9@soup.io",
+        "password": "PoboZvSCsYlw",
+        "address": "70 Atwood Park",
+        "gender": "Female",
+        "age": 21,
+        "country": "Poland"
+    }
+]
